@@ -6,9 +6,6 @@
   "scripts": {
     "start": "node server.js",
     "test": "mocha ./test"
-  // "main": "index.js",
-  // "scripts": {
-  //   "test": "mocha"
   },
   "author": "Phil Heiselmann",
   "license": "ISC",
