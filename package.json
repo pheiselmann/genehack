@@ -4,11 +4,16 @@
   "description": "Thinkful server-side capstone project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "Phil Heiselmann",
   "license": "ISC",
   "dependencies": {
     "express": "^4.15.4"
+  },
+  "devDependencies": {
+    "chai": "^4.1.1",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.5.0"
   }
 }
