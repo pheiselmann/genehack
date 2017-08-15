@@ -1,0 +1,14 @@
+{
+  "name": "genehack",
+  "version": "1.0.0",
+  "description": "Thinkful server-side capstone project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Phil Heiselmann",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.4"
+  }
+}
