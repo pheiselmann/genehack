@@ -14,7 +14,7 @@ const should = chai.should();
 chai.use(chaiHttp);
 
 
-describe('index page', function() {
+describe('html pages', function() {
 
 //**
 
@@ -38,9 +38,28 @@ describe('index page', function() {
 //**
 
 
-  it('exists', function() {
+  it('info upload page exists', function() {
     return chai.request(app)
       .get('/')
+      .then(function(res) {
+        res.should.have.status(200);
+        res.should.be.html;
+    });
+  });
+
+
+  it('account page exists', function() {
+    return chai.request(app)
+      .get('/account')
+      .then(function(res) {
+        res.should.have.status(200);
+        res.should.be.html;
+    });
+  });
+
+  it('review page exists', function() {
+    return chai.request(app)
+      .get('/review')
       .then(function(res) {
         res.should.have.status(200);
         res.should.be.html;

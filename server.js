@@ -4,6 +4,18 @@ app.use(express.static('public'));
 //app.listen(process.env.PORT || 8080);
 //exports.app = app;
 
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/public/index.html');
+});
+
+app.get('/account', (req, res) => {
+  res.sendFile(__dirname + '/public/account.html');
+});
+
+app.get('/review', (req, res) => {
+  res.sendFile(__dirname + '/public/review.html');
+});
+
 //**
 
 // both runServer and closeServer need to access the same
