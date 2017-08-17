@@ -21,23 +21,20 @@ function getUserInfo(callbackFn) {
 
 // this function stays the same when we connect
 // to real API later
-function displayUserAccountInfo(data) {
+function displayUserReport(data) {
     $('body').append(
-    	'<p>' + 'Name: ' + data.name + '</p>' +
-    	'<p>' + 'username: ' + data.username + '</p>' +
-    	'<p>' + 'password: ' + data.password + '</p>' +
-    	'<p>' + 'snpVariant: ' + data.snpVariant + '</p>');
+    	'<p>' + 'Report: ' + data.report + '</p>');
 }
 
 
 // this function can stay the same even when we
 // are connecting to real API
-function getAndDisplayUserAccountInfo() {
-    getUserInfo(displayUserAccountInfo);
+function getAndDisplayUserReport() {
+    getUserInfo(displayUserReport);
 }
 
 
 //  on page load do this
 $(function() {
-    getAndDisplayUserAccountInfo();
+    getAndDisplayUserReport();
 })
