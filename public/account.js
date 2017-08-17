@@ -32,11 +32,12 @@ function displayUserAccountInfo(data) {
 
 // this function can stay the same even when we
 // are connecting to real API
-function getAndDisplayStatusUpdates() {
-	getRecentStatusUpdates(displayStatusUpdates);
+function getAndDisplayUserAccountInfo() {
+    getUserInfo(displayUserAccountInfo);
 }
+
 
 //  on page load do this
 $(function() {
-	getAndDisplayStatusUpdates();
+    getAndDisplayUserAccountInfo();
 })
