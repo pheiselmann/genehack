@@ -9,8 +9,8 @@ const userProfileSchema = mongoose.Schema({
   name: {type: String},
   username: {type: String, required: true},
   password: {type: String, required: true},
-  snpVarient: {type: String, required: true},
-  report: {type: String, required: true}
+  snpVarient: {type: String},
+  report: {type: String}
 });
 
 //eventually use this for first/last name scheme
@@ -29,6 +29,6 @@ userProfileSchema.methods.apiRepr = function() {
   };
 }
 
-const UserProfile = mongoose.model('BlogPost', userProfileSchema);
+const UserProfile = mongoose.model('UserProfile', userProfileSchema);
 
 module.exports = {UserProfile};
