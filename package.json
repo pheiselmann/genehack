@@ -10,11 +10,16 @@
   "author": "Phil Heiselmann",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.15.4"
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "mongoose": "^4.11.7",
+    "morgan": "^1.8.2",
+    "uuid": "^3.1.0"
   },
   "devDependencies": {
     "chai": "^4.1.1",
     "chai-http": "^3.0.0",
+    "faker": "^4.1.0",
     "mocha": "^3.5.0"
   }
 }
