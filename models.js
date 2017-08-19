@@ -29,6 +29,6 @@ userProfileSchema.methods.apiRepr = function() {
   };
 }
 
-const UserProfile = mongoose.model('UserProfile', userProfileSchema);
+const User = mongoose.model('User', userProfileSchema);
 
-module.exports = {UserProfile};
+module.exports = {User};
