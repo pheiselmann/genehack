@@ -1,10 +1,14 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
+const mongoose = require('mongoose');
+
 // var server = require('../server.js');
 
 //const {app} = require('../server.js');
 
 const {app, runServer, closeServer} = require('../server.js');
+const {User} = require('../models');
+const {TEST_DATABASE_URL} = require('../config');
 
 
 const should = chai.should();
@@ -24,7 +28,7 @@ describe('html pages', function() {
   // there's a possibility of a race condition where our tests start
   // running before our server has started.
   before(function() {
-    return runServer();
+    return runServer(TEST_DATABASE_URL);
   });
 
   // although we only have one test module at the moment, we'll
