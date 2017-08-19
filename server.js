@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 
 const {DATABASE_URL, PORT} = require('./config');
-const {UserProfile} = require('./models');
+const {User} = require('./models');
 
 const app = express();
 
@@ -13,6 +13,8 @@ app.use(morgan('common'));
 app.use(bodyParser.json());
 
 app.use(express.static('public'));
+
+mongoose.Promise = global.Promise;
 //app.listen(process.env.PORT || 8080);
 //exports.app = app;
 
@@ -32,6 +34,45 @@ app.get('/review', (req, res) => {
 });
 
 //**
+
+app.get('/profiles', (req, res) => {
+  User
+    .find()
+    .exec()
+    .then(profiles => {
+      res.json(profiles.map(profile => profile.apiRepr()));
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({error: 'something went terribly wrong'});
+    });
+});
+
+
+app.get('/profile', (req, res) => {
+  User
+    //.findOne({'username': req.params.username, 'password': req.params.password})
+    .findOne({username: req.username})
+    //.findOne({username: "genemachine"})
+    //.findById(req.params.id)
+    //.findOne({_id: "599665df64a3a534454a2737"}, function(err,data){if(!err) console.log(data);})
+    //.findOne()
+    .exec()
+    // .then(profile => {
+    //   //console.log(profile)
+    //   res.json(profile.apiRepr());
+    // })
+    .then(profile => {res.json(profile.apiRepr())})
+    //.then(profile => {res.json(profile)})
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({error: 'something went terribly wrong'});
+    });
+});
+
+app.use('*', function(req, res) {
+  res.status(404).json({message: 'Not Found'});
+});
 
 // closeServer needs access to a server object, but that only
 // gets created when `runServer` runs, so we declare `server` here
