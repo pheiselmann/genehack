@@ -35,35 +35,25 @@ app.get('/review', (req, res) => {
 
 //**
 
-app.get('/profiles', (req, res) => {
-  User
-    .find()
-    .exec()
-    .then(profiles => {
-      res.json(profiles.map(profile => profile.apiRepr()));
-    })
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({error: 'something went terribly wrong'});
-    });
-});
+// app.get('/profiles', (req, res) => {
+//   User
+//     .find()
+//     .exec()
+//     .then(profiles => {
+//       res.json(profiles.map(profile => profile.apiRepr()));
+//     })
+//     .catch(err => {
+//       console.error(err);
+//       res.status(500).json({error: 'something went terribly wrong'});
+//     });
+// });
 
 
 app.get('/profile', (req, res) => {
   User
-    //.findOne({'username': req.params.username, 'password': req.params.password})
-    .findOne({username: req.username})
-    //.findOne({username: "genemachine"})
-    //.findById(req.params.id)
-    //.findOne({_id: "599665df64a3a534454a2737"}, function(err,data){if(!err) console.log(data);})
-    //.findOne()
+    .findOne({_username: req.username, _password: req.password})
     .exec()
-    // .then(profile => {
-    //   //console.log(profile)
-    //   res.json(profile.apiRepr());
-    // })
     .then(profile => {res.json(profile.apiRepr())})
-    //.then(profile => {res.json(profile)})
     .catch(err => {
       console.error(err);
       res.status(500).json({error: 'something went terribly wrong'});
