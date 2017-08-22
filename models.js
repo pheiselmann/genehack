@@ -2,26 +2,26 @@ const mongoose = require('mongoose');
 
 const userProfileSchema = mongoose.Schema({
   //eventually change this to first/last names scheme
-  // name: {
-  //   firstName: String,
-  //   lastName: String
-  // },
-  name: {type: String},
+  name: {
+    firstName: String,
+    lastName: String
+  },
+  //name: {type: String},
   username: {type: String, required: true},
   password: {type: String, required: true},
-  snpVarient: {type: String},
+  snpVariant: {type: String},
   report: {type: String}
 });
 
 //eventually use this for first/last name scheme
-// userProfileSchema.virtual('authorName').get(function() {
-//   return `${this.author.firstName} ${this.author.lastName}`.trim();
-// });
+userProfileSchema.virtual('fullName').get(function() {
+  return `${this.name.firstName} ${this.name.lastName}`.trim();
+});
 
 userProfileSchema.methods.apiRepr = function() {
   return {
     id: this._id,
-    name: this.name,
+    name: this.fullName,
     username: this.username,
     password: this.password,
     snpVariant: this.snpVariant,

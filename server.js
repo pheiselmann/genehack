@@ -29,6 +29,7 @@ app.get('/account', (req, res) => {
   res.sendFile(__dirname + '/public/account.html');
 });
 
+
 app.get('/review', (req, res) => {
   res.sendFile(__dirname + '/public/review.html');
 });
@@ -49,8 +50,14 @@ app.get('/review', (req, res) => {
 // });
 
 
+//****GET paramaters must be set here to get proper AJAX response ???
+
+
+
 app.get('/profile', (req, res) => {
   User
+    //.findOne({username: "genemachine", password: "luckyone"})
+    // .findOne({username: "bobcat", password: "youruncle"})
     .findOne({_username: req.username, _password: req.password})
     .exec()
     .then(profile => {res.json(profile.apiRepr())})
