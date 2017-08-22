@@ -49,14 +49,33 @@ app.get('/review', (req, res) => {
 //     });
 // });
 
+//****IN PROGRESS
 
-//****GET paramaters must be set here to get proper AJAX response ???
+app.get('/profiles', (req, res) => {
+    const filters = {};
+    const queryableFields = ['username', 'password'];
+    queryableFields.forEach(field => {
+        if (req.query[field]) {
+            filters[field] = req.query[field];
+        }
+    });
+    User
+        .find(filters)
+        .exec()
+        .then(Users => res.json(
+            Users.map(user => user.apiRepr())
+        ))
+        .catch(err => {
+            console.error(err);
+            res.status(500).json({message: 'Internal server error'})
+        });
+});
 
-
+//****SEE ABOVE
 
 app.get('/profile', (req, res) => {
   User
-    //.findOne({username: "genemachine", password: "luckyone"})
+    // .findOne({username: "genemachine", password: "luckyone"})
     // .findOne({username: "bobcat", password: "youruncle"})
     .findOne({_username: req.username, _password: req.password})
     .exec()
