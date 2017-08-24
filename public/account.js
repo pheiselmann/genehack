@@ -31,8 +31,10 @@ function getUserInfo(callbackFn) {
     //   username: 'bobcat',
     //   password: 'youruncle'
     // },
-    dataType: 'json',
-    type: 'GET',
+    // dataType: 'json',
+    data: JSON.stringify({username: "bobcat", password: "youruncle"}),
+    contentType: "application/json",
+    type: 'POST',
     success: callbackFn
   };
   $.ajax(settings);
