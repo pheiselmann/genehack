@@ -23,7 +23,6 @@ userProfileSchema.methods.apiRepr = function() {
     id: this._id,
     name: this.fullName,
     username: this.username,
-    password: this.password,
     snpVariant: this.snpVariant,
     report: this.report
   };
