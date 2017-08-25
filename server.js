@@ -105,7 +105,29 @@ app.get('/review', (req, res) => {
   
 // app.use(handleRedirects);
 
+//JWT authorization endpoints
 
+//register new user
+//app.post('api/users', (req, res) => {
+
+//}
+
+//request JWT
+//app.post('api/auth/login', (req, res) => {
+
+//}
+
+//request for protected API endpoing
+//app.get('api/protected', (req, res) => {
+
+//}
+
+//refresh to request new JWT with later expiry date (with valid non-expired JWT)
+//app.post('api/auth/refresh', (req, res) => {
+
+//}
+
+//change to get request using JWT as identifier
 app.post('/profile', (req, res) => {
   User
     // .findOne({username: "genemachine", password: "luckyone"})
@@ -113,6 +135,7 @@ app.post('/profile', (req, res) => {
     // .findOne({_username: req.username, _password: req.password})
     .findOne({username: req.body.username, password: req.body.password})
     .exec()
+    //apiRepr can be used as a token showing someone has logged in
     .then(profile => {res.json(profile.apiRepr())})
     .catch(err => {
       console.error(err);
