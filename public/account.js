@@ -39,7 +39,7 @@ function getUserInfo(callbackFn) {
   };
   $.ajax(settings);
 }
-  
+
 
 // this function stays the same when we connect
 // to real API later
