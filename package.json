@@ -5,15 +5,21 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "mocha ./test"
+    "test": "mocha"
   },
   "author": "Phil Heiselmann",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.2",
+    "dotenv": "^4.0.0",
     "express": "^4.15.4",
+    "jsonwebtoken": "^7.4.3",
     "mongoose": "^4.11.7",
     "morgan": "^1.8.2",
+    "passport": "^0.4.0",
+    "passport-http": "^0.3.0",
+    "passport-jwt": "^3.0.0",
     "uuid": "^3.1.0"
   },
   "devDependencies": {
