@@ -8,7 +8,8 @@ const mongoose = require('mongoose');
 //const {app} = require('../server.js');
 
 const {app, runServer, closeServer} = require('../server.js');
-const {User} = require('../models');
+//const {User} = require('../models');
+const {User} = require('../users')
 const {TEST_DATABASE_URL} = require('../config');
 
 
