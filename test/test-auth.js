@@ -23,6 +23,7 @@ describe('Auth endpoints', function() {
   const password = 'examplePass';
   const firstName = 'Example';
   const lastName = 'User';
+  const name = firstName + " " + lastName;
 
   before(function() {
     // return runServer(TEST_DATABASE_URL);
@@ -38,8 +39,8 @@ describe('Auth endpoints', function() {
       User.create({
         username,
         password,
-        firstName,
-        lastName
+        name: {firstName,
+        lastName}
       })
     );
   });
@@ -104,8 +105,9 @@ describe('Auth endpoints', function() {
           });
           expect(payload.user).to.deep.equal({
             username,
-            firstName,
-            lastName
+            // firstName,
+            // lastName
+            name
           });
         })
     });
@@ -128,8 +130,9 @@ describe('Auth endpoints', function() {
     it('Should reject requests with an invalid token', function() {
       const token = jwt.sign({
         username,
-        firstName,
-        lastName
+            // firstName,
+            // lastName
+            name
       }, 'wrongSecret', {
         algorithm: 'HS256',
         expiresIn: '7d'
@@ -152,8 +155,9 @@ describe('Auth endpoints', function() {
       const token = jwt.sign({
         user: {
           username,
-          firstName,
-          lastName
+            // firstName,
+            // lastName
+            name
         },
         exp: Math.floor(Date.now() / 1000) - 10 // Expired ten seconds ago
       }, JWT_SECRET, {
@@ -178,8 +182,9 @@ describe('Auth endpoints', function() {
       const token = jwt.sign({
         user: {
           username,
-          firstName,
-          lastName
+            // firstName,
+            // lastName
+            name
         },
       }, JWT_SECRET, {
         algorithm: 'HS256',
@@ -201,8 +206,9 @@ describe('Auth endpoints', function() {
           });
           expect(payload.user).to.deep.equal({
             username,
-            firstName,
-            lastName
+            // firstName,
+            // lastName
+            name
           });
           expect(payload.exp).to.be.at.least(decoded.exp);
         });
