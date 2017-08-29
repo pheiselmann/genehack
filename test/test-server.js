@@ -1,3 +1,4 @@
+// global.DATABASE_URL = 'mongodb://localhost/test-genehackDb';
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const faker = require('faker');
@@ -99,6 +100,7 @@ describe('Users API resource', function() {
   // so we return the value returned by these function calls.
   before(function() {
     return runServer(TEST_DATABASE_URL);
+    // return runServer();
   });
 
   beforeEach(function() {

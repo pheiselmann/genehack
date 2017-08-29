@@ -27,7 +27,7 @@ UserSchema.virtual('fullName').get(function() {
 
 UserSchema.methods.apiRepr = function() {
   return {
-    id: this._id,
+    //id: this._id,
     name: this.fullName,
     username: this.username,
     snpVariant: this.snpVariant
