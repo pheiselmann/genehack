@@ -1,10 +1,15 @@
-
+require('dotenv').config();
 const bodyParser = require('body-parser');
 const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
+const passport = require('passport');
+
+const {router: usersRouter} = require('./users');
+const {router: authRouter, basicStrategy, jwtStrategy} = require('./auth');
 
 const {DATABASE_URL, PORT} = require('./config');
+
 const {User} = require('./models');
 
 const app = express();
@@ -15,11 +20,34 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 mongoose.Promise = global.Promise;
-//app.listen(process.env.PORT || 8080);
-//exports.app = app;
 
-//NOT SURE WHAT TO DO FROM HERE DOWN WITH MONGOOSE AND MODELS - AND HOW 
-//TO INTEGRATE THIS WITH THE JQUERY AJAX CALL IN MY JAVASCRIPT FILES!!!
+// CORS
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
+  if (req.method === 'OPTIONS') {
+    return res.send(204);
+  }
+  next();
+});
+
+app.use(passport.initialize());
+passport.use(basicStrategy);
+passport.use(jwtStrategy);
+
+app.use('/api/users/', usersRouter);
+app.use('/api/auth/', authRouter);
+
+// A protected endpoint which needs a valid JWT to access it
+app.get('/api/protected',
+    passport.authenticate('jwt', {session: false}),
+    (req, res) => {
+        return res.json({
+            data: 'rosebud'
+        });
+    }
+);
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
@@ -87,47 +115,7 @@ app.get('/review', (req, res) => {
 //     });
 // });
 
-//REDIRECT TO DISPLAY
 
-// const redirectsMap = {
-//   "/profile": "/info"
-// };
-
-// function handleRedirects(req, res, next) {
-//   if (Object.keys(redirectsMap).find((entry) => entry === req.path)) {
-//       console.log(`Redirecting ${req.path} to ${redirectsMap[req.path]}`);
-//     //not seeing 301 st
-//       res.redirect(301, redirectsMap[req.path]);
-//   } else {
-//     next();
-//   }
-// }
-  
-// app.use(handleRedirects);
-
-//JWT authorization endpoints
-
-//register new user
-//app.post('api/users', (req, res) => {
-
-//}
-
-//request JWT
-//app.post('api/auth/login', (req, res) => {
-
-//}
-
-//request for protected API endpoing
-//app.get('api/protected', (req, res) => {
-
-//}
-
-//refresh to request new JWT with later expiry date (with valid non-expired JWT)
-//app.post('api/auth/refresh', (req, res) => {
-
-//}
-
-//change to get request using JWT as identifier
 app.post('/profile', (req, res) => {
   User
     // .findOne({username: "genemachine", password: "luckyone"})
