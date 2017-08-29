@@ -1,5 +1,6 @@
 //global.DATABASE_URL = 'mongodb://localhost/jwt-auth-demo-test';
 global.DATABASE_URL = 'mongodb://localhost/test-genehackDb';
+//const {TEST_DATABASE_URL} = require('../config');
 // const {TEST_DATABASE_URL, JWT_SECRET} = require('../config');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
