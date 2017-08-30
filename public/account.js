@@ -22,7 +22,7 @@
 
 
 const serverBase = '/';
-const PROFILE_URL = serverBase + 'profile';
+const PROFILE_URL = serverBase + 'api/protected';
 
 function getUserInfo(callbackFn) {
   var settings = {
@@ -47,7 +47,7 @@ function displayUserAccountInfo(data) {
     $('body').append(
     	'<p>' + 'Name: ' + data.name + '</p>' +
     	'<p>' + 'username: ' + data.username + '</p>' +
-    	'<p>' + 'password: ' + data.password + '</p>' +
+    	//'<p>' + 'password: ' + data.password + '</p>' +
     	'<p>' + 'snpVariant: ' + data.snpVariant + '</p>');
 }
 
