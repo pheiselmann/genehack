@@ -32,9 +32,13 @@ function getUserInfo(callbackFn) {
     //   password: 'youruncle'
     // },
     // dataType: 'json',
-    data: JSON.stringify({username: "bobcat", password: "youruncle"}),
+    //data: JSON.stringify({username: "bobcat", password: "youruncle"}),
+    beforeSend: function (request)
+    {
+       request.setRequestHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Im5hbWUiOiJNaWtlIE11dGFudCIsInVzZXJuYW1lIjoibXV0YW50bWlrZXl5eXl5eXkifSwiaWF0IjoxNTA0MDY4OTY2LCJleHAiOjE1MDQ2NzM3NjYsInN1YiI6Im11dGFudG1pa2V5eXl5eXl5In0.vB0_hkZC5o9iYLAd5r9m87w53RINnq2SwYO7PCJSR6Q");
+    },
     contentType: "application/json",
-    type: 'POST',
+    type: 'GET',
     success: callbackFn
   };
   $.ajax(settings);
@@ -45,6 +49,7 @@ function getUserInfo(callbackFn) {
 // to real API later
 function displayUserAccountInfo(data) {
     $('body').append(
+        '<p>' + 'Result: ' + data.data + '</p>' +
     	'<p>' + 'Name: ' + data.name + '</p>' +
     	'<p>' + 'username: ' + data.username + '</p>' +
     	//'<p>' + 'password: ' + data.password + '</p>' +
