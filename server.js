@@ -40,19 +40,60 @@ passport.use(jwtStrategy);
 app.use('/api/users/', usersRouter);
 app.use('/api/auth/', authRouter);
 
-// A protected endpoint which needs a valid JWT to access it
+//A protected endpoint which needs a valid JWT to access it
 app.get('/api/protected',
     passport.authenticate('jwt', {session: false}),
     (req, res) => {
+
         return res.json({
             data: 'rosebud'
         });
     }
 );
 
+//redirect url from localhost:8080/api/auth/login to localhost:8080/account
+
+const redirectsMap = {
+  "/api/auth/login": "/account",
+  "/test": "/account"
+};
+
+function handleRedirects(req, res, next) {
+  if (Object.keys(redirectsMap).find((entry) => entry === req.path)) {
+    console.log(`Redirecting ${req.path} to ${redirectsMap[req.path]}`);
+    res.redirect(301, redirectsMap[req.path]);
+  } else {
+    next();
+  }
+}
+
+
+app.use(handleRedirects);
+
+// app.get('/api/protected',
+//     passport.authenticate('jwt', {session: false}),
+//     (req, res) => {
+//       User
+//         .findOne({username: req.body.username})
+//         .exec()
+//     //apiRepr can be used as a token showing someone has logged in
+//     .then(profile => { return res.json(profile.apiRepr())})
+//     .catch(err => {
+//       console.error(err);
+//       res.status(500).json({error: 'something went terribly wrong'});
+//     })
+//   }
+// );
+
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });
+
+
+app.get('/login', (req, res) => {
+  res.sendFile(__dirname + '/public/login.html');
+});
+
 
 app.get('/account', (req, res) => {
   res.sendFile(__dirname + '/public/account.html');
@@ -62,6 +103,8 @@ app.get('/account', (req, res) => {
 app.get('/review', (req, res) => {
   res.sendFile(__dirname + '/public/review.html');
 });
+
+
 
 //**
 
