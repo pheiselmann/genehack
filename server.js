@@ -10,9 +10,6 @@ const {router: authRouter, basicStrategy, jwtStrategy} = require('./auth');
 
 const {DATABASE_URL, PORT} = require('./config');
 
-//const {User} = require('./models');
-//const {User} = require('./users');
-
 const app = express();
 
 app.use(morgan('common'));

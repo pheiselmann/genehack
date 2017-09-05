@@ -69,66 +69,6 @@ function getAndDisplayUserAccountInfo() {
     getUserInfo(displayUserAccountInfo);
 }
 
-
-// function login(usernamePassword, callbackFn) {
-// //Makes request to auth/login endpoint and retrieve JWT - success callback is where 
-// // JWT gets stored (callback function called, for example, "storeJWT")
-// var settings = {
-//     url: LOGIN_URL,
-//     dataType: 'json',
-//     data: JSON.stringify(usernamePassword),
-//     contentType: "application/json",
-//     type: 'POST',
-//     success: callbackFn
-//   };
-//   $.ajax(settings);
-// }
-
-
-// function watchLoginSubmit() {
-//     $('.js-login-submit-form').submit(function(e) {
-//         e.preventDefault();
-//         let username = $(this).find('.js-username').val();
-//         alert('blah');
-//         let password = $(this).find('.js-password').val();
-//         alert(password);
-//         let usernamePassword = {username: "mutantmikeyyyyyyy", password: "xmenforever"};
-//         //create username/password object
-//         //pass username/password object to ajax call
-//         login(usernamePassword, storeJWT)
-//     });
-// }
-
-function login(callbackFn) {
-    $('.js-login-submit-form').submit(function(e) {
-        e.preventDefault();
-        // let uname = $(this).find('.js-username').val();
-        // let pword = $(this).find('.js-password').val();
-        let uname = $('input[name=js-username]').val();
-        let pword = $('input[name=js-password]').val();
-        let usernamePassword = {"username": uname, "password": pword};
-        let settings = {
-            url: LOGIN_URL,
-            dataType: 'json',
-            // data:  $(this).serialize(),
-            data: JSON.stringify(usernamePassword),
-            //data: {username: uname, password : pword},
-            // beforeSend: function (request)
-            // {
-            //     request.setRequestHeader("Authorization", "Basic", btoa(uname + ":" + pword))
-            // },
-            contentType: "application/json",
-            type: 'POST',
-            success: callbackFn
-        };
-        $.ajax(settings);
-    })
-}
-        //create username/password object
-        //pass username/password object to ajax call
-        //login(usernamePassword, storeJWT)
-
-
 //callback fn for login ajax call
 function storeJWT(data) {
     //put JWT in local storage
@@ -142,6 +82,20 @@ function watchLoginSubmit() {
     login(storeJWT);
 }
 
-// $(function() {
-//                 getAndDisplayUserAccountInfo();
-//              })
+$(function() {
+    $('.js-login-submit-form').submit(function(e) {
+        e.preventDefault();
+        let uname = $('input[name=js-username]').val();
+        let pword = $('input[name=js-password]').val();
+        let usernamePassword = {"username": uname, "password": pword};
+        let settings = {
+            url: LOGIN_URL,
+            dataType: 'json',
+            data: JSON.stringify(usernamePassword),
+            contentType: "application/json",
+            type: 'POST',
+            success: getAndDisplayUserAccountInfo
+        };
+        $.ajax(settings);
+    });
+});
