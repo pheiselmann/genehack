@@ -5,18 +5,16 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const passport = require('passport');
 
-const {router: usersRouter} = require('./users');
+const {router: usersRouter, User} = require('./users');
 const {router: authRouter, basicStrategy, jwtStrategy} = require('./auth');
 
 const {DATABASE_URL, PORT} = require('./config');
-
-//const {User} = require('./models');
-//const {User} = require('./users');
 
 const app = express();
 
 app.use(morgan('common'));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }) );
 
 app.use(express.static('public'));
 
@@ -41,15 +39,30 @@ app.use('/api/users/', usersRouter);
 app.use('/api/auth/', authRouter);
 
 //A protected endpoint which needs a valid JWT to access it
+// app.get('/api/protected',
+//     passport.authenticate('jwt', {session: false}),
+//     // (req, res) => res.json({user: req.user.apiRepr()})
+//     (req, res) =>
+//     {
+
+//         return res.json({
+//             data: 'rosebud'
+//         });
+//     }
+// );
+
 app.get('/api/protected',
     passport.authenticate('jwt', {session: false}),
     (req, res) => {
-
-        return res.json({
-            data: 'rosebud'
-        });
-    }
-);
+    return User
+    .findOne({username: req.user.username})
+     .exec()
+    .then(profile => {res.json(profile.apiRepr())})
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({error: 'something went terribly wrong'});
+    });
+});
 
 //redirect url from localhost:8080/api/auth/login to localhost:8080/account
 
@@ -174,13 +187,6 @@ app.post('/profile', (req, res) => {
       res.status(500).json({error: 'something went terribly wrong'});
     });
 });
-
-
-// app.post('/profile', function(req, res, next) {
-
-// 	res.redirect('http://google.com')
-
-// })
 
 
 app.use('*', function(req, res) {
