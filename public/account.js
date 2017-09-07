@@ -3,7 +3,7 @@
 // const serverBase = '/';
 // const PROFILE_URL = serverBase + 'api/protected';
 // const LOGIN_URL = serverBase + 'api/auth/login';
-// // const token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Im5hbWUiOiJNaWtlIE11dGFudCIsInVzZXJuYW1lIjoibXV0YW50bWlrZXl5eXl5eXkifSwiaWF0IjoxNTA0MjQ5NjM2LCJleHAiOjE1MDQ4NTQ0MzYsInN1YiI6Im11dGFudG1pa2V5eXl5eXl5In0.8Nx8gZuAiSD0vBG3ROFlORUbGTAIrcAaKBpMa6G3At4";
+// const token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Im5hbWUiOiJNaWtlIE11dGFudCIsInVzZXJuYW1lIjoibXV0YW50bWlrZXl5eXl5eXkifSwiaWF0IjoxNTA0MjQ5NjM2LCJleHAiOjE1MDQ4NTQ0MzYsInN1YiI6Im11dGFudG1pa2V5eXl5eXl5In0.8Nx8gZuAiSD0vBG3ROFlORUbGTAIrcAaKBpMa6G3At4";
 // // const token = "Bearer " + JSON.stringify(localStorage.getItem('token'));
 // // const currentUser = JSON.stringify({username: "mutantmikeyyyyyyy"});
 
@@ -224,6 +224,7 @@ $(function() {
         localStorage.setItem('uname', uname);
         let pword = $('input[name=js-password]').val();
         let usernamePassword = {"username": uname, "password": pword};
+        console.log(usernamePassword);
         let settings = {
             url: LOGIN_URL,
             dataType: 'json',
