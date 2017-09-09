@@ -12,10 +12,12 @@ const {User} = require('../users/models');
 const {JWT_SECRET} = require('../config');
 
 const basicStrategy = new BasicStrategy((username, password, callback) => {
+  console.log(username + password);
   let user;
   User
     .findOne({username: username})
     .then(_user => {
+      console.log(user);
       user = _user;
       if (!user) {
         // Return a rejected promise so we break out of the chain of .thens.
@@ -28,6 +30,7 @@ const basicStrategy = new BasicStrategy((username, password, callback) => {
       return user.validatePassword(password);
     })
     .then(isValid => {
+      console.log(!isValid);
       if (!isValid) {
         return Promise.reject({
           reason: 'LoginError',

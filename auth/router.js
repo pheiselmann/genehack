@@ -10,15 +10,11 @@ const createAuthToken = user => {
     expiresIn: config.JWT_EXPIRY,
     algorithm: 'HS256'
   });
-  //store locally
-  // localStorage.setItem('currentUser', user.username);
-
 };
 
 const router = express.Router();
 
 router.post('/login',
-  // The user provides a username and password to login
   passport.authenticate('basic', {session: false}),
   (req, res) => {
     const authToken = createAuthToken(req.user.apiRepr());
