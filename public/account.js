@@ -152,7 +152,6 @@
 
 
 //EXPERIMENTS USING MARK'S CHANGES
-
 const serverBase = '/';
 const PROFILE_URL = serverBase + 'api/protected';
 const LOGIN_URL = serverBase + 'api/auth/login';
@@ -209,7 +208,6 @@ function storeJWT(data) {
     // getAndDisplayUserAccountInfo(currentToken);
     getAndDisplayUserAccountInfo();
 }
-
 
 // function watchLoginSubmit() {
 //     login(storeJWT);
