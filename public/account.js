@@ -1,6 +1,6 @@
 const serverBase = '/';
-const PROFILE_URL = serverBase + 'api/protected';
-const LOGIN_URL = serverBase + 'api/auth/login';
+const PROFILE_URL = serverBase + 'account';
+const LOGIN_URL = serverBase + 'login';
 
 
 // function getUserInfo(token, callbackFn) {
@@ -13,7 +13,7 @@ function getUserInfo(callbackFn) {
     {
        request.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('token'));
     },
-    contentType: "application/json",
+    contentType: "text/html",
     type: 'GET',
     success: callbackFn
   };
@@ -39,17 +39,7 @@ function getAndDisplayUserAccountInfo() {
 //callback fn for login ajax call
 function storeJWT(data) {
     //put JWT in local storage
-    localStorage.setItem('token', data);
-    let currentToken = localStorage.getItem('token');
-    //show that object has been added to local storage 
-    $('body').append('<p>' + 'JWT in local storage: ' + currentToken + '</p>');
-}
-
-//callback fn for login ajax call
-function storeJWT(data) {
-    //put JWT in local storage
-    localStorage.setItem('token', data.authToken);
-    //let currentToken = localStorage.getItem('token');
+    localStorage.setItem('token', data.token);
     //show that object has been added to local storage 
     // $('body').append('<p>' + 'JWT in local storage: ' + JSON.stringify(currentToken) + '</p>');
     $('body').append('<p>' + 'JWT in local storage: ' + localStorage.getItem('token') + '</p>');
@@ -60,10 +50,10 @@ function storeJWT(data) {
 $(function() {
     $('.js-login-submit-form').submit(function(e) {
         e.preventDefault();
-        let uname = $('input[name=js-username]').val();
+        let uname = $('input[name=username]').val();
         //store username
         localStorage.setItem('uname', uname);
-        let pword = $('input[name=js-password]').val();
+        let pword = $('input[name=password]').val();
         let usernamePassword = {"username": uname, "password": pword};
         console.log(usernamePassword);
         let settings = {

@@ -1,5 +1,4 @@
 const passport = require('passport');
-const {BasicStrategy} = require('passport-http');
 const {
     // Assigns the Strategy export to the name JwtStrategy using object
     // destructuring
@@ -10,42 +9,6 @@ const {
 
 const {User} = require('../users/models');
 const {JWT_SECRET} = require('../config');
-
-const basicStrategy = new BasicStrategy((username, password, callback) => {
-  console.log(username + password);
-  let user;
-  User
-    .findOne({username: username})
-    .then(_user => {
-      console.log(user);
-      user = _user;
-      if (!user) {
-        // Return a rejected promise so we break out of the chain of .thens.
-        // Any errors like this will be handled in the catch block.
-        return Promise.reject({
-          reason: 'LoginError',
-          message: 'Incorrect username or password',
-        });
-      }
-      return user.validatePassword(password);
-    })
-    .then(isValid => {
-      console.log(!isValid);
-      if (!isValid) {
-        return Promise.reject({
-          reason: 'LoginError',
-          message: 'Incorrect username or password',
-        });
-      }
-      return callback(null, user)
-    })
-    .catch(err => {
-      if (err.reason === 'LoginError') {
-        return callback(null, false, err);
-      }
-      return callback(err, false);
-    });
-});
 
 const jwtStrategy = new JwtStrategy({
     secretOrKey: JWT_SECRET,
@@ -59,4 +22,4 @@ const jwtStrategy = new JwtStrategy({
   }
 );
 
-module.exports = {basicStrategy, jwtStrategy};
+module.exports = {jwtStrategy};

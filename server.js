@@ -4,13 +4,25 @@ const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const passport = require('passport');
+const jwt = require('jsonwebtoken');
+const config = require('./config');
+
 
 const {router: usersRouter, User} = require('./users');
-const {router: authRouter, basicStrategy, jwtStrategy} = require('./auth');
+const {router: authRouter, jwtStrategy} = require('./auth');
 
 const {DATABASE_URL, PORT} = require('./config');
 
 const app = express();
+
+const createAuthToken = user => {
+  return jwt.sign({user}, config.JWT_SECRET, {
+    subject: user.username,
+    expiresIn: config.JWT_EXPIRY,
+    algorithm: 'HS256'
+  });
+};
+
 
 app.use(morgan('common'));
 app.use(bodyParser.json());
@@ -32,37 +44,16 @@ app.use(function (req, res, next) {
 });
 
 app.use(passport.initialize());
-passport.use(basicStrategy);
 passport.use(jwtStrategy);
 
 app.use('/api/users/', usersRouter);
 app.use('/api/auth/', authRouter);
 
-//A protected endpoint which needs a valid JWT to access it
-// app.get('/api/protected',
-//     passport.authenticate('jwt', {session: false}),
-//     // (req, res) => res.json({user: req.user.apiRepr()})
-//     (req, res) =>
-//     {
-
-//         return res.json({
-//             data: 'rosebud'
-//         });
-//     }
-// );
-
 app.get('/api/protected',
     passport.authenticate('jwt', {session: false}),
     (req, res) => {
-    return User
-    .findOne({username: req.user.username})
-     .exec()
-    .then(profile => {res.json(profile.apiRepr())})
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({error: 'something went terribly wrong'});
+      res.json({message: "Success! You can not see this without a token"});
     });
-});
 
 //redirect url from localhost:8080/api/auth/login to localhost:8080/account
 
@@ -108,7 +99,7 @@ app.get('/login', (req, res) => {
 });
 
 
-app.get('/account', (req, res) => {
+app.get('/account',passport.authenticate('jwt', { session: false }), (req, res) => {
   res.sendFile(__dirname + '/public/account.html');
 });
 
@@ -171,6 +162,34 @@ app.get('/review', (req, res) => {
 //       res.status(500).json({error: 'something went terribly wrong'});
 //     });
 // });
+
+
+app.post('/login', (req, res) =>  {
+  console.log("POST body = ", req.body);
+  var name, password;
+  if(req.body.username && req.body.password){
+    name = req.body.username;
+    password = req.body.password;
+  }
+  console.log("Name = '" + name + "'") ;
+  console.log("Password = '" + password + "'");
+
+  let user = User
+    .findOne({username: name, password: password})
+    .exec()
+    .then(user => {
+      var payload = {id: user.id};
+      const authToken = createAuthToken(user.apiRepr());
+      res.json({message: "ok", token: authToken});
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({error: 'something went terribly wrong'});
+  });
+  if( ! user ){
+    res.status(401).json({message:"no such user found"});
+  }
+});
 
 
 app.post('/profile', (req, res) => {
