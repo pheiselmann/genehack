@@ -52,16 +52,16 @@ app.use('/api/auth/', authRouter);
 app.get('/api/protected',
     passport.authenticate('jwt', {session: false}),
     (req, res) => {
-    return User
-    .findOne({username: req.user.username})
-     .exec()
-    .then(profile => {res.json(profile.apiRepr())})
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({error: 'something went terribly wrong'});
-    // res.json({message: "Success! You can not see this without a token"});
+    // return User
+    // .findOne({username: req.user.username})
+    //  .exec()
+    // .then(profile => {res.json(profile.apiRepr())})
+    // .catch(err => {
+    //   console.error(err);
+    //   res.status(500).json({error: 'something went terribly wrong'});
+    res.json({message: "Success! You can not see this without a token"});
     });
-});
+// });
 
 
 app.get('api/logout', function(req, res){
