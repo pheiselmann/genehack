@@ -153,12 +153,8 @@
 
 //EXPERIMENTS USING MARK'S CHANGES
 const serverBase = '/';
-const PROFILE_URL = serverBase + 'api/protected';
-const LOGIN_URL = serverBase + 'api/auth/login';
-// const token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Im5hbWUiOiJNaWtlIE11dGFudCIsInVzZXJuYW1lIjoibXV0YW50bWlrZXl5eXl5eXkifSwiaWF0IjoxNTA0MjQ5NjM2LCJleHAiOjE1MDQ4NTQ0MzYsInN1YiI6Im11dGFudG1pa2V5eXl5eXl5In0.8Nx8gZuAiSD0vBG3ROFlORUbGTAIrcAaKBpMa6G3At4";
-// const token = "Bearer " + JSON.stringify(localStorage.getItem('token'));
-// const currentUser = JSON.stringify({username: "bobby"});
-
+const PROFILE_URL = serverBase + 'account';
+const LOGIN_URL = serverBase + 'login';
 
 // function getUserInfo(token, callbackFn) {
 function getUserInfo(callbackFn) {
@@ -172,6 +168,7 @@ function getUserInfo(callbackFn) {
        request.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('token'));
     },
     contentType: "application/json",
+    // contentType: "text/html",
     type: 'GET',
     success: callbackFn
   };
@@ -201,26 +198,19 @@ function getAndDisplayUserAccountInfo() {
 function storeJWT(data) {
     //put JWT in local storage
     localStorage.setItem('token', data.authToken);
-    //let currentToken = localStorage.getItem('token');
     //show that object has been added to local storage 
-    // $('body').append('<p>' + 'JWT in local storage: ' + JSON.stringify(currentToken) + '</p>');
     $('body').append('<p>' + 'JWT in local storage: ' + localStorage.getItem('token') + '</p>');
-    // getAndDisplayUserAccountInfo(currentToken);
     getAndDisplayUserAccountInfo();
 }
-
-// function watchLoginSubmit() {
-//     login(storeJWT);
-// }
 
 
 $(function() {
     $('.js-login-submit-form').submit(function(e) {
         e.preventDefault();
-        let uname = $('input[name=js-username]').val();
+        let uname = $('input[name=username]').val();
         //store username
         localStorage.setItem('uname', uname);
-        let pword = $('input[name=js-password]').val();
+        let pword = $('input[name=password]').val();
         let usernamePassword = {"username": uname, "password": pword};
         console.log(usernamePassword);
         let settings = {
@@ -229,7 +219,6 @@ $(function() {
             data: JSON.stringify(usernamePassword),
             contentType: "application/json",
             type: 'POST',
-            // success: getAndDisplayUserAccountInfo
             success: storeJWT
         };
         $.ajax(settings);
