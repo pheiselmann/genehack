@@ -3,14 +3,26 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
+
 const passport = require('passport');
+const jwt = require('jsonwebtoken');
+const config = require('./config');
 
 const {router: usersRouter, User} = require('./users');
-const {router: authRouter, basicStrategy, jwtStrategy} = require('./auth');
+const {router: authRouter, jwtStrategy} = require('./auth');
 
 const {DATABASE_URL, PORT} = require('./config');
 
 const app = express();
+
+const createAuthToken = user => {
+  return jwt.sign({user}, config.JWT_SECRET, {
+    subject: user.username,
+    expiresIn: config.JWT_EXPIRY,
+    algorithm: 'HS256'
+  });
+};
+
 
 app.use(morgan('common'));
 app.use(bodyParser.json());
@@ -32,24 +44,10 @@ app.use(function (req, res, next) {
 });
 
 app.use(passport.initialize());
-passport.use(basicStrategy);
 passport.use(jwtStrategy);
 
 app.use('/api/users/', usersRouter);
 app.use('/api/auth/', authRouter);
-
-//A protected endpoint which needs a valid JWT to access it
-// app.get('/api/protected',
-//     passport.authenticate('jwt', {session: false}),
-//     // (req, res) => res.json({user: req.user.apiRepr()})
-//     (req, res) =>
-//     {
-
-//         return res.json({
-//             data: 'rosebud'
-//         });
-//     }
-// );
 
 app.get('/api/protected',
     passport.authenticate('jwt', {session: false}),
@@ -61,7 +59,14 @@ app.get('/api/protected',
     .catch(err => {
       console.error(err);
       res.status(500).json({error: 'something went terribly wrong'});
+    // res.json({message: "Success! You can not see this without a token"});
     });
+// });
+
+
+app.get('api/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
 });
 
 //redirect url from localhost:8080/api/auth/login to localhost:8080/account
@@ -83,20 +88,6 @@ function handleRedirects(req, res, next) {
 
 app.use(handleRedirects);
 
-// app.get('/api/protected',
-//     passport.authenticate('jwt', {session: false}),
-//     (req, res) => {
-//       User
-//         .findOne({username: req.body.username})
-//         .exec()
-//     //apiRepr can be used as a token showing someone has logged in
-//     .then(profile => { return res.json(profile.apiRepr())})
-//     .catch(err => {
-//       console.error(err);
-//       res.status(500).json({error: 'something went terribly wrong'});
-//     })
-//   }
-// );
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
@@ -108,7 +99,7 @@ app.get('/login', (req, res) => {
 });
 
 
-app.get('/account', (req, res) => {
+app.get('/account',passport.authenticate('jwt', { session: false }), (req, res) => {
   res.sendFile(__dirname + '/public/account.html');
 });
 
@@ -117,75 +108,31 @@ app.get('/review', (req, res) => {
   res.sendFile(__dirname + '/public/review.html');
 });
 
+app.post('/login', (req, res) =>  {
+  console.log("POST body = ", req.body);
+  var name, password;
+  if(req.body.username && req.body.password){
+    name = req.body.username;
+    password = req.body.password;
+  }
+  console.log("Name = '" + name + "'") ;
+  console.log("Password = '" + password + "'");
 
-
-//**
-
-// app.get('/profiles', (req, res) => {
-//   User
-//     .find()
-//     .exec()
-//     .then(profiles => {
-//       res.json(profiles.map(profile => profile.apiRepr()));
-//     })
-//     .catch(err => {
-//       console.error(err);
-//       res.status(500).json({error: 'something went terribly wrong'});
-//     });
-// });
-
-//****IN PROGRESS
-
-// app.get('/profiles', (req, res) => {
-//     const filters = {};
-//     const queryableFields = ['username', 'password'];
-//     queryableFields.forEach(field => {
-//         if (req.query[field]) {
-//             filters[field] = req.query[field];
-//         }
-//     });
-//     User
-//         .find(filters)
-//         .exec()
-//         .then(Users => res.json(
-//             Users.map(user => user.apiRepr())
-//         ))
-//         .catch(err => {
-//             console.error(err);
-//             res.status(500).json({message: 'Internal server error'})
-//         });
-// });
-
-//****SEE ABOVE
-
-// app.get('/profile', (req, res) => {
-//   User
-//     // .findOne({username: "genemachine", password: "luckyone"})
-//     // .findOne({username: "bobcat", password: "youruncle"})
-//     .findOne({_username: req.username, _password: req.password})
-//     // .findOne({username: req.query.username, password: req.query.password})
-//     .exec()
-//     .then(profile => {res.json(profile.apiRepr())})
-//     .catch(err => {
-//       console.error(err);
-//       res.status(500).json({error: 'something went terribly wrong'});
-//     });
-// });
-
-
-app.post('/profile', (req, res) => {
-  User
-    // .findOne({username: "genemachine", password: "luckyone"})
-    // .findOne({username: "bobcat", password: "youruncle"})
-    // .findOne({_username: req.username, _password: req.password})
-    .findOne({username: req.body.username, password: req.body.password})
+  let user = User
+    .findOne({username: name, password: password})
     .exec()
-    //apiRepr can be used as a token showing someone has logged in
-    .then(profile => {res.json(profile.apiRepr())})
+    .then(user => {
+      var payload = {id: user.id};
+      const authToken = createAuthToken(user.apiRepr());
+      res.json({message: "ok", token: authToken});
+    })
     .catch(err => {
       console.error(err);
       res.status(500).json({error: 'something went terribly wrong'});
-    });
+  });
+  if( ! user ){
+    res.status(401).json({message:"no such user found"});
+  }
 });
 
 
