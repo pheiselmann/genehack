@@ -61,7 +61,7 @@ app.get('/api/protected',
       res.status(500).json({error: 'something went terribly wrong'});
     // res.json({message: "Success! You can not see this without a token"});
     });
-// });
+});
 
 
 app.get('api/logout', function(req, res){
