@@ -17,6 +17,8 @@
     "jsonwebtoken": "^7.4.3",
     "mongoose": "^4.11.7",
     "morgan": "^1.8.2",
+    "mustache": "^2.3.0",
+    "mustache-express": "^1.2.5",
     "passport": "^0.4.0",
     "passport-http": "^0.3.0",
     "passport-jwt": "^3.0.0",
