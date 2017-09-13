@@ -9,20 +9,11 @@ const config = require('./config');
 
 
 const {router: usersRouter, User} = require('./users');
-const {router: authRouter, jwtStrategy} = require('./auth');
+const {router: authRouter, localStrategy, jwtStrategy} = require('./auth');
 
 const {DATABASE_URL, PORT} = require('./config');
 
 const app = express();
-
-const createAuthToken = user => {
-  return jwt.sign({user}, config.JWT_SECRET, {
-    subject: user.username,
-    expiresIn: config.JWT_EXPIRY,
-    algorithm: 'HS256'
-  });
-};
-
 
 app.use(morgan('common'));
 app.use(bodyParser.json());
@@ -53,16 +44,12 @@ app.set('views', __dirname + './views');
 
 
 app.use(passport.initialize());
+passport.use(localStrategy);
 passport.use(jwtStrategy);
+
 
 app.use('/api/users/', usersRouter);
 app.use('/api/auth/', authRouter);
-
-app.get('/api/protected',
-    passport.authenticate('jwt', {session: false}),
-    (req, res) => {
-      res.json({message: "Success! You can not see this without a token"});
-    });
 
 //redirect url from localhost:8080/api/auth/login to localhost:8080/account
 
@@ -109,7 +96,10 @@ app.get('/login', (req, res) => {
 
 
 app.get('/account',passport.authenticate('jwt', { session: false }), (req, res) => {
-  res.sendFile(__dirname + '/public/account.html');
+  // Use the current user in order to 
+  // populate the template
+
+  res.render('account.html', {name: user.name, username: user.username, snpVariant: user.snpVariant} );
 });
 
 
