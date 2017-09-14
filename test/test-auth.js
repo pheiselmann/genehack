@@ -61,13 +61,13 @@ describe('Auth endpoints', function() {
           }
 
           const res = err.response;
-          expect(res).to.have.status(401);
+          expect(res).to.have.status(400);
         });
     });
     it('Should reject requests with incorrect usernames', function() {
       return chai.request(app)
         .post('/api/auth/login')
-        .auth('wrongUsername', password)
+        .send({username: 'wrongUsername', password: password})
         .then(() => expect.fail(null, null, 'Request should not succeed'))
         .catch(err => {
           if (err instanceof chai.AssertionError) {
@@ -81,7 +81,7 @@ describe('Auth endpoints', function() {
     it('Should reject requests with incorrect passwords', function() {
       return chai.request(app)
         .post('/api/auth/login')
-        .auth(username, 'wrongPassword')
+        .send({username: username, password: 'wrongPassword'})
         .then(() => expect.fail(null, null, 'Request should not succeed'))
         .catch(err => {
           if (err instanceof chai.AssertionError) {
@@ -95,7 +95,7 @@ describe('Auth endpoints', function() {
     it('Should return a valid auth token', function() {
       return chai.request(app)
         .post('/api/auth/login')
-        .auth(username, password)
+        .send({username: username, password: password})
         .then(res => {
           expect(res).to.have.status(200);
           expect(res.body).to.be.an('object');
