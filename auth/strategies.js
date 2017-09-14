@@ -1,5 +1,5 @@
 const passport = require('passport');
-const {BasicStrategy} = require('passport-http');
+const LocalStrategy = require('passport-local');
 const {
     // Assigns the Strategy export to the name JwtStrategy using object
     // destructuring
@@ -11,7 +11,7 @@ const {
 const {User} = require('../users/models');
 const {JWT_SECRET} = require('../config');
 
-const basicStrategy = new BasicStrategy((username, password, callback) => {
+const localStrategy = new LocalStrategy((username, password, callback) => {
   console.log(username + password);
   let user;
   User
@@ -59,4 +59,4 @@ const jwtStrategy = new JwtStrategy({
   }
 );
 
-module.exports = {basicStrategy, jwtStrategy};
+module.exports = {localStrategy, jwtStrategy};

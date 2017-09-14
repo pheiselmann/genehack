@@ -6,7 +6,7 @@ const morgan = require('morgan');
 const passport = require('passport');
 
 const {router: usersRouter, User} = require('./users');
-const {router: authRouter, basicStrategy, jwtStrategy} = require('./auth');
+const {router: authRouter, localStrategy, jwtStrategy} = require('./auth');
 
 const {DATABASE_URL, PORT} = require('./config');
 
@@ -32,7 +32,7 @@ app.use(function (req, res, next) {
 });
 
 app.use(passport.initialize());
-passport.use(basicStrategy);
+passport.use(localStrategy);
 passport.use(jwtStrategy);
 
 app.use('/api/users/', usersRouter);
