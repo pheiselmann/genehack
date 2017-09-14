@@ -13,7 +13,6 @@ function getUserInfo(callbackFn) {
     {
        request.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('token'));
     },
-    contentType: "text/html",
     type: 'GET',
     success: callbackFn
   };
@@ -48,22 +47,5 @@ function storeJWT(data) {
 }
 
 $(function() {
-    $('.js-login-submit-form').submit(function(e) {
-        e.preventDefault();
-        let uname = $('input[name=username]').val();
-        //store username
-        localStorage.setItem('uname', uname);
-        let pword = $('input[name=password]').val();
-        let usernamePassword = {"username": uname, "password": pword};
-        console.log(usernamePassword);
-        let settings = {
-            url: LOGIN_URL,
-            dataType: 'json',
-            data: JSON.stringify(usernamePassword),
-            contentType: "application/json",
-            type: 'POST',
-            success: storeJWT
-        };
-        $.ajax(settings);
-    });
+   
 });

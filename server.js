@@ -18,9 +18,6 @@ const app = express();
 app.use(morgan('common'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }) );
-
-app.use(express.static('public'));
-
 mongoose.Promise = global.Promise;
 
 // CORS
@@ -38,9 +35,9 @@ app.use(function (req, res, next) {
 // Adding mustache as a view engine
 var expmustache = require('mustache-express');
 app.engine('mustache', expmustache());
-app.set('view engine','html');
+app.set('view engine','mustache');
 // Set views directory
-app.set('views', __dirname + './views');
+app.set('views', __dirname + '/views');
 
 
 app.use(passport.initialize());
@@ -85,13 +82,15 @@ app.get('/api/protected',
   }
 );
 
+app.use(express.static('public/js'));
+
 app.get('/', (req, res) => {
-  res.render('index.html');
+  res.render('index');
 });
 
 
 app.get('/login', (req, res) => {
-  res.render('login.html');
+  res.render('login');
 });
 
 
