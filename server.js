@@ -97,8 +97,14 @@ app.get('/login', (req, res) => {
 app.get('/account',passport.authenticate('jwt', { session: false }), (req, res) => {
   // Use the current user in order to 
   // populate the template
-
-  res.render('account.html', {name: user.name, username: user.username, snpVariant: user.snpVariant} );
+  console.log("Req user", req.user);
+  res.json( {
+    //id: this._id,
+    name: req.user.name,
+    username: req.user.username,
+    snpVariant: req.user.snpVariant
+    //report: this.report
+  });
 });
 
 
