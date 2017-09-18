@@ -21,8 +21,7 @@ router.post(
     passport.authenticate('local', {session: false}),
     (req, res) => {
         const authToken = createAuthToken(req.user.apiRepr());
-        //res.json({authToken});
-        res.render('account', {'token': authToken, 'user':req.user});
+        res.json({authToken});
     }
 );
 

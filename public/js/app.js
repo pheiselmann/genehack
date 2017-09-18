@@ -22,20 +22,22 @@ function renderApp(state, elements) {
       		dataType: 'json',
       		contentType: "text/html",
       		type: 'GET',
-      		success: displayPage
+      		success: displayPage,
+          error: reportError
   		  }
     );
   } else if (state.route === 'account') {
     retrievePage(PROFILE_URL,
         {
           dataType: 'json',
-          contentType: "text/html",
+          contentType: "text/json",
           beforeSend: function (request)
           {
              request.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('token'));
           },
           type: 'GET',
-          success: displayPage
+          success: displayPage,
+          error: reportError
         }
       );
   } else if (state.route === 'login') {
@@ -50,12 +52,18 @@ function renderApp(state, elements) {
 
 function storeJWT(data) {
     //put JWT in local storage
-    localStorage.setItem('token', token);
+    localStorage.setItem('token', data.authToken);
     console.log('JWT in local storage: ' + localStorage.getItem('token'));
     // redirect to account page:
     setRoute(state, 'account');
     renderApp(state, {});
 }
+
+function reportError(response, status, error) {
+  console.log("Response: ", response);
+  console.log("Status: ", status);
+  console.log("Error: ", error);
+};
 
 function submitLogin(e) {
   e.preventDefault();
@@ -71,7 +79,8 @@ function submitLogin(e) {
       data: JSON.stringify(usernamePassword),
       contentType: "application/json",
       type: 'POST',
-      success: storeJWT
+      success: storeJWT,
+      error: reportError
   };
   $.ajax(settings);
 }
@@ -81,5 +90,10 @@ function retrievePage(url, options) {
 }
 
 function displayPage(data) {
-	$("html").text(data);
+	$('body').html(
+    '<p>' + 'Result: ' + data.data + '</p>' +
+    '<p>' + 'Name: ' + data.name + '</p>' +
+    '<p>' + 'username: ' + data.username + '</p>' +
+    '<p>' + 'snpVariant: ' + data.snpVariant + '</p>'
+  );
 }

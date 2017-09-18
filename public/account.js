@@ -14,7 +14,8 @@ function getUserInfo(callbackFn) {
        request.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('token'));
     },
     type: 'GET',
-    success: callbackFn
+    success: callbackFn,
+    error: reportError
   };
   $.ajax(settings);
 }
@@ -35,6 +36,10 @@ function getAndDisplayUserAccountInfo() {
 
 }
 
+
+function reportError(error) {
+  console.log("Error: ", error);
+}
 //callback fn for login ajax call
 function storeJWT(data) {
     //put JWT in local storage

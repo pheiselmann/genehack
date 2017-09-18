@@ -11,7 +11,12 @@ const {User} = require('../users/models');
 const {JWT_SECRET} = require('../config');
 
 
-const localStrategy = new LocalStrategy((username, password, callback) => {
+const localStrategy = new LocalStrategy({
+    usernameField: 'username',
+    passwordField: 'password',
+    session: false
+  },
+  (username, password, callback) => {
   let user;
   User
     .findOne({username: username})
