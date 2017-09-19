@@ -133,6 +133,7 @@ app.post('/login', (req, res) =>  {
   }
   console.log("Name = '" + name + "'") ;
   console.log("Password = '" + password + "'");
+});
 
 
 app.post('/profile', (req, res) => {
