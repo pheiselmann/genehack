@@ -157,7 +157,7 @@ describe('Users API resource', function() {
 //BELOW ARE INITIAL TESTS TO MAKE SURE HTML PAGES APPEAR
   describe('html pages', function() {
 
-  it('info upload page exists', function() {
+  it('home page exists', function() {
     return chai.request(app)
       .get('/')
       .then(function(res) {
@@ -166,9 +166,18 @@ describe('Users API resource', function() {
     });
   });
 
-  it('account page exists', function() {
+  it('login page exists', function() {
     return chai.request(app)
-      .get('/account')
+      .get('/login')
+      .then(function(res) {
+        res.should.have.status(200);
+        res.should.be.html;
+    });
+  });
+
+  it('create-account page exists', function() {
+    return chai.request(app)
+      .get('/login')
       .then(function(res) {
         res.should.have.status(200);
         res.should.be.html;
