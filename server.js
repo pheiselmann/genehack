@@ -9,7 +9,7 @@ const jwt = require('jsonwebtoken');
 const config = require('./config');
 
 const {router: usersRouter, User} = require('./users');
-const {router: authRouter, jwtStrategy} = require('./auth');
+const {router: authRouter, localStrategy, jwtStrategy} = require('./auth');
 
 const {DATABASE_URL, PORT} = require('./config');
 
@@ -27,9 +27,6 @@ const createAuthToken = user => {
 app.use(morgan('common'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }) );
-
-app.use(express.static('public'));
-
 mongoose.Promise = global.Promise;
 
 // CORS
@@ -43,31 +40,24 @@ app.use(function (req, res, next) {
   next();
 });
 
+
+// Adding mustache as a view engine
+var expmustache = require('mustache-express');
+app.engine('mustache', expmustache());
+app.set('view engine','mustache');
+// Set views directory
+app.set('views', __dirname + '/views');
+
+
 app.use(passport.initialize());
+
+passport.use(localStrategy);
 passport.use(jwtStrategy);
+
 
 app.use('/api/users/', usersRouter);
 app.use('/api/auth/', authRouter);
 
-app.get('/api/protected',
-    passport.authenticate('jwt', {session: false}),
-    (req, res) => {
-    // return User
-    // .findOne({username: req.user.username})
-    //  .exec()
-    // .then(profile => {res.json(profile.apiRepr())})
-    // .catch(err => {
-    //   console.error(err);
-    //   res.status(500).json({error: 'something went terribly wrong'});
-    res.json({message: "Success! You can not see this without a token"});
-    });
-// });
-
-
-app.get('api/logout', function(req, res){
-  req.logout();
-  res.redirect('/');
-});
 
 //redirect url from localhost:8080/api/auth/login to localhost:8080/account
 
@@ -89,23 +79,49 @@ function handleRedirects(req, res, next) {
 app.use(handleRedirects);
 
 
+app.get('/api/protected',
+    passport.authenticate('jwt', {session: false}),
+    (req, res) => {
+      User
+        .findOne({username: req.body.username})
+        .exec()
+    //apiRepr can be used as a token showing someone has logged in
+    .then(profile => { return res.json(profile.apiRepr())})
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({error: 'something went terribly wrong'});
+    })
+  }
+);
+
+app.use(express.static('public/js'));
+
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/public/index.html');
+  res.render('index');
 });
 
 
 app.get('/login', (req, res) => {
-  res.sendFile(__dirname + '/public/login.html');
+  res.render('login');
 });
 
 
 app.get('/account',passport.authenticate('jwt', { session: false }), (req, res) => {
-  res.sendFile(__dirname + '/public/account.html');
+  // Use the current user in order to 
+  // populate the template
+  console.log("Req user", req.user);
+  res.json( {
+    //id: this._id,
+    name: req.user.name,
+    username: req.user.username,
+    snpVariant: req.user.snpVariant
+    //report: this.report
+  });
 });
 
 
 app.get('/review', (req, res) => {
-  res.sendFile(__dirname + '/public/review.html');
+  res.render('review.html');
 });
 
 app.post('/login', (req, res) =>  {
@@ -118,8 +134,13 @@ app.post('/login', (req, res) =>  {
   console.log("Name = '" + name + "'") ;
   console.log("Password = '" + password + "'");
 
-  let user = User
-    .findOne({username: name, password: password})
+
+app.post('/profile', (req, res) => {
+  User
+    // .findOne({username: "genemachine", password: "luckyone"})
+    // .findOne({username: "bobcat", password: "youruncle"})
+    // .findOne({_username: req.username, _password: req.password})
+    .findOne({username: req.body.username, password: req.body.password})
     .exec()
     .then(user => {
       var payload = {id: user.id};
