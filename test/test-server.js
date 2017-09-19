@@ -1,3 +1,4 @@
+// global.DATABASE_URL = 'mongodb://localhost/test-genehackDb';
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const faker = require('faker');
@@ -8,7 +9,8 @@ const mongoose = require('mongoose');
 //const {app} = require('../server.js');
 
 const {app, runServer, closeServer} = require('../server.js');
-const {User} = require('../models');
+//const {User} = require('../models');
+const {User} = require('../users')
 const {TEST_DATABASE_URL} = require('../config');
 
 
@@ -98,6 +100,7 @@ describe('Users API resource', function() {
   // so we return the value returned by these function calls.
   before(function() {
     return runServer(TEST_DATABASE_URL);
+    // return runServer();
   });
 
   beforeEach(function() {
@@ -115,48 +118,41 @@ describe('Users API resource', function() {
   // note the use of nested `describe` blocks.
   // this allows us to make clearer, more discrete tests that focus
   // on proving something small
-  describe('GET endpoint', function() {
+  // describe('POST endpoint', function() {
 
 
-    it('should return a user profile with right fields', function() {
-      // Strategy: Get back all blog posts, and ensure they have expected keys
+  //   it('should return a user profile with right fields', function() {
+  //     let resUser;
+  //     return chai.request(app)
+  //       .post('/profile')
+  //       .then(function(res) {
+  //         res.should.have.status(200);
+  //         res.should.be.json;
+  //         res.body.should.be.a('object');
+  //         res.body.should.include.keys(
+  //           'id', 'name', 'username', 'password', 'snpVariant', 'report');
+  //         resUser = res.body;
+  //         return User.findById(resUser.id);
+  //         //return User.findOne({username: req.body.username, password: req.body.password})
 
-      let resUser;
-      return chai.request(app)
-        .get('/profile')
-        //locate first profile
-        //.findOne({_username: req.username, _password: req.password})
-        //.findOne()
-        .then(function(res) {
-          res.should.have.status(200);
-          res.should.be.json;
-          res.body.should.be.a('object');
-          // res.body.should.be.a('array');
-          // res.body.should.have.length.of.at.least(1);
-          res.body.should.include.keys(
-            'id', 'name', 'username', 'password', 'snpVariant', 'report');
-          // res.body.forEach(function(post) {
-          //   post.should.be.a('object');
-          //   post.should.include.keys(
-          //     'id', 'author', 'title', 'content', 'created');
-          // });
-          // resUser = res.body[0];
-          resUser = res.body;
-          return User.findById(resUser.id);
-        })
-        .then(function(profile) {
+  //       })
+  //       .then(function(profile) {
 
-          resUser.id.should.equal(profile.id);
-          resUser.name.should.contain(profile.name.firstName);
-          resUser.username.should.equal(profile.username);
-          resUser.password.should.equal(profile.password);
-          resUser.snpVariant.should.equal(profile.snpVariant);
-          resUser.report.should.equal(profile.report);
+  //         resUser.id.should.equal(profile.id);
+  //         resUser.name.should.contain(profile.name.firstName);
+  //         resUser.username.should.equal(profile.username);
+  //         resUser.password.should.equal(profile.password);
+  //         resUser.snpVariant.should.equal(profile.snpVariant);
+  //         resUser.report.should.equal(profile.report);
 
-          //resUser.created.should.equal(post.created);
-        });
-    });
-  });
+  //         //resUser.created.should.equal(post.created);
+  //       });
+  //   });
+  // });
+
+
+
+
 
 //BELOW ARE INITIAL TESTS TO MAKE SURE HTML PAGES APPEAR
   describe('html pages', function() {

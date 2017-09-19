@@ -1,63 +1,55 @@
-// this is mock data, but when we create our API
-// we'll have it return data that looks like this
-// var MOCK_USER_INFO = {
-// 	"name": "Gene Geneticist",
-// 	"username": "genemachine",
-// 	"password": "luckyone",
-// 	"snpVariant": "AA",
-//     "report": "homozygous dominant for rs1801131"
-// };
-// this function's name and argument can stay the
-// same after we have a live API, but its internal
-// implementation will change. Instead of using a
-// timeout function that returns mock data, it will
-// use jQuery's AJAX functionality to make a call
-// to the server and then run the callbackFn
-
-// function getUserInfo(callbackFn) {
-//     // we use a `setTimeout` to make this asynchronous
-//     // as it would be with a real AJAX call.
-// 	setTimeout(function(){ callbackFn(MOCK_USER_INFO)}, 100);
-// }
-
-
 const serverBase = '/';
-const PROFILE_URL = serverBase + 'profile';
+const PROFILE_URL = serverBase + 'account';
+const LOGIN_URL = serverBase + 'login';
 
+// function getUserInfo(token, callbackFn) {
 function getUserInfo(callbackFn) {
   var settings = {
     url: PROFILE_URL,
-    // data: {
-    //   username: 'bobcat',
-    //   password: 'youruncle'
-    // },
     dataType: 'json',
+    // data: currentUser,
+    beforeSend: function (request)
+    {
+       request.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('token'));
+    },
     type: 'GET',
-    success: callbackFn
+    success: callbackFn,
+    error: reportError
   };
   $.ajax(settings);
 }
-  
 
-// this function stays the same when we connect
-// to real API later
+
 function displayUserAccountInfo(data) {
     $('body').append(
-    	'<p>' + 'Name: ' + data.name + '</p>' +
-    	'<p>' + 'username: ' + data.username + '</p>' +
-    	'<p>' + 'password: ' + data.password + '</p>' +
-    	'<p>' + 'snpVariant: ' + data.snpVariant + '</p>');
+        '<p>' + 'Result: ' + data.data + '</p>' +
+     '<p>' + 'Name: ' + data.name + '</p>' +
+     '<p>' + 'username: ' + data.username + '</p>' +
+     '<p>' + 'snpVariant: ' + data.snpVariant + '</p>' +
+        '<p>' + 'token: ' + localStorage.getItem('token') + '</p>');
 }
 
 
-// this function can stay the same even when we
-// are connecting to real API
 function getAndDisplayUserAccountInfo() {
     getUserInfo(displayUserAccountInfo);
+
 }
 
 
-//  on page load do this
-$(function() {
+function reportError(error) {
+  console.log("Error: ", error);
+}
+//callback fn for login ajax call
+function storeJWT(data) {
+    //put JWT in local storage
+    localStorage.setItem('token', data.token);
+
+    //show that object has been added to local storage 
+    $('body').append('<p>' + 'JWT in local storage: ' + localStorage.getItem('token') + '</p>');
     getAndDisplayUserAccountInfo();
-})
+}
+
+$(function() {
+   
+
+});
