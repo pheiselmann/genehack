@@ -121,8 +121,16 @@ app.get('/account',passport.authenticate('jwt', { session: false }), (req, res) 
 
 
 app.get('/review', (req, res) => {
-  res.render('review.html');
+  res.render('review');
 });
+
+app.get('/create-account', (req, res) => {
+  res.render('create-account');
+});
+
+// app.get('/logout', (req, res) => {
+//   res.render('logout');
+// });
 
 app.post('/login', (req, res) =>  {
   console.log("POST body = ", req.body);
