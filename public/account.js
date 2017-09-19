@@ -2,7 +2,6 @@ const serverBase = '/';
 const PROFILE_URL = serverBase + 'account';
 const LOGIN_URL = serverBase + 'login';
 
-
 // function getUserInfo(token, callbackFn) {
 function getUserInfo(callbackFn) {
   var settings = {
@@ -44,13 +43,13 @@ function reportError(error) {
 function storeJWT(data) {
     //put JWT in local storage
     localStorage.setItem('token', data.token);
+
     //show that object has been added to local storage 
-    // $('body').append('<p>' + 'JWT in local storage: ' + JSON.stringify(currentToken) + '</p>');
     $('body').append('<p>' + 'JWT in local storage: ' + localStorage.getItem('token') + '</p>');
-    // getAndDisplayUserAccountInfo(currentToken);
     getAndDisplayUserAccountInfo();
 }
 
 $(function() {
    
+
 });

@@ -1,5 +1,6 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+
 const {
     // Assigns the Strategy export to the name JwtStrategy using object
     // destructuring
@@ -51,6 +52,7 @@ const localStrategy = new LocalStrategy({
     });
 });
 
+
 const jwtStrategy = new JwtStrategy({
     secretOrKey: JWT_SECRET,
     // Look for the JWT as a Bearer auth header
@@ -64,3 +66,4 @@ const jwtStrategy = new JwtStrategy({
 );
 
 module.exports = {localStrategy, jwtStrategy};
+

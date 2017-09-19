@@ -1,18 +1,6 @@
 const serverBase = '/';
 const POST_URL = serverBase + 'api/users';
 
-
-// function postUserInfo() {
-//   var settings = {
-//     url: POST_URL,
-//     dataType: 'json',
-//     contentType: "application/json",
-//     type: 'POST',
-//   };
-//   $.ajax(settings);
-// }
-
-
 $(function() {
     $('.js-login-submit-form').submit(function(e) {
         e.preventDefault();

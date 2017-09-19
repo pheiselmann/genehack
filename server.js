@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
+
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const config = require('./config');
@@ -11,9 +12,19 @@ const config = require('./config');
 const {router: usersRouter, User} = require('./users');
 const {router: authRouter, localStrategy, jwtStrategy} = require('./auth');
 
+
 const {DATABASE_URL, PORT} = require('./config');
 
 const app = express();
+
+const createAuthToken = user => {
+  return jwt.sign({user}, config.JWT_SECRET, {
+    subject: user.username,
+    expiresIn: config.JWT_EXPIRY,
+    algorithm: 'HS256'
+  });
+};
+
 
 app.use(morgan('common'));
 app.use(bodyParser.json());
@@ -42,11 +53,13 @@ app.set('views', __dirname + '/views');
 
 app.use(passport.initialize());
 passport.use(localStrategy);
+
 passport.use(jwtStrategy);
 
 
 app.use('/api/users/', usersRouter);
 app.use('/api/auth/', authRouter);
+
 
 //redirect url from localhost:8080/api/auth/login to localhost:8080/account
 
@@ -112,6 +125,15 @@ app.get('/review', (req, res) => {
   res.render('review.html');
 });
 
+app.post('/login', (req, res) =>  {
+  console.log("POST body = ", req.body);
+  var name, password;
+  if(req.body.username && req.body.password){
+    name = req.body.username;
+    password = req.body.password;
+  }
+  console.log("Name = '" + name + "'") ;
+  console.log("Password = '" + password + "'");
 
 app.post('/profile', (req, res) => {
   User
@@ -120,12 +142,18 @@ app.post('/profile', (req, res) => {
     // .findOne({_username: req.username, _password: req.password})
     .findOne({username: req.body.username, password: req.body.password})
     .exec()
-    //apiRepr can be used as a token showing someone has logged in
-    .then(profile => {res.json(profile.apiRepr())})
+    .then(user => {
+      var payload = {id: user.id};
+      const authToken = createAuthToken(user.apiRepr());
+      res.json({message: "ok", token: authToken});
+    })
     .catch(err => {
       console.error(err);
       res.status(500).json({error: 'something went terribly wrong'});
-    });
+  });
+  if( ! user ){
+    res.status(401).json({message:"no such user found"});
+  }
 });
 
 
