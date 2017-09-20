@@ -6,9 +6,7 @@
 <body>
 	<p>Hello world!</p>
 
-	
-    <!-- <form role="form" action="api/auth/login" accept-charset="UTF-8" method="post" class="js-login-submit-form"> -->
-     <form role="form" accept-charset="UTF-8" class="js-login-submit-form">
+     <form role="form" accept-charset="UTF-8" class="js-create-account-submit-form">
     	<fieldset>
     		<legend>Log In</legend>
             <label for="js-fName">First Name</label>
@@ -27,12 +25,16 @@
 
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-	<script type="text/javascript" src="create-account.js"></script>
-	<!-- put last three lines of code from account.js here to fire the appropriate function, and then do similar thing in a "login.html" page -->
-	<!-- <script>
-	  $(function() {
-        watchLoginSubmit();
-      })
-	</script> -->
+<!-- 	<script type="text/javascript" src="/create-account.js"></script>
+ -->    
+ <script type="text/javascript" src="/app.js"></script>
+	<script>
+    $(function() {  
+        $( "button" ).click(function() {
+       $("js-create-account-submit-form").submit(submitAccountInfo(event));
+        });
+      
+    });
+    </script>
 </body>
 </html>

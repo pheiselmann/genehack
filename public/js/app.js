@@ -1,7 +1,7 @@
 const serverBase = '/';
 const PROFILE_URL = serverBase + 'account';
 const LOGIN_URL = serverBase + 'api/auth/login';
-
+const POST_URL = serverBase + 'api/users';
 
 /* Including state router from movie project */
 let state = {
@@ -16,13 +16,13 @@ function setRoute(state, route) {
 // Render functions
 function renderApp(state, elements) {
   if (state.route === 'start') {
-      retrievePage("/", 
+      retrievePage(serverBase, 
       	{
-      		url: "/",
+      		url: serverBase,
       		dataType: 'json',
       		contentType: "text/html",
       		type: 'GET',
-      		success: displayPage,
+      		// success: displayStartPage,
           error: reportError
   		  }
     );
@@ -48,6 +48,10 @@ function renderApp(state, elements) {
     deleteJWT();
     retrievePage(serverBase);
   }; 
+}
+
+function displayStartPage() {
+  window.location.href="/login"; 
 }
 
 function storeJWT(data) {
@@ -84,6 +88,41 @@ function submitLogin(e) {
   };
   $.ajax(settings);
 }
+
+function submitAccountInfo(e) { 
+  e.preventDefault();
+  let fName = $('input[name=js-fName]').val();
+  let lName = $('input[name=js-lName]').val();
+  let uname = $('input[name=js-uname]').val();
+  let pword = $('input[name=js-pword]').val();
+  let snpV = $('input[name=js-snpV]').val();
+  let userInfo = 
+    {"firstName": fName,
+    "lastName": lName, 
+    "username": uname, 
+    "password": pword,
+    "snpVariant": snpV
+    };
+  console.log(userInfo);
+  let settings = {
+      url: POST_URL,
+      dataType: 'json',
+      data: JSON.stringify(userInfo),
+      contentType: "application/json",
+      type: 'POST',
+      // success: retrievePage(serverBase),
+      // success: returnToStartPage(state, 'start'),
+      success: window.location.href="/login",
+      error: reportError
+  };
+  $.ajax(settings);
+}
+
+function returnToStartPage(state, route) {
+  setRoute(state, route);
+  renderApp(state, {});
+}
+
 
 function retrievePage(url, options) {
 	$.ajax(url, options);

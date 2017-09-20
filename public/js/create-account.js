@@ -2,7 +2,7 @@ const serverBase = '/';
 const POST_URL = serverBase + 'api/users';
 
 $(function() {
-    $('.js-login-submit-form').submit(function(e) {
+    $('.js-create-account-submit-form').submit(function(e) {
         e.preventDefault();
         let fName = $('input[name=js-fName]').val();
         let lName = $('input[name=js-lName]').val();
@@ -22,7 +22,9 @@ $(function() {
             dataType: 'json',
             data: JSON.stringify(userInfo),
             contentType: "application/json",
-            type: 'POST'
+            type: 'POST',
+            success: retrievePage(serverBase),
+            error: reportError
         };
         $.ajax(settings);
     });
