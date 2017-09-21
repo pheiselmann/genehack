@@ -56,9 +56,10 @@ function handleError(response, status, error) {
     console.log(JSON.stringify(response.responseJSON.location));
     console.log(JSON.stringify(response.responseJSON.message));
     console.log(resLocation);
-    if (JSON.stringify(response.responseJSON.location) === "username" || 
+    if (JSON.stringify(response.responseJSON.location) === "username" && 
         JSON.stringify(response.responseJSON.message) === "Must be at least 1 characters long")
     {
+    
         console.log("Missing username criteria met.");
         setRoute(state, 'username-missing');
         renderApp(state, PAGE_ELEMENTS);
