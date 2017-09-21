@@ -22,7 +22,7 @@ function renderApp(state, elements) {
       		dataType: 'json',
       		contentType: "text/html",
       		type: 'GET',
-      		// success: displayStartPage,
+      		success: displayStartPage,
           error: reportError
   		  }
     );
@@ -37,6 +37,7 @@ function renderApp(state, elements) {
           },
           type: 'GET',
           success: displayPage,
+          // success: function(data) {
           error: reportError
         }
       );
@@ -67,16 +68,19 @@ function reportError(response, status, error) {
   console.log("Response: ", response);
   console.log("Status: ", status);
   console.log("Error: ", error);
+  console.log("Response Location:", JSON.stringify(response.responseJSON.location));
+  console.log("Response Message:", JSON.stringify(response.responseJSON.message));
 };
 
 function submitLogin(e) {
   e.preventDefault();
+  console.log("submitLogin fired")
   let uname = $('input[name=js-username]').val();
   //store username
   localStorage.setItem('uname', uname);
   let pword = $('input[name=js-password]').val();
   let usernamePassword = {"username": uname, "password": pword};
-  console.log(usernamePassword);
+  console.log("usernamePassword:" + usernamePassword);
   let settings = {
       url: LOGIN_URL,
       dataType: 'json',
@@ -112,15 +116,14 @@ function submitAccountInfo(e) {
       type: 'POST',
       // success: retrievePage(serverBase),
       // success: returnToStartPage(state, 'start'),
-      success: window.location.href="/login",
+      success: function(data) {
+        if (data) {
+        window.location.href="/login"
+        }
+      },
       error: reportError
   };
   $.ajax(settings);
-}
-
-function returnToStartPage(state, route) {
-  setRoute(state, route);
-  renderApp(state, {});
 }
 
 

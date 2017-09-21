@@ -37,6 +37,27 @@ router.post('/', jsonParser, (req, res) => {
     });
   }
 
+  // const stringField = ['snpVariant'];
+  // const incorrectVariant = stringField.find(field =>
+  //   (field in req.body) && !(req.body[field] === '' || req.body[field] === 'AA' || req.body[field] === 'AG' || req.body[field] === 'GG')
+  // );
+  const incorrectVariant =
+    ('snpVariant' in req.body) && 
+    !(req.body['snpVariant'] === '' || 
+      req.body['snpVariant'] === 'AA' || 
+      req.body['snpVariant'] === 'AG' || 
+      req.body['snpVariant'] === 'GG');
+
+
+  if (incorrectVariant) {
+    return res.status(422).json({
+      code: 422,
+      reason: 'ValidationError',
+      message: 'Incorrect snpVariant',
+      location: incorrectVariant
+    });
+  }
+
   // If the username and password aren't trimmed we give an error.  Users might
   // expect that these will work without trimming (i.e. they want the password
   // "foobar ", including the space at the end).  We need to reject such values
