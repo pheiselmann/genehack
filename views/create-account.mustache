@@ -6,21 +6,21 @@
 <body>
 	<p>Hello world!</p>
 
-   <!--  <div class="create-account"> -->
-    <div class="create-account" style="display: none;">
-     <form role="form" accept-charset="UTF-8" class="js-create-account-submit-form">
+    <div class="create-account">
+    <!-- <div class="create-account" style="display: none;"> -->
+     <form role="form" accept-charset="UTF-8" name="js-create-account-submit-form">
     	<fieldset>
     		<legend>Create Account</legend>
             <label for="js-fName">First Name</label>
-            <input type="text" class="js-fName" name="js-fName" placeholder="Bob" required/>
+            <input type="text" class="js-fName" name="js-fName" placeholder="Bob"/>
             <label for="js-lName">Last Name</label>
-            <input type="text" class="js-lName" name="js-lName" placeholder="Roberts" required/>
+            <input type="text" class="js-lName" name="js-lName" placeholder="Roberts"/>
     		<label for="js-uname">username</label>
-    		<input type="text" class="js-uname" name="js-uname" placeholder="bobbyrobby" required/>
+    		<input type="text" class="js-uname" name="js-uname" placeholder="bobbyrobby"/>
     		<label for="js-pword">password</label>
-    		<input type="password" class="js-pword" name="js-pword" placeholder="1234passw0rd" required/>
+    		<input type="password" class="js-pword" name="js-pword" placeholder="1234passw0rd"/>
             <label for="js-snpV">SNP Variant</label>
-            <input type="text" class="js-snpV" name="js-snpV" placeholder="AG" required/>
+            <input type="text" class="js-snpV" name="js-snpV" placeholder="AG" >
     		<button type="submit">Create Account</button>
     	</fieldset>
     </form>
@@ -28,19 +28,19 @@
 
     <div class="create-account-username-taken" style="display: none;">
     <p class="error-msg">Username already taken.</p>
-     <form role="form" accept-charset="UTF-8" class="js-create-account-submit-form">
+     <form role="form" accept-charset="UTF-8" name="js-create-account-submit-form-username-taken">
         <fieldset>
             <legend>Create Account</legend>
             <label for="js-fName">First Name</label>
-            <input type="text" class="js-fName" name="js-fName" placeholder="Bob" required/>
+            <input type="text" class="js-fName" name="js-fName" placeholder="Bob"/>
             <label for="js-lName">Last Name</label>
-            <input type="text" class="js-lName" name="js-lName" placeholder="Roberts" required/>
+            <input type="text" class="js-lName" name="js-lName" placeholder="Roberts"/>
             <label for="js-uname">username</label>
-            <input type="text" class="js-uname" name="js-uname" placeholder="bobbyrobby" required/>
+            <input type="text" class="js-uname" name="js-uname" placeholder="bobbyrobby"/>
             <label for="js-pword">password</label>
-            <input type="password" class="js-pword" name="js-pword" placeholder="1234passw0rd" required/>
+            <input type="password" class="js-pword" name="js-pword" placeholder="1234passw0rd"/>
             <label for="js-snpV">SNP Variant</label>
-            <input type="text" class="js-snpV" name="js-snpV" placeholder="AG" required/>
+            <input type="text" class="js-snpV" name="js-snpV" placeholder="AG"/>
             <button type="submit">Create Account</button>
         </fieldset>
     </form>
@@ -48,19 +48,19 @@
 
     <div class="create-account-pword-missing" style="display: none;">
     <p class="error-msg">Please enter a password of at least 10 characters.</p>
-     <form role="form" accept-charset="UTF-8" class="js-create-account-submit-form">
+     <form role="form" accept-charset="UTF-8" name="js-create-account-submit-form-password-missing">
         <fieldset>
             <legend>Create Account</legend>
             <label for="js-fName">First Name</label>
-            <input type="text" class="js-fName" name="js-fName" placeholder="Bob" required/>
+            <input type="text" class="js-fName" name="js-fName" placeholder="Bob"/>
             <label for="js-lName">Last Name</label>
-            <input type="text" class="js-lName" name="js-lName" placeholder="Roberts" required/>
+            <input type="text" class="js-lName" name="js-lName" placeholder="Roberts"/>
             <label for="js-uname">username</label>
-            <input type="text" class="js-uname" name="js-uname" placeholder="bobbyrobby" required/>
+            <input type="text" class="js-uname" name="js-uname" placeholder="bobbyrobby"/>
             <label for="js-pword">password</label>
-            <input type="password" class="js-pword" name="js-pword" placeholder="1234passw0rd" required/>
+            <input type="password" class="js-pword" name="js-pword" placeholder="1234passw0rd"/>
             <label for="js-snpV">SNP Variant</label>
-            <input type="text" class="js-snpV" name="js-snpV" placeholder="AG" required/>
+            <input type="text" class="js-snpV" name="js-snpV" placeholder="AG"/>
             <button type="submit">Create Account</button>
         </fieldset>
     </form>
@@ -68,19 +68,20 @@
 
     <div class="create-account-username-missing" style="display: none;">
     <p class="error-msg">Please enter a username of at least one character.</p>
-     <form role="form" accept-charset="UTF-8" class="js-create-account-submit-form">
+    <!--  <form role="form" accept-charset="UTF-8" class="js-create-account-submit-form"> -->
+     <form role="form" accept-charset="UTF-8" name="js-create-account-submit-form-username-missing">
         <fieldset>
             <legend>Create Account</legend>
             <label for="js-fName">First Name</label>
-            <input type="text" class="js-fName" name="js-fName" placeholder="Bob" required/>
+            <input type="text" class="js-fName" name="js-fName" placeholder="Bob"/>
             <label for="js-lName">Last Name</label>
-            <input type="text" class="js-lName" name="js-lName" placeholder="Roberts" required/>
+            <input type="text" class="js-lName" name="js-lName" placeholder="Roberts"/>
             <label for="js-uname">username</label>
-            <input type="text" class="js-uname" name="js-uname" placeholder="bobbyrobby" required/>
+            <input type="text" class="js-uname" name="js-uname" placeholder="bobbyrobby"/>
             <label for="js-pword">password</label>
-            <input type="password" class="js-pword" name="js-pword" placeholder="1234passw0rd" required/>
+            <input type="password" class="js-pword" name="js-pword" placeholder="1234passw0rd"/>
             <label for="js-snpV">SNP Variant</label>
-            <input type="text" class="js-snpV" name="js-snpV" placeholder="AG" required/>
+            <input type="text" class="js-snpV" name="js-snpV" placeholder="AG"/>
             <button type="submit">Create Account</button>
         </fieldset>
     </form>
@@ -88,19 +89,19 @@
 
     <div class="create-account-username-whitespace" style="display: none;">
     <p class="error-msg">Username may not begin or end with whitespace.</p>
-    <form role="form" accept-charset="UTF-8" class="js-create-account-submit-form">
+    <form role="form" accept-charset="UTF-8" name="js-create-account-submit-form-username-whitespace">
         <fieldset>
             <legend>Create Account</legend>
             <label for="js-fName">First Name</label>
-            <input type="text" class="js-fName" name="js-fName" placeholder="Bob" required/>
+            <input type="text" class="js-fName" name="js-fName" placeholder="Bob"/>
             <label for="js-lName">Last Name</label>
-            <input type="text" class="js-lName" name="js-lName" placeholder="Roberts" required/>
+            <input type="text" class="js-lName" name="js-lName" placeholder="Roberts"/>
             <label for="js-uname">username</label>
-            <input type="text" class="js-uname" name="js-uname" placeholder="bobbyrobby" required/>
+            <input type="text" class="js-uname" name="js-uname" placeholder="bobbyrobby"/>
             <label for="js-pword">password</label>
-            <input type="password" class="js-pword" name="js-pword" placeholder="1234passw0rd" required/>
+            <input type="password" class="js-pword" name="js-pword" placeholder="1234passw0rd"/>
             <label for="js-snpV">SNP Variant</label>
-            <input type="text" class="js-snpV" name="js-snpV" placeholder="AG" required/>
+            <input type="text" class="js-snpV" name="js-snpV" placeholder="AG"/>
             <button type="submit">Create Account</button>
         </fieldset>
     </form>
@@ -108,19 +109,19 @@
 
      <div class="create-account-password-whitespace" style="display: none;">
     <p class="error-msg">Password may not begin or end with whitespace.</p>
-    <form role="form" accept-charset="UTF-8" class="js-create-account-submit-form">
+    <form role="form" accept-charset="UTF-8" name="js-create-account-submit-form-password-whitespace">
         <fieldset>
             <legend>Create Account</legend>
             <label for="js-fName">First Name</label>
-            <input type="text" class="js-fName" name="js-fName" placeholder="Bob" required/>
+            <input type="text" class="js-fName" name="js-fName" placeholder="Bob"/>
             <label for="js-lName">Last Name</label>
-            <input type="text" class="js-lName" name="js-lName" placeholder="Roberts" required/>
+            <input type="text" class="js-lName" name="js-lName" placeholder="Roberts"/>
             <label for="js-uname">username</label>
-            <input type="text" class="js-uname" name="js-uname" placeholder="bobbyrobby" required/>
+            <input type="text" class="js-uname" name="js-uname" placeholder="bobbyrobby"/>
             <label for="js-pword">password</label>
-            <input type="password" class="js-pword" name="js-pword" placeholder="1234passw0rd" required/>
+            <input type="password" class="js-pword" name="js-pword" placeholder="1234passw0rd"/>
             <label for="js-snpV">SNP Variant</label>
-            <input type="text" class="js-snpV" name="js-snpV" placeholder="AG" required/>
+            <input type="text" class="js-snpV" name="js-snpV" placeholder="AG"/>
             <button type="submit">Create Account</button>
         </fieldset>
     </form>
@@ -128,19 +129,19 @@
 
     <div class="create-account-snpVariant-incorrect" style="display: none;">
     <p class="error-msg">Please enter AA, AG, or GG in the SNP Variant field (or leave it empty for now).</p>
-     <form role="form" accept-charset="UTF-8" class="js-create-account-submit-form">
+     <form role="form" accept-charset="UTF-8" name="js-create-account-submit-form-snpVariant-incorrect">
         <fieldset>
             <legend>Create Account</legend>
             <label for="js-fName">First Name</label>
-            <input type="text" class="js-fName" name="js-fName" placeholder="Bob" required/>
+            <input type="text" class="js-fName" name="js-fName" placeholder="Bob"/>
             <label for="js-lName">Last Name</label>
-            <input type="text" class="js-lName" name="js-lName" placeholder="Roberts" required/>
+            <input type="text" class="js-lName" name="js-lName" placeholder="Roberts"/>
             <label for="js-uname">username</label>
-            <input type="text" class="js-uname" name="js-uname" placeholder="bobbyrobby" required/>
+            <input type="text" class="js-uname" name="js-uname" placeholder="bobbyrobby"/>
             <label for="js-pword">password</label>
-            <input type="password" class="js-pword" name="js-pword" placeholder="1234passw0rd" required/>
+            <input type="password" class="js-pword" name="js-pword" placeholder="1234passw0rd"/>
             <label for="js-snpV">SNP Variant</label>
-            <input type="text" class="js-snpV" name="js-snpV" placeholder="AG" required/>
+            <input type="text" class="js-snpV" name="js-snpV" placeholder="AG"/>
             <button type="submit">Create Account</button>
         </fieldset>
     </form>
@@ -150,15 +151,18 @@
 	<script type="text/javascript" src="/create-account.js"></script>
     
 <!--  <script type="text/javascript" src="/app.js"></script>
- -->	<script>
+ -->	<!-- <script>
     $(function() {  
+        // renderApp(state, PAGE_ELEMENTS);
+        // $( "button" ).click(function() {
+       $("form[name='js-create-account-submit-form']").submit(submitAccountInfo(event));
+        // });
 
-        renderApp(state, PAGE_ELEMENTS);
-        $( "button" ).click(function() {
-       $("js-create-account-submit-form").submit(submitAccountInfo(event));
-        });
-      
+        // $( "button" ).click(function() {
+       $("form[name='js-create-account-submit-form-username-missing']").submit(submitAccountInfo(event));
+        // });
+
     });
-    </script>
+    </script> -->
 </body>
 </html>

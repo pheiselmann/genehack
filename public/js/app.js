@@ -80,7 +80,7 @@ function submitLogin(e) {
   localStorage.setItem('uname', uname);
   let pword = $('input[name=js-password]').val();
   let usernamePassword = {"username": uname, "password": pword};
-  console.log("usernamePassword:" + usernamePassword);
+  console.log("usernamePassword:" + JSON.stringify(usernamePassword));
   let settings = {
       url: LOGIN_URL,
       dataType: 'json',
