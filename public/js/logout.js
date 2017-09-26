@@ -1,17 +1,10 @@
 $(function() {
-    $('.js-logout').onclick(function(e) {
+    $('.js-logout').submit(function(e) {
         e.preventDefault();
-        let settings = {
-            url: 'api/logout',
-            // dataType: 'json',
-            contentType: "application/json",
-            type: 'GET',
-            // success: getAndDisplayUserAccountInfo
-            success: clearJWT
-        };
-        $.ajax(settings);
+        clearJWT();
+        window.location.href="/"
     });
-});
+}); 
 
 
 function clearJWT() {
