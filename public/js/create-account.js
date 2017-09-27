@@ -17,22 +17,7 @@ function renderApp(state, elements) {
   elements[state.route].show();
 }
 
-// function submitAccountInfo(e) { 
-    function submitAccountInfo(userInfo) {
-  // e.preventDefault();
-  // let fName = $('input[name=js-fName]').val();
-  // let lName = $('input[name=js-lName]').val();
-  // let uname = $('input[name=js-uname]').val();
-  // let pword = $('input[name=js-pword]').val();
-  // let snpV = $('input[name=js-snpV]').val();
-  // console.log("submitAccountInfo firing with username: " + uname);
-  // let userInfo = 
-  //   {"firstName": fName,
-  //   "lastName": lName, 
-  //   "username": uname, 
-  //   "password": pword,
-  //   "snpVariant": snpV
-  //   };
+function submitAccountInfo(userInfo) {
   console.log(userInfo);
   let settings = {
       url: POST_URL,
@@ -40,10 +25,6 @@ function renderApp(state, elements) {
       data: JSON.stringify(userInfo),
       contentType: "application/json",
       type: 'POST',
-      // headers: { "cache-control": "no-cache" },
-      // cache: false,
-      // success: retrievePage(serverBase),
-      // success: returnToStartPage(state, 'start'),
       success: function(data) {
         if (data) {
         window.location.href="/login"
@@ -57,10 +38,6 @@ function renderApp(state, elements) {
 function handleError(response, status, error) {
     reportError(response, status, error);
     console.log("handleError firing");
-    // let resLocation = JSON.stringify(response.responseJSON.location);
-    // console.log(JSON.stringify(response.responseJSON.location));
-    // console.log(JSON.stringify(response.responseJSON.message));
-    // console.log(resLocation);
     if (JSON.stringify(response.responseJSON.location) === "\"username\"" && 
         JSON.stringify(response.responseJSON.message) === "\"Must be at least 1 characters long\"")
     {
@@ -114,25 +91,6 @@ function reportError(response, status, error) {
   console.log("Response Message:", JSON.stringify(response.responseJSON.message));
 };
 
-//Eventually will replace duplicate code in submit functions with this
-// function submitAccountInfoToAjaxFn(event) {
-//     let fName = $(this).find('.js-fName').val();
-//     let lName = $(this).find('.js-lName').val();
-//     let uname = $(this).find('.js-uname').val();
-//     let pword = $(this).find('.js-pword').val();
-//     let snpV = $(this).find('.js-snpV').val();
-//     console.log("submitAccountInfo firing with username: " + uname);
-//     let userInfo = 
-//       {"firstName": fName,
-//       "lastName": lName, 
-//       "username": uname, 
-//       "password": pword,
-//       "snpVariant": snpV
-//       };
-//     //console.log("Create account submit form firing with " + $('input[name=js-uname]').val())
-//     submitAccountInfo(userInfo);
-// }
-
 function watchSubmit() {
   $("form[name='js-create-account-submit-form']").submit(function(event) {
     event.preventDefault();
@@ -150,7 +108,6 @@ function watchSubmit() {
       "password": pword,
       "snpVariant": snpV
       };
-    //console.log("Create account submit form firing with " + $('input[name=js-uname]').val())
     submitAccountInfo(userInfo);
   });
 }
@@ -170,7 +127,6 @@ $("form[name='js-create-account-submit-form-username-missing']").submit(function
       "password": pword,
       "snpVariant": snpV
       };
-    //console.log("Create account submit form firing with " + $('input[name=js-uname]').val())
     submitAccountInfo(userInfo);
   });
 
@@ -189,7 +145,6 @@ $("form[name='js-create-account-submit-form-password-missing']").submit(function
       "password": pword,
       "snpVariant": snpV
       };
-    //console.log("Create account submit form firing with " + $('input[name=js-uname]').val())
     submitAccountInfo(userInfo);
   });
 
@@ -208,7 +163,6 @@ $("form[name='js-create-account-submit-form-password-whitespace']").submit(funct
       "password": pword,
       "snpVariant": snpV
       };
-    //console.log("Create account submit form firing with " + $('input[name=js-uname]').val())
     submitAccountInfo(userInfo);
   });
 
@@ -227,7 +181,6 @@ $("form[name='js-create-account-submit-form-username-whitespace']").submit(funct
       "password": pword,
       "snpVariant": snpV
       };
-    //console.log("Create account submit form firing with " + $('input[name=js-uname]').val())
     submitAccountInfo(userInfo);
   });
 
@@ -246,7 +199,6 @@ $("form[name='js-create-account-submit-form-username-taken']").submit(function(e
       "password": pword,
       "snpVariant": snpV
       };
-    //console.log("Create account submit form firing with " + $('input[name=js-uname]').val())
     submitAccountInfo(userInfo);
   });
 
@@ -265,7 +217,6 @@ $("form[name='js-create-account-submit-form-snpVariant-incorrect']").submit(func
       "password": pword,
       "snpVariant": snpV
       };
-    //console.log("Create account submit form firing with " + $('input[name=js-uname]').val())
     submitAccountInfo(userInfo);
   });
 
@@ -275,11 +226,9 @@ const PAGE_ELEMENTS = {
   'username-taken': $('.create-account-username-taken'),
   'username-whitespace': $('.create-account-username-whitespace'),
   'password-whitespace': $('.create-account-password-whitespace'),
-  // 'pword-length': $('.create-account-pword-length'),
   'password-missing': $('.create-account-pword-missing'),
   'username-missing': $('.create-account-username-missing'),
   'snpVariant-incorrect': $('.create-account-snpVariant-incorrect')
-  // 'pword-username-missing': $('.create-account-pword-username-missing')
 };
 
 

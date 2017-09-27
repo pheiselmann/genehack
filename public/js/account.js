@@ -1,15 +1,11 @@
-
 const serverBase = '/';
 const PROFILE_URL = serverBase + 'account';
 const LOGIN_URL = serverBase + 'login';
 
-
-// function getUserInfo(token, callbackFn) {
 function getUserInfo(callbackFn) {
   var settings = {
     url: PROFILE_URL,
     dataType: 'json',
-    // data: currentUser,
     contentType: "application/json",
     beforeSend: function (request)
     {
@@ -22,7 +18,6 @@ function getUserInfo(callbackFn) {
   $.ajax(settings);
 }
 
-
 function displayUserAccountInfo(data) {
     $('body').append(
         '<p>' + 'Result: ' + data.data + '</p>' +
@@ -32,28 +27,15 @@ function displayUserAccountInfo(data) {
         '<p>' + 'token: ' + localStorage.getItem('token') + '</p>');
 }
 
-
 function getAndDisplayUserAccountInfo() {
     getUserInfo(displayUserAccountInfo);
-
 }
-
 
 function reportError(error) {
   console.log("Error: ", error);
 }
-//callback fn for login ajax call
-function storeJWT(data) {
-    //put JWT in local storage
-    localStorage.setItem('token', data.token);
-    //show that object has been added to local storage 
-    $('body').append('<p>' + 'JWT in local storage: ' + localStorage.getItem('token') + '</p>');
-    getAndDisplayUserAccountInfo();
-}
-
 
 $(function() {
    getAndDisplayUserAccountInfo();
    console.log("getAndDisplayUserAccountInfo fired")
-   // displayUserAccountInfo(data);
 });

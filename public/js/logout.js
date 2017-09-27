@@ -6,8 +6,6 @@ $(function() {
     });
 }); 
 
-
 function clearJWT() {
     localStorage.removeItem('token');
-    
 }
