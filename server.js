@@ -82,9 +82,11 @@ app.use(handleRedirects);
 app.get('/api/protected',
     passport.authenticate('jwt', {session: false}),
     (req, res) => {
+      console.log("username: " + req.user.username);
       User
-        .findOne({username: req.body.username})
+        .findOne({username: req.user.username})
         .exec()
+
     //apiRepr can be used as a token showing someone has logged in
     .then(profile => { return res.json(profile.apiRepr())})
     .catch(err => {

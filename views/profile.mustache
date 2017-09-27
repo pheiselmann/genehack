@@ -6,12 +6,6 @@
 <body>
 	<p>Hello world!</p>
 
-	<!-- <form action="/logout">
-		<input type=hidden name=dis value=yes>
-		<input type=submit value="Log Out">
-	</form> -->
-
-<!-- 	<div align="right" ><input type="submit" id="logout" onclick="location.href='/logout'" value="Logout" ></div><BR> -->
     <form role="form" accept-charset="UTF-8" class="js-logout">
     	<button type="submit">Log Out</button>
     </form>
@@ -19,13 +13,16 @@
     <div class="profile" style="display: none;">
     </div>
 
-    <div class="profile-add-snp" style="display: none;">
+    <div class="profile-edit" style="display: none;">
     </div>
 
-    <div class="profile-error-snp" style="display: none;">
+    <div class="profile-edit-error" style="display: none;">
     </div>
 
-    <div class="profile-edit-snp" style="display: none;">
+    <div class="profile-delete" style="display: none;">
+    </div>
+
+    <div class="profile-delete-sure" style="display: none;">
     </div>
 
     <div class="profile-error-no-report" style="display: none;">
@@ -34,10 +31,6 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script type="text/javascript" src="/account.js"></script>
 	<script type="text/javascript" src="/logout.js"></script>
-	<!-- <script> $(function() {
-    			getAndDisplayUserAccountInfo();
-   			 })
-   	</script> -->
-	<!-- put last three lines of code from account.js here to fire the appropriate function, and then do similar thing in a "login.html" page -->
+	
 </body>
 </html>
