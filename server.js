@@ -75,25 +75,6 @@ function handleRedirects(req, res, next) {
   }
 }
 
-
-app.use(handleRedirects);
-
-
-app.get('/api/protected',
-    passport.authenticate('jwt', {session: false}),
-    (req, res) => {
-      User
-        .findOne({username: req.body.username})
-        .exec()
-    //apiRepr can be used as a token showing someone has logged in
-    .then(profile => { return res.json(profile.apiRepr())})
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({error: 'something went terribly wrong'});
-    })
-  }
-);
-
 app.use(express.static('public/js'));
 
 app.get('/', (req, res) => {
