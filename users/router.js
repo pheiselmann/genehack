@@ -11,7 +11,7 @@ const jsonParser = bodyParser.json();
 
 // Post to register a new user
 router.post('/', jsonParser, (req, res) => {
-  const requiredFields = ['js-uname', 'js-pword'];
+  const requiredFields = ['username', 'password'];
   const missingField = requiredFields.find(field => !(field in req.body));
 
   if (missingField) {
@@ -34,6 +34,27 @@ router.post('/', jsonParser, (req, res) => {
       reason: 'ValidationError',
       message: 'Incorrect field type: expected string',
       location: nonStringField
+    });
+  }
+
+  // const stringField = ['snpVariant'];
+  // const incorrectVariant = stringField.find(field =>
+  //   (field in req.body) && !(req.body[field] === '' || req.body[field] === 'AA' || req.body[field] === 'AG' || req.body[field] === 'GG')
+  // );
+  const incorrectVariant =
+    ('snpVariant' in req.body) && 
+    !(req.body['snpVariant'] === '' || 
+      req.body['snpVariant'] === 'AA' || 
+      req.body['snpVariant'] === 'AG' || 
+      req.body['snpVariant'] === 'GG');
+
+
+  if (incorrectVariant) {
+    return res.status(422).json({
+      code: 422,
+      reason: 'ValidationError',
+      message: 'Incorrect snpVariant',
+      location: incorrectVariant
     });
   }
 

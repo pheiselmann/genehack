@@ -100,6 +100,9 @@ app.get('/account',passport.authenticate('jwt', { session: false }), (req, res) 
   });
 });
 
+app.get('/profile', (req, res) => {
+  res.render('profile');
+});
 
 app.get('/review', (req, res) => {
   res.render('review');
@@ -125,26 +128,26 @@ app.post('/login', (req, res) =>  {
 });
 
 
-app.post('/profile', (req, res) => {
-  User
-    // .findOne({username: "genemachine", password: "luckyone"})
-    // .findOne({username: "bobcat", password: "youruncle"})
-    // .findOne({_username: req.username, _password: req.password})
-    .findOne({username: req.body.username, password: req.body.password})
-    .exec()
-    .then(user => {
-      var payload = {id: user.id};
-      const authToken = createAuthToken(user.apiRepr());
-      res.json({message: "ok", token: authToken});
-    })
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({error: 'something went terribly wrong'});
-  });
-  if( ! user ){
-    res.status(401).json({message:"no such user found"});
-  }
-});
+// app.post('/profile', (req, res) => {
+//   User
+//     // .findOne({username: "genemachine", password: "luckyone"})
+//     // .findOne({username: "bobcat", password: "youruncle"})
+//     // .findOne({_username: req.username, _password: req.password})
+//     .findOne({username: req.body.username, password: req.body.password})
+//     .exec()
+//     .then(user => {
+//       var payload = {id: user.id};
+//       const authToken = createAuthToken(user.apiRepr());
+//       res.json({message: "ok", token: authToken});
+//     })
+//     .catch(err => {
+//       console.error(err);
+//       res.status(500).json({error: 'something went terribly wrong'});
+//   });
+//   if( ! user ){
+//     res.status(401).json({message:"no such user found"});
+//   }
+// });
 
 
 app.use('*', function(req, res) {

@@ -10,6 +10,7 @@ function getUserInfo(callbackFn) {
     url: PROFILE_URL,
     dataType: 'json',
     // data: currentUser,
+    contentType: "application/json",
     beforeSend: function (request)
     {
        request.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('token'));
@@ -52,5 +53,7 @@ function storeJWT(data) {
 
 
 $(function() {
-   
+   getAndDisplayUserAccountInfo();
+   console.log("getAndDisplayUserAccountInfo fired")
+   // displayUserAccountInfo(data);
 });
