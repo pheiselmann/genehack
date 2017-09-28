@@ -64,6 +64,10 @@ function reportError(error) {
   console.log("Error: ", error);
 }
 
+function retrieveEditAccountPage() {
+  //put ajax get request here to display current profile along with edit form
+  window.location.href="/edit-account"
+}
 
 const PAGE_ELEMENTS = {
   'profile': $('.profile'),
@@ -77,4 +81,9 @@ const PAGE_ELEMENTS = {
 $(function() {
    getAndDisplayUserAccountInfo();
    console.log("getAndDisplayUserAccountInfo fired")
+   $('.js-edit-account').submit(function(e) {
+        e.preventDefault();
+        console.log("edit account button firing");
+        retrieveEditAccountPage();
+    });
 });

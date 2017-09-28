@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<p>Hello world!</p>
+
+    <div class="edit-account">
+     <form role="form" accept-charset="UTF-8" name="js-edit-account-submit-form">
+    	<fieldset>
+    		<legend>Edit Account</legend>
+            <label for="js-fName">First Name</label>
+            <input type="text" class="js-fName" name="js-fName" placeholder="Bob"/>
+            <label for="js-lName">Last Name</label>
+            <input type="text" class="js-lName" name="js-lName" placeholder="Roberts"/>
+            <label for="js-snpV">SNP Variant</label>
+            <input type="text" class="js-snpV" name="js-snpV" placeholder="AG" >
+    		<button type="submit">Edit Account</button>
+    	</fieldset>
+    </form>
+    </div>
+
+    <div class="edit-account-snpVariant-incorrect" style="display: none;">
+    <p class="error-msg">Please enter AA, AG, or GG in the SNP Variant field (or leave it empty for now).</p>
+     <form role="form" accept-charset="UTF-8" name="js-edit-account-submit-form-snpVariant-incorrect">
+        <fieldset>
+            <legend>Edit Account</legend>
+            <label for="js-fName">First Name</label>
+            <input type="text" class="js-fName" name="js-fName" placeholder="Bob"/>
+            <label for="js-lName">Last Name</label>
+            <input type="text" class="js-lName" name="js-lName" placeholder="Roberts"/>
+            <label for="js-snpV">SNP Variant</label>
+            <input type="text" class="js-snpV" name="js-snpV" placeholder="AG"/>
+            <button type="submit">Edit Account</button>
+        </fieldset>
+    </form>
+    </div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script type="text/javascript" src="/edit-account.js"></script>
+    
+
+</body>
+</html>

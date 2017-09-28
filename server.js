@@ -113,6 +113,37 @@ app.delete('/api/protected',
   }
 );
 
+//create put request
+app.put('/api/protected',
+    passport.authenticate('jwt', {session: false}),
+    (req, res) => {
+      console.log("username: " + req.user.username);
+
+      const toUpdate = {};
+      const updateableFields = ['firstName', 'lastName', 'snpVariant'];
+
+      updateableFields.forEach(field => {
+        if (field in req.body) {
+          toUpdate[field] = req.body[field];
+        }
+      });
+
+      console.log(JSON.stringify(toUpdate));
+      console.log(JSON.stringify(req.user.username));
+
+      User
+        .findOneAndUpdate({username: req.user.username}, {$set: toUpdate})
+        .exec()
+     //Add function for add and delete
+    //apiRepr can be used as a token showing someone has logged in
+    .then(user => res.status(204).end())
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({error: 'something went terribly wrong'});
+    })
+  }
+);
+
 app.use(express.static('public/js'));
 
 app.get('/', (req, res) => {
