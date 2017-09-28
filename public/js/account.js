@@ -38,13 +38,13 @@ function getUserInfo(callbackFn) {
 function displayProfile(data) {
   renderApp(state, PAGE_ELEMENTS);
   $('body').append(
-     '<p>' + 'Result: ' + data.data + '</p>' +
      '<p>' + 'Name: ' + data.name + '</p>' +
      '<p>' + 'username: ' + data.username + '</p>' +
-     '<p>' + 'snpVariant: ' + data.snpVariant + '</p>' +
-     '<p>' + 'token: ' + localStorage.getItem('token') + '</p>');
+     '<p>' + 'snpVariant: ' + data.snpVariant + '</p>'
+     );
   //add buttons for 1) edit 2) delete 3) review
 }
+
 
 function getAndDisplayUserAccountInfo() {
     // getUserInfo(displayUserAccountInfo);
@@ -63,6 +63,7 @@ function displayUserAccountInfo(data) {
 function reportError(error) {
   console.log("Error: ", error);
 }
+
 
 const PAGE_ELEMENTS = {
   'profile': $('.profile'),

@@ -86,9 +86,26 @@ app.get('/api/protected',
       User
         .findOne({username: req.user.username})
         .exec()
-
+     //Add function for add and delete
     //apiRepr can be used as a token showing someone has logged in
     .then(profile => { return res.json(profile.apiRepr())})
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({error: 'something went terribly wrong'});
+    })
+  }
+);
+
+app.delete('/api/protected',
+    passport.authenticate('jwt', {session: false}),
+    (req, res) => {
+      console.log("username: " + req.user.username);
+      User
+        .findOneAndRemove({username: req.user.username})
+        .exec()
+     //Add function for add and delete
+    //apiRepr can be used as a token showing someone has logged in
+    .then(() => res.status(204).end())
     .catch(err => {
       console.error(err);
       res.status(500).json({error: 'something went terribly wrong'});
@@ -131,6 +148,10 @@ app.get('/review', (req, res) => {
 
 app.get('/create-account', (req, res) => {
   res.render('create-account');
+});
+
+app.get('/edit-account', (req, res) => {
+  res.render('edit-account');
 });
 
 // app.get('/logout', (req, res) => {
