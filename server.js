@@ -120,28 +120,34 @@ app.put('/api/protected',
       console.log("username: " + req.user.username);
 
       const toUpdate = {};
-      const updateableFields = ['firstName', 'lastName', 'snpVariant'];
+      toUpdate.name = {};
+      toUpdate.name.firstName = req.body.firstName;
+      toUpdate.name.lastName = req.body.lastName;
+      toUpdate.snpVariant = req.body.snpVariant;
 
-      updateableFields.forEach(field => {
-        if (field in req.body) {
-          toUpdate[field] = req.body[field];
-        }
-      });
+      // const updateableFields = ['name', 'snpVariant'];
+
+      // updateableFields.forEach(field => {
+      //   if (field in req.body) {
+      //     toUpdate[field] = req.body[field];
+      //   }
+      // });
 
       console.log(JSON.stringify(toUpdate));
       console.log(JSON.stringify(req.user.username));
 
       User
-        .findOneAndUpdate({username: req.user.username}, {$set: toUpdate})
+        .findOneAndUpdate({username: req.user.username}, {$set: toUpdate}, {new: true})
         .exec()
-     //Add function for add and delete
-    //apiRepr can be used as a token showing someone has logged in
-    .then(user => res.status(204).end())
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({error: 'something went terribly wrong'});
-    })
-  }
+        .then(user => {
+          console.log("success! user = ", user);
+          res.status(204).end();
+        })
+        .catch(err => {
+          console.error(err);
+          res.status(500).json({error: 'something went terribly wrong'});
+        })
+    }
 );
 
 app.use(express.static('public/js'));

@@ -32,11 +32,12 @@ function editAccount(userInfo){
        request.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('token'));
     },
     type: 'PUT',
-    success: function(data) {
-        if (data) {
-        window.location.href="/profile"
-        }
-      },
+    success: 
+    // function(data) {
+    //     if (data) {
+        window.location.href="/profile",
+      //   }
+      // },
     // error: handleError
     //replace with handleError that routes to error page
     error: reportError
