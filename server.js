@@ -118,6 +118,24 @@ app.put('/api/protected',
     passport.authenticate('jwt', {session: false}),
     (req, res) => {
       console.log("username: " + req.user.username);
+      console.log("snpVariant: " + req.body['snpVariant']);
+
+      const incorrectVariant =
+        ('snpVariant' in req.body) && 
+        !(req.body['snpVariant'] === '' || 
+        req.body['snpVariant'] === 'AA' || 
+        req.body['snpVariant'] === 'AG' || 
+        req.body['snpVariant'] === 'GG');
+
+
+      if (incorrectVariant) {
+        return res.status(422).json({
+          code: 422,
+          reason: 'ValidationError',
+          message: 'Incorrect snpVariant',
+          location: incorrectVariant
+        });
+      }
 
       const toUpdate = {};
       toUpdate.name = {};
@@ -140,15 +158,28 @@ app.put('/api/protected',
         .findOneAndUpdate({username: req.user.username}, {$set: toUpdate}, {new: true})
         .exec()
         .then(user => {
-          console.log("success! user = ", user);
-          res.status(204).end();
+          return res.status(201).json(user.apiRepr());
         })
         .catch(err => {
-          console.error(err);
-          res.status(500).json({error: 'something went terribly wrong'});
+      // Forward validation errors on to the client, otherwise give a 500
+      // error because something unexpected has happened
+          if (err.reason === 'ValidationError') {
+            return res.status(err.code).json(err);
+          }
+          res.status(500).json({code: 500, message: 'Internal server error'});
         })
+        // .then(user => {
+        //   console.log("success! user = ", user);
+        //   res.status(204).end();
+        // })
+        // .catch(err => {
+        //   console.error(err);
+        //   res.status(500).json({error: 'something went terribly wrong'});
+        // })
     }
 );
+
+
 
 app.use(express.static('public/js'));
 

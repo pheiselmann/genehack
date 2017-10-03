@@ -33,22 +33,36 @@ function editAccount(userInfo){
     },
     type: 'PUT',
     success: 
-    // function(data) {
-    //     if (data) {
-        window.location.href="/profile",
-      //   }
-      // },
+    function(data) {
+        if (data) {
+        window.location.href="/profile"
+        }
+      },
     // error: handleError
     //replace with handleError that routes to error page
-    error: reportError
+    error: handleError
   };
   $.ajax(settings);
 }
 
-
-function reportError(error) {
-  console.log("Error: ", error);
+function handleError(response, status, error) {
+    reportError(response, status, error);
+    console.log("handleError firing");
+    if (JSON.stringify(response.responseJSON.message) === "\"Incorrect snpVariant\"")
+    {
+        console.log("Incorrect snp criteria met.");
+        setRoute(state, 'snpVariant-incorrect');
+        renderApp(state, PAGE_ELEMENTS);
+    }
 }
+
+function reportError(response, status, error) {
+  console.log("Response: ", response);
+  console.log("Status: ", status);
+  console.log("Error: ", error);
+  console.log("Response Location:", JSON.stringify(response.responseJSON.location));
+  console.log("Response Message:", JSON.stringify(response.responseJSON.message));
+};
 
 
 function watchSubmit() {
@@ -71,9 +85,22 @@ function watchSubmit() {
     });
 }
 
+$("form[name='js-edit-account-submit-form-snpVariant-incorrect']").submit(function(event) {
+    event.preventDefault();
+    let fName = $(this).find('.js-fName').val();
+    let lName = $(this).find('.js-lName').val();
+    let snpV = $(this).find('.js-snpV').val();
+    let userInfo = 
+      {"firstName": fName,
+      "lastName": lName, 
+      "snpVariant": snpV
+      };
+    editAccount(userInfo);
+});
+
 const PAGE_ELEMENTS = {
   'edit-account': $('.edit-account'),
-  'edit-account-error': $('.edit-account-snpVariant-incorrect')
+  'snpVariant-incorrect': $('.edit-account-snpVariant-incorrect')
 };
 
 
