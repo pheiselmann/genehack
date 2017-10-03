@@ -98,8 +98,8 @@ app.put('/api/protected',
       const incorrectVariant =
         ('snpVariant' in req.body) && 
         !(req.body['snpVariant'] === '' || 
-        req.body['snpVariant'] === 'AA' || 
-        req.body['snpVariant'] === 'AG' || 
+        req.body['snpVariant'] === 'TT' || 
+        req.body['snpVariant'] === 'GT' || 
         req.body['snpVariant'] === 'GG');
 
 
