@@ -2,8 +2,21 @@
 $(function() {
     $('.js-delete-account').submit(function(e) {
         e.preventDefault();
+        $('.profile').hide();
+        $('.js-logout').hide();
+        $('.js-delete-account').hide();
+        $('.js-edit-account').hide();
+        $('.js-profile-delete-sure').show();
+        
+    });
+    $('.js-delete-account-sure').submit(function(e) {
+        e.preventDefault();
         console.log("delete button firing");
         deleteAccount();
+    });
+    $('.js-back-to-profile').submit(function(e) {
+        e.preventDefault();
+        window.location.href="/profile";
     });
 }); 
 

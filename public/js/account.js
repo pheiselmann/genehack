@@ -37,7 +37,8 @@ function getUserInfo(callbackFn) {
 
 function displayProfile(data) {
   renderApp(state, PAGE_ELEMENTS);
-  $('body').append(
+  // $('body').append(
+  $('.profile').append(
      '<p>' + 'Name: ' + data.name + '</p>' +
      '<p>' + 'username: ' + data.username + '</p>' +
      '<p>' + 'snpVariant: ' + data.snpVariant + '</p>'
@@ -50,15 +51,6 @@ function getAndDisplayUserAccountInfo() {
     // getUserInfo(displayUserAccountInfo);
     getUserInfo(displayProfile);
 }
-
-// function displayUserAccountInfo(data) {
-//     $('body').append(
-//         '<p>' + 'Result: ' + data.data + '</p>' +
-//      '<p>' + 'Name: ' + data.name + '</p>' +
-//      '<p>' + 'username: ' + data.username + '</p>' +
-//      '<p>' + 'snpVariant: ' + data.snpVariant + '</p>' +
-//         '<p>' + 'token: ' + localStorage.getItem('token') + '</p>');
-// }
 
 function reportError(error) {
   console.log("Error: ", error);
@@ -81,6 +73,7 @@ const PAGE_ELEMENTS = {
 $(function() {
    getAndDisplayUserAccountInfo();
    console.log("getAndDisplayUserAccountInfo fired")
+   
    $('.js-edit-account').submit(function(e) {
         e.preventDefault();
         console.log("edit account button firing");

@@ -65,6 +65,10 @@ function watchSubmit() {
       };
     editAccount(userInfo);
   });
+  $('.js-back-to-profile').submit(function(e) {
+        e.preventDefault();
+        window.location.href="/profile";
+    });
 }
 
 const PAGE_ELEMENTS = {
