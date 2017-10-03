@@ -51,14 +51,14 @@ function getAndDisplayUserAccountInfo() {
     getUserInfo(displayProfile);
 }
 
-function displayUserAccountInfo(data) {
-    $('body').append(
-        '<p>' + 'Result: ' + data.data + '</p>' +
-     '<p>' + 'Name: ' + data.name + '</p>' +
-     '<p>' + 'username: ' + data.username + '</p>' +
-     '<p>' + 'snpVariant: ' + data.snpVariant + '</p>' +
-        '<p>' + 'token: ' + localStorage.getItem('token') + '</p>');
-}
+// function displayUserAccountInfo(data) {
+//     $('body').append(
+//         '<p>' + 'Result: ' + data.data + '</p>' +
+//      '<p>' + 'Name: ' + data.name + '</p>' +
+//      '<p>' + 'username: ' + data.username + '</p>' +
+//      '<p>' + 'snpVariant: ' + data.snpVariant + '</p>' +
+//         '<p>' + 'token: ' + localStorage.getItem('token') + '</p>');
+// }
 
 function reportError(error) {
   console.log("Error: ", error);

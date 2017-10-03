@@ -177,7 +177,25 @@ describe('Users API resource', function() {
 
   it('create-account page exists', function() {
     return chai.request(app)
-      .get('/login')
+      .get('/create-account')
+      .then(function(res) {
+        res.should.have.status(200);
+        res.should.be.html;
+    });
+  });
+
+  it('profile page exists', function() {
+    return chai.request(app)
+      .get('/profile')
+      .then(function(res) {
+        res.should.have.status(200);
+        res.should.be.html;
+    });
+  });
+
+  it('edit account page exists', function() {
+    return chai.request(app)
+      .get('/edit-account')
       .then(function(res) {
         res.should.have.status(200);
         res.should.be.html;
