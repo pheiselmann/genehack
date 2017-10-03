@@ -17,6 +17,7 @@ function renderApp(state, elements) {
   });
   console.log("Current state route:" + state.route);
   elements[state.route].show();
+  $('.js-username').focus();
 }
 
 function submitLogin(username, password) {

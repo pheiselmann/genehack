@@ -15,6 +15,7 @@ function renderApp(state, elements) {
   });
   console.log("Current state route:" + state.route);
   elements[state.route].show();
+  $('.js-fName').focus();
 }
 
 function submitAccountInfo(userInfo) {

@@ -23,7 +23,6 @@ const createAuthToken = user => {
   });
 };
 
-
 app.use(morgan('common'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }) );
@@ -40,7 +39,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-
 // Adding mustache as a view engine
 var expmustache = require('mustache-express');
 app.engine('mustache', expmustache());
@@ -48,36 +46,13 @@ app.set('view engine','mustache');
 // Set views directory
 app.set('views', __dirname + '/views');
 
-
 app.use(passport.initialize());
 
 passport.use(localStrategy);
 passport.use(jwtStrategy);
 
-
 app.use('/api/users/', usersRouter);
 app.use('/api/auth/', authRouter);
-
-
-//redirect url from localhost:8080/api/auth/login to localhost:8080/account
-
-const redirectsMap = {
-  "/api/auth/login": "/account",
-  "/test": "/account"
-};
-
-function handleRedirects(req, res, next) {
-  if (Object.keys(redirectsMap).find((entry) => entry === req.path)) {
-    console.log(`Redirecting ${req.path} to ${redirectsMap[req.path]}`);
-    res.redirect(301, redirectsMap[req.path]);
-  } else {
-    next();
-  }
-}
-
-
-app.use(handleRedirects);
-
 
 app.get('/api/protected',
     passport.authenticate('jwt', {session: false}),
@@ -179,19 +154,15 @@ app.put('/api/protected',
     }
 );
 
-
-
 app.use(express.static('public/js'));
 
 app.get('/', (req, res) => {
   res.render('index');
 });
 
-
 app.get('/login', (req, res) => {
   res.render('login');
 });
-
 
 app.get('/account',passport.authenticate('jwt', { session: false }), (req, res) => {
   // Use the current user in order to 
@@ -222,10 +193,6 @@ app.get('/edit-account', (req, res) => {
   res.render('edit-account');
 });
 
-// app.get('/logout', (req, res) => {
-//   res.render('logout');
-// });
-
 app.post('/login', (req, res) =>  {
   console.log("POST body = ", req.body);
   var name, password;
@@ -236,29 +203,6 @@ app.post('/login', (req, res) =>  {
   console.log("Name = '" + name + "'") ;
   console.log("Password = '" + password + "'");
 });
-
-
-// app.post('/profile', (req, res) => {
-//   User
-//     // .findOne({username: "genemachine", password: "luckyone"})
-//     // .findOne({username: "bobcat", password: "youruncle"})
-//     // .findOne({_username: req.username, _password: req.password})
-//     .findOne({username: req.body.username, password: req.body.password})
-//     .exec()
-//     .then(user => {
-//       var payload = {id: user.id};
-//       const authToken = createAuthToken(user.apiRepr());
-//       res.json({message: "ok", token: authToken});
-//     })
-//     .catch(err => {
-//       console.error(err);
-//       res.status(500).json({error: 'something went terribly wrong'});
-//   });
-//   if( ! user ){
-//     res.status(401).json({message:"no such user found"});
-//   }
-// });
-
 
 app.use('*', function(req, res) {
   res.status(404).json({message: 'Not Found'});
