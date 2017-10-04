@@ -56,7 +56,7 @@ function generatePassword() {
 }
 
 function generatesnpVariant() {
-  const userVariant = ['AA', 'AG', 'GG'];
+  const userVariant = ['TT', 'GT', 'GG'];
   return userVariant[Math.floor(Math.random() * userVariant.length)];
 }
 
