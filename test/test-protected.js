@@ -171,5 +171,25 @@ describe('Protected endpoint', function() {
           res.body.snpVariant.should.equal(updateData.snpVariant)
         });
     });
+    it('Should delete items on DELETE', function() {
+      const token = jwt.sign({
+        user: {
+          username,
+          name: {firstName,
+          lastName},
+          snpVariant
+        },
+      }, JWT_SECRET, {
+        algorithm: 'HS256',
+        subject: username,
+        expiresIn: '7d'
+      });
+      return chai.request(app)
+      .delete('/api/protected')
+      .set('authorization', `Bearer ${token}`)
+      .then(function(res) {
+        res.should.have.status(204);
+      });
+    });
   });
 });
