@@ -23,6 +23,7 @@ describe('Protected endpoint', function() {
   const password = 'examplePass';
   const firstName = 'Example';
   const lastName = 'User';
+  const snpVariant = 'GG';
 
   before(function() {
     // return runServer(TEST_DATABASE_URL);
@@ -39,7 +40,8 @@ describe('Protected endpoint', function() {
         username,
         password,
         name: {firstName,
-        lastName}
+        lastName},
+        snpVariant
       })
     );
   });
@@ -67,7 +69,8 @@ describe('Protected endpoint', function() {
       const token = jwt.sign({
         username,
         name: {firstName,
-        lastName}
+        lastName},
+        snpVariant
       }, 'wrongSecret', {
         algorithm: 'HS256',
         expiresIn: '7d'
@@ -91,7 +94,8 @@ describe('Protected endpoint', function() {
         user: {
           username,
           name: {firstName,
-          lastName}
+          lastName},
+          snpVariant
         },
         exp: Math.floor(Date.now() / 1000) - 10 // Expired ten seconds ago
       }, JWT_SECRET, {
@@ -117,7 +121,8 @@ describe('Protected endpoint', function() {
         user: {
           username,
           name: {firstName,
-          lastName}
+          lastName},
+          snpVariant
         },
       }, JWT_SECRET, {
         algorithm: 'HS256',

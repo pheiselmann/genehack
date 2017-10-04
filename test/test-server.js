@@ -76,8 +76,7 @@ function generateUserProfileData() {
     },
     username: generateUsername(),
     password: generatePassword(),
-    snpVariant: generatesnpVariant(),
-    report: generateReport()
+    snpVariant: generatesnpVariant()
     //created: faker.date.past()
   }
 }
@@ -103,13 +102,13 @@ describe('Users API resource', function() {
     // return runServer();
   });
 
-  beforeEach(function() {
-    return seedUserProfileData();
-  });
+  // beforeEach(function() {
+  //   //return seedUserProfileData();
+  // });
 
-  afterEach(function() {
-    return tearDownDb();
-  });
+  // afterEach(function() {
+  //   return tearDownDb();
+  // });
 
   after(function() {
     return closeServer();
@@ -118,40 +117,38 @@ describe('Users API resource', function() {
   // note the use of nested `describe` blocks.
   // this allows us to make clearer, more discrete tests that focus
   // on proving something small
-  // describe('POST endpoint', function() {
+  describe('POST endpoint', function() {
 
 
-  //   it('should return a user profile with right fields', function() {
-  //     let resUser;
-  //     return chai.request(app)
-  //       .post('/profile')
-  //       .then(function(res) {
-  //         res.should.have.status(200);
-  //         res.should.be.json;
-  //         res.body.should.be.a('object');
-  //         res.body.should.include.keys(
-  //           'id', 'name', 'username', 'password', 'snpVariant', 'report');
-  //         resUser = res.body;
-  //         return User.findById(resUser.id);
-  //         //return User.findOne({username: req.body.username, password: req.body.password})
+    it('should return a user profile with right fields', function() {
+      let newUser = {firstName: 'Bob', lastName: 'Roberts', username: 'robby', password: 'bobbyrobby', snpVariant: 'GG'};
+      let resUser;
+      return chai.request(app)
+        .post('/api/users')
+        .send(newUser)
+        .then(function(res) {
+          //console.log("res body: " + JSON.stringify(res.body));
+          res.should.have.status(201);
+          res.should.be.json;
+          res.body.should.be.a('object');
+          res.body.should.include.keys(
+            'name', 'username', 'snpVariant');
+          resUser = res.body;
+          return User.find({username: resUser.username})
 
-  //       })
-  //       .then(function(profile) {
+        })
+        .then(function(profile) {
+          //console.log("username: " + JSON.stringify(profile));
+          resUser.name.should.contain(profile[0].name.firstName);
+          resUser.name.should.contain(profile[0].name.lastName);
+          resUser.username.should.equal(profile[0].username);
+          resUser.snpVariant.should.equal(profile[0].snpVariant);
+          //resUser.report.should.equal(profile.report);
 
-  //         resUser.id.should.equal(profile.id);
-  //         resUser.name.should.contain(profile.name.firstName);
-  //         resUser.username.should.equal(profile.username);
-  //         resUser.password.should.equal(profile.password);
-  //         resUser.snpVariant.should.equal(profile.snpVariant);
-  //         resUser.report.should.equal(profile.report);
-
-  //         //resUser.created.should.equal(post.created);
-  //       });
-  //   });
-  // });
-
-
-
+          //resUser.created.should.equal(post.created);
+        });
+    });
+  });
 
 
 //BELOW ARE INITIAL TESTS TO MAKE SURE HTML PAGES APPEAR
