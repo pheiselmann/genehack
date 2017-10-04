@@ -28,7 +28,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }) );
 mongoose.Promise = global.Promise;
 
-// CORS
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
@@ -43,7 +42,7 @@ app.use(function (req, res, next) {
 var expmustache = require('mustache-express');
 app.engine('mustache', expmustache());
 app.set('view engine','mustache');
-// Set views directory
+
 app.set('views', __dirname + '/views');
 
 app.use(passport.initialize());
@@ -61,8 +60,6 @@ app.get('/api/protected',
       User
         .findOne({username: req.user.username})
         .exec()
-     //Add function for add and delete
-    //apiRepr can be used as a token showing someone has logged in
     .then(profile => { return res.json(profile.apiRepr())})
     .catch(err => {
       console.error(err);
@@ -78,8 +75,6 @@ app.delete('/api/protected',
       User
         .findOneAndRemove({username: req.user.username})
         .exec()
-     //Add function for add and delete
-    //apiRepr can be used as a token showing someone has logged in
     .then(() => res.status(204).end())
     .catch(err => {
       console.error(err);
@@ -118,17 +113,6 @@ app.put('/api/protected',
       toUpdate.name.lastName = req.body.lastName;
       toUpdate.snpVariant = req.body.snpVariant;
 
-      // const updateableFields = ['name', 'snpVariant'];
-
-      // updateableFields.forEach(field => {
-      //   if (field in req.body) {
-      //     toUpdate[field] = req.body[field];
-      //   }
-      // });
-
-      console.log(JSON.stringify(toUpdate));
-      console.log(JSON.stringify(req.user.username));
-
       User
         .findOneAndUpdate({username: req.user.username}, {$set: toUpdate}, {new: true})
         .exec()
@@ -136,21 +120,11 @@ app.put('/api/protected',
           return res.status(201).json(user.apiRepr());
         })
         .catch(err => {
-      // Forward validation errors on to the client, otherwise give a 500
-      // error because something unexpected has happened
           if (err.reason === 'ValidationError') {
             return res.status(err.code).json(err);
           }
           res.status(500).json({code: 500, message: 'Internal server error'});
         })
-        // .then(user => {
-        //   console.log("success! user = ", user);
-        //   res.status(204).end();
-        // })
-        // .catch(err => {
-        //   console.error(err);
-        //   res.status(500).json({error: 'something went terribly wrong'});
-        // })
     }
 );
 
@@ -163,19 +137,6 @@ app.get('/', (req, res) => {
 app.get('/login', (req, res) => {
   res.render('login');
 });
-
-// app.get('/account',passport.authenticate('jwt', { session: false }), (req, res) => {
-//   // Use the current user in order to 
-//   // populate the template
-//   console.log("Req user", req.user);
-//   res.json( {
-//     //id: this._id,
-//     name: req.user.name,
-//     username: req.user.username,
-//     snpVariant: req.user.snpVariant
-//     //report: this.report
-//   });
-// });
 
 app.get('/profile', (req, res) => {
   res.render('profile');
@@ -192,17 +153,6 @@ app.get('/create-account', (req, res) => {
 app.get('/edit-account', (req, res) => {
   res.render('edit-account');
 });
-
-// app.post('/login', (req, res) =>  {
-//   console.log("POST body = ", req.body);
-//   var name, password;
-//   if(req.body.username && req.body.password){
-//     name = req.body.username;
-//     password = req.body.password;
-//   }
-//   console.log("Name = '" + name + "'") ;
-//   console.log("Password = '" + password + "'");
-// });
 
 app.use('*', function(req, res) {
   res.status(404).json({message: 'Not Found'});

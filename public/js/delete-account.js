@@ -22,7 +22,6 @@ $(function() {
 
 function deleteAccount(){
   var settings = {
-    // url: PROFILE_URL,
     url: '/api/protected',
     dataType: 'json',
     contentType: "application/json",
@@ -32,16 +31,13 @@ function deleteAccount(){
     },
     type: 'DELETE',
     success: function(data) {
-      // if (data.username === localStorage.getItem('uname')) {
         clearJWT();
         window.location.href="/";
-      // }
     },
     error: reportError
   };
   $.ajax(settings);
 }
-
 
 function clearJWT() {
     localStorage.removeItem('token');

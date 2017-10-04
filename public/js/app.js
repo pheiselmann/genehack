@@ -44,9 +44,7 @@ function submitLogin(username, password) {
 function storeJWT(data) {
     localStorage.setItem('token', data.authToken);
     console.log('JWT in local storage: ' + localStorage.getItem('token'));
-    // retrievePage(PROFILE_URL,
     retrievePage('/api/protected',
-
         {
           dataType: 'json',
           contentType: "application/json",
