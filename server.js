@@ -164,18 +164,18 @@ app.get('/login', (req, res) => {
   res.render('login');
 });
 
-app.get('/account',passport.authenticate('jwt', { session: false }), (req, res) => {
-  // Use the current user in order to 
-  // populate the template
-  console.log("Req user", req.user);
-  res.json( {
-    //id: this._id,
-    name: req.user.name,
-    username: req.user.username,
-    snpVariant: req.user.snpVariant
-    //report: this.report
-  });
-});
+// app.get('/account',passport.authenticate('jwt', { session: false }), (req, res) => {
+//   // Use the current user in order to 
+//   // populate the template
+//   console.log("Req user", req.user);
+//   res.json( {
+//     //id: this._id,
+//     name: req.user.name,
+//     username: req.user.username,
+//     snpVariant: req.user.snpVariant
+//     //report: this.report
+//   });
+// });
 
 app.get('/profile', (req, res) => {
   res.render('profile');
@@ -193,16 +193,16 @@ app.get('/edit-account', (req, res) => {
   res.render('edit-account');
 });
 
-app.post('/login', (req, res) =>  {
-  console.log("POST body = ", req.body);
-  var name, password;
-  if(req.body.username && req.body.password){
-    name = req.body.username;
-    password = req.body.password;
-  }
-  console.log("Name = '" + name + "'") ;
-  console.log("Password = '" + password + "'");
-});
+// app.post('/login', (req, res) =>  {
+//   console.log("POST body = ", req.body);
+//   var name, password;
+//   if(req.body.username && req.body.password){
+//     name = req.body.username;
+//     password = req.body.password;
+//   }
+//   console.log("Name = '" + name + "'") ;
+//   console.log("Password = '" + password + "'");
+// });
 
 app.use('*', function(req, res) {
   res.status(404).json({message: 'Not Found'});
