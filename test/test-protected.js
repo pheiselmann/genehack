@@ -1,6 +1,5 @@
 global.DATABASE_URL = 'mongodb://localhost/test-genehackDb';
-//const {TEST_DATABASE_URL} = require('../config');
-// const {TEST_DATABASE_URL, JWT_SECRET} = require('../config');
+
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const jwt = require('jsonwebtoken');
@@ -116,7 +115,7 @@ describe('Protected endpoint', function() {
           expect(res).to.have.status(401);
         });
     });
-    it('Should send protected data', function() {
+    it('Should send protected data upon GET request', function() {
       const token = jwt.sign({
         user: {
           username,
@@ -137,6 +136,39 @@ describe('Protected endpoint', function() {
           expect(res).to.have.status(200);
           expect(res.body).to.be.an('object');
           //expect(res.body.data).to.equal('rosebud');
+        });
+    });
+    it('Should update items on PUT', function() {
+      const token = jwt.sign({
+        user: {
+          username,
+          name: {firstName,
+          lastName},
+          snpVariant
+        },
+      }, JWT_SECRET, {
+        algorithm: 'HS256',
+        subject: username,
+        expiresIn: '7d'
+      });
+
+      const updateData = {
+        firstName:'Bob', 
+        lastName: 'Roberts',
+        snpVariant: 'TT'
+      }
+
+      return chai.request(app)
+        .put('/api/protected')
+        .set('authorization', `Bearer ${token}`)
+        .send(updateData)
+        .then(function(res) {
+          console.log("res body: " + JSON.stringify(res.body));
+          res.should.have.status(201);
+          res.should.be.json;
+          res.body.should.be.a('object');
+          res.body.name.should.equal(updateData.firstName + " " + updateData.lastName);
+          res.body.snpVariant.should.equal(updateData.snpVariant)
         });
     });
   });
