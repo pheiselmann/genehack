@@ -88,6 +88,7 @@ describe('Protected endpoint', function() {
           expect(res).to.have.status(401);
         });
     });
+
     it('Should reject requests with an expired token', function() {
       const token = jwt.sign({
         user: {
@@ -115,6 +116,7 @@ describe('Protected endpoint', function() {
           expect(res).to.have.status(401);
         });
     });
+
     it('Should send protected data upon GET request', function() {
       const token = jwt.sign({
         user: {
@@ -138,6 +140,7 @@ describe('Protected endpoint', function() {
           //expect(res.body.data).to.equal('rosebud');
         });
     });
+
     it('Should update items on PUT', function() {
       const token = jwt.sign({
         user: {
@@ -171,6 +174,40 @@ describe('Protected endpoint', function() {
           res.body.snpVariant.should.equal(updateData.snpVariant)
         });
     });
+
+    it('Should reject a PUT request with wrong snpVariant', function() {
+      const token = jwt.sign({
+        user: {
+          username,
+          name: {firstName,
+          lastName},
+          snpVariant
+        },
+      }, JWT_SECRET, {
+        algorithm: 'HS256',
+        subject: username,
+        expiresIn: '7d'
+      });
+
+      const updateData = {
+        firstName:'Bob', 
+        lastName: 'Roberts',
+        snpVariant: 'BB'
+      }
+
+      return chai.request(app)
+        .put('/api/protected')
+        .set('authorization', `Bearer ${token}`)
+        .send(updateData)
+        .then(function(res) {
+          res.should.have.status(201).should.throw(Error);
+        })
+        .catch(function(e) {
+          console.log(e.response.text);
+          e.response.text.should.equal('{"code":422,"reason":"ValidationError","message":"Incorrect snpVariant","location":true}');
+        });
+    });
+
     it('Should delete items on DELETE', function() {
       const token = jwt.sign({
         user: {

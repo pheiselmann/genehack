@@ -11,36 +11,7 @@ const jsonParser = bodyParser.json();
 
 // Post to register a new user
 router.post('/', jsonParser, (req, res) => {
-  const requiredFields = ['username', 'password'];
-  const missingField = requiredFields.find(field => !(field in req.body));
 
-  if (missingField) {
-    return res.status(422).json({
-      code: 422,
-      reason: 'ValidationError',
-      message: 'Missing field',
-      location: missingField
-    });
-  }
-
-  const stringFields = ['username', 'password', 'firstName', 'lastName', 'snpVariant'];
-  const nonStringField = stringFields.find(field =>
-    (field in req.body) && typeof req.body[field] !== 'string'
-  );
-
-  if (nonStringField) {
-    return res.status(422).json({
-      code: 422,
-      reason: 'ValidationError',
-      message: 'Incorrect field type: expected string',
-      location: nonStringField
-    });
-  }
-
-  // const stringField = ['snpVariant'];
-  // const incorrectVariant = stringField.find(field =>
-  //   (field in req.body) && !(req.body[field] === '' || req.body[field] === 'AA' || req.body[field] === 'AG' || req.body[field] === 'GG')
-  // );
   const incorrectVariant =
     ('snpVariant' in req.body) && 
     !(req.body['snpVariant'] === '' || 
