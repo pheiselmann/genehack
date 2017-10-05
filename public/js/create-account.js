@@ -54,6 +54,13 @@ function handleError(response, status, error) {
         setRoute(state, 'password-missing');
         renderApp(state, PAGE_ELEMENTS);
     } else if
+        (JSON.stringify(response.responseJSON.location) === "\"password\"" && 
+        JSON.stringify(response.responseJSON.message) === "\"Must be at most 72 characters long\"")
+    {
+        console.log("Overly long password criteria met.");
+        setRoute(state, 'password-too-long');
+        renderApp(state, PAGE_ELEMENTS);
+    } else if
         (JSON.stringify(response.responseJSON.location) === "\"username\"" && 
         JSON.stringify(response.responseJSON.message) === "\"Username already taken\"")
     {
@@ -132,6 +139,24 @@ $("form[name='js-create-account-submit-form-username-missing']").submit(function
   });
 
 $("form[name='js-create-account-submit-form-password-missing']").submit(function(event) {
+    event.preventDefault();
+    let fName = $(this).find('.js-fName').val();
+    let lName = $(this).find('.js-lName').val();
+    let uname = $(this).find('.js-uname').val();
+    let pword = $(this).find('.js-pword').val();
+    let snpV = $(this).find('.js-snpV').val();
+    console.log("submitAccountInfo firing with username: " + uname);
+    let userInfo = 
+      {"firstName": fName,
+      "lastName": lName, 
+      "username": uname, 
+      "password": pword,
+      "snpVariant": snpV
+      };
+    submitAccountInfo(userInfo);
+  });
+
+$("form[name='js-create-account-submit-form-password-too-long']").submit(function(event) {
     event.preventDefault();
     let fName = $(this).find('.js-fName').val();
     let lName = $(this).find('.js-lName').val();
@@ -228,6 +253,7 @@ const PAGE_ELEMENTS = {
   'username-whitespace': $('.create-account-username-whitespace'),
   'password-whitespace': $('.create-account-password-whitespace'),
   'password-missing': $('.create-account-pword-missing'),
+  'password-too-long': $('.create-account-pword-too-long'),
   'username-missing': $('.create-account-username-missing'),
   'snpVariant-incorrect': $('.create-account-snpVariant-incorrect')
 };
