@@ -35,6 +35,28 @@ function getUserInfo(callbackFn) {
   $.ajax(settings);
 }
 
+function getReport() {
+  var settings = {
+    // url: PROFILE_URL,
+    url: '/api/protected',
+    dataType: 'json',
+    contentType: "application/json",
+    beforeSend: function (request)
+    {
+       request.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('token'));
+    },
+    type: 'GET',
+    success: function(data) {
+      if (data.snpVariant && data.snpVariant != '') {
+        window.location.href="/review";
+      }
+    },
+    // error: reportError
+    error: reportNoSNP
+  };
+  $.ajax(settings);
+}
+
 function displayProfile(data) {
   renderApp(state, PAGE_ELEMENTS);
   // $('body').append(
@@ -50,6 +72,11 @@ function displayProfile(data) {
 function getAndDisplayUserAccountInfo() {
     // getUserInfo(displayUserAccountInfo);
     getUserInfo(displayProfile);
+}
+
+function reportNoSNP() {
+  setRoute(state, 'profile-error-no-report');
+  renderApp(state, PAGE_ELEMENTS);
 }
 
 function reportError(error) {
@@ -74,9 +101,16 @@ $(function() {
    getAndDisplayUserAccountInfo();
    console.log("getAndDisplayUserAccountInfo fired")
    
-   $('.js-edit-account').submit(function(e) {
-        e.preventDefault();
-        console.log("edit account button firing");
-        retrieveEditAccountPage();
-    });
+  $('.js-edit-account').submit(function(e) {
+    e.preventDefault();
+    console.log("edit account button firing");
+    retrieveEditAccountPage();
+  });
+
+  $('.js-view-report').submit(function(e) {
+    e.preventDefault();
+    console.log("view report button firing");
+    getReport();
+  });
+
 });

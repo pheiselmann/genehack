@@ -74,7 +74,7 @@ function watchSubmit() {
   $('.js-back-to-profile').submit(function(e) {
         e.preventDefault();
         window.location.href="/profile";
-    });
+  });
 }
 
 $("form[name='js-edit-account-submit-form-snpVariant-incorrect']").submit(function(event) {
