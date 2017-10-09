@@ -25,7 +25,6 @@ describe('Protected endpoint', function() {
   const snpVariant = 'GG';
 
   before(function() {
-    // return runServer(TEST_DATABASE_URL);
     return runServer();
   });
 
@@ -137,7 +136,6 @@ describe('Protected endpoint', function() {
         .then(res => {
           expect(res).to.have.status(200);
           expect(res.body).to.be.an('object');
-          //expect(res.body.data).to.equal('rosebud');
         });
     });
 
@@ -156,8 +154,6 @@ describe('Protected endpoint', function() {
       });
 
       const updateData = {
-        firstName:'Bob', 
-        lastName: 'Roberts',
         snpVariant: 'TT'
       }
 
@@ -170,7 +166,6 @@ describe('Protected endpoint', function() {
           res.should.have.status(201);
           res.should.be.json;
           res.body.should.be.a('object');
-          res.body.name.should.equal(updateData.firstName + " " + updateData.lastName);
           res.body.snpVariant.should.equal(updateData.snpVariant)
         });
     });
@@ -190,8 +185,6 @@ describe('Protected endpoint', function() {
       });
 
       const updateData = {
-        firstName:'Bob', 
-        lastName: 'Roberts',
         snpVariant: 'BB'
       }
 
