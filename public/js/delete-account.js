@@ -6,6 +6,7 @@ $(function() {
         $('.js-logout').hide();
         $('.js-delete-account').hide();
         $('.js-edit-account').hide();
+        $('.js-view-report').hide();
         $('.js-profile-delete-sure').show();
         
     });

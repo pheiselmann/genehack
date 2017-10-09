@@ -20,7 +20,6 @@ function renderApp(state, elements) {
 
 function getUserInfo(callbackFn) {
   var settings = {
-    // url: PROFILE_URL,
     url: '/api/protected',
     dataType: 'json',
     contentType: "application/json",
@@ -37,7 +36,6 @@ function getUserInfo(callbackFn) {
 
 function getReport() {
   var settings = {
-    // url: PROFILE_URL,
     url: '/api/protected',
     dataType: 'json',
     contentType: "application/json",
@@ -51,7 +49,6 @@ function getReport() {
         window.location.href="/review";
       }
     },
-    // error: reportError
     error: reportNoSNP
   };
   $.ajax(settings);
@@ -59,18 +56,15 @@ function getReport() {
 
 function displayProfile(data) {
   renderApp(state, PAGE_ELEMENTS);
-  // $('body').append(
   $('.profile').append(
      '<p>' + 'Name: ' + data.name + '</p>' +
      '<p>' + 'username: ' + data.username + '</p>' +
      '<p>' + 'snpVariant: ' + data.snpVariant + '</p>'
      );
-  //add buttons for 1) edit 2) delete 3) review
 }
 
 
 function getAndDisplayUserAccountInfo() {
-    // getUserInfo(displayUserAccountInfo);
     getUserInfo(displayProfile);
 }
 
@@ -84,16 +78,11 @@ function reportError(error) {
 }
 
 function retrieveEditAccountPage() {
-  //put ajax get request here to display current profile along with edit form
   window.location.href="/edit-account"
 }
 
 const PAGE_ELEMENTS = {
   'profile': $('.profile'),
-  'edit': $('.profile-edit'),
-  'edit-error': $('.profile-edit-error'),
-  'delete': $('.profile-delete'),
-  'sure': $('.profile-delete-sure'),
   'error-no-report': $('.profile-error-no-report')
 };
 
