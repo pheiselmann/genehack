@@ -61,14 +61,16 @@ function reportError(response, status, error) {
 function watchSubmit() {
   $("form[name='js-edit-account-submit-form']").submit(function(event) {
     event.preventDefault();
-    let fName = $(this).find('.js-fName').val();
-    let lName = $(this).find('.js-lName').val();
+    // let fName = $(this).find('.js-fName').val();
+    // let lName = $(this).find('.js-lName').val();
     let snpV = $(this).find('.js-snpV').val();
     let userInfo = 
-      {"firstName": fName,
-      "lastName": lName, 
-      "snpVariant": snpV
-      };
+      // {"firstName": fName,
+      // "lastName": lName, 
+      // "snpVariant": snpV
+      // };
+
+      {"snpVariant": snpV};
     editAccount(userInfo);
   });
   $('.js-back-to-profile').submit(function(e) {
@@ -79,14 +81,16 @@ function watchSubmit() {
 
 $("form[name='js-edit-account-submit-form-snpVariant-incorrect']").submit(function(event) {
     event.preventDefault();
-    let fName = $(this).find('.js-fName').val();
-    let lName = $(this).find('.js-lName').val();
+    // let fName = $(this).find('.js-fName').val();
+    // let lName = $(this).find('.js-lName').val();
     let snpV = $(this).find('.js-snpV').val();
     let userInfo = 
-      {"firstName": fName,
-      "lastName": lName, 
-      "snpVariant": snpV
-      };
+      // {"firstName": fName,
+      // "lastName": lName, 
+      // "snpVariant": snpV
+      // };
+
+      {"snpVariant": snpV};
     editAccount(userInfo);
 });
 

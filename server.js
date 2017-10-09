@@ -108,9 +108,9 @@ app.put('/api/protected',
       }
 
       const toUpdate = {};
-      toUpdate.name = {};
-      toUpdate.name.firstName = req.body.firstName;
-      toUpdate.name.lastName = req.body.lastName;
+      // toUpdate.name = {};
+      // toUpdate.name.firstName = req.body.firstName;
+      // toUpdate.name.lastName = req.body.lastName;
       toUpdate.snpVariant = req.body.snpVariant;
 
       User

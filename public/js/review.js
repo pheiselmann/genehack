@@ -1,38 +1,69 @@
-// this is mock data, but when we create our API
-// we'll have it return data that looks like this
-var MOCK_USER_INFO = {
-	"name": "Gene Geneticist",
-	"username": "genemachine",
-	"password": "luckyone",
-	"snpVariant": "AA",
-    "report": "homozygous dominant for rs1801131"
-};
-// this function's name and argument can stay the
-// same after we have a live API, but its internal
-// implementation will change. Instead of using a
-// timeout function that returns mock data, it will
-// use jQuery's AJAX functionality to make a call
-// to the server and then run the callbackFn
-function getUserInfo(callbackFn) {
-    // we use a `setTimeout` to make this asynchronous
-    // as it would be with a real AJAX call.
-	setTimeout(function(){ callbackFn(MOCK_USER_INFO)}, 100);
+const serverBase = '/';
+const GET_URL = serverBase + 'api/protected';
+
+let state = {
+    route: ''
 }
 
-// this function stays the same when we connect
-// to real API later
+function setRoute(state, route) {
+  state.route = route;
+}
+
+function renderApp(state, elements) {
+  Object.keys(elements).forEach(function(route) {
+    elements[route].hide();
+  });
+  console.log("Current state route:" + state.route);
+  elements[state.route].show();
+}
+
+function getUserReport(callbackFn) {
+  var settings = {
+    url: GET_URL,
+    dataType: 'json',
+    contentType: "application/json",
+    beforeSend: function (request)
+    {
+       request.setRequestHeader("Authorization", "Bearer " + localStorage.getItem('token'));
+    },
+    type: 'GET',
+    success: displayUserReport,
+    error: reportError
+  };
+  $.ajax(settings);
+}
+
+function reportError(error) {
+  console.log("Error: ", error);
+}
+
 function displayUserReport(data) {
-    $('body').append(
-    	'<p>' + 'Report: ' + data.report + '</p>');
+    if (data.snpVariant === 'TT') {
+      setRoute(state, 'TT');
+      renderApp(state, PAGE_ELEMENTS);
+    } else if (data.snpVariant === 'GT') {
+      setRoute(state, 'GT');
+      renderApp(state, PAGE_ELEMENTS);
+    } else if (data.snpVariant === 'GG') {
+      setRoute(state, 'GG');
+      renderApp(state, PAGE_ELEMENTS);
+    }
 }
 
-
-// this function can stay the same even when we
-// are connecting to real API
 function getAndDisplayUserReport() {
-    getUserInfo(displayUserReport);
+    getUserReport(displayUserReport);
 }
 
+const PAGE_ELEMENTS = {
+  'TT': $('.review-TT'),
+  'GT': $('.review-GT'),
+  'GG': $('.review-GG')
+};
+
+$('.js-back-to-profile').submit(function(e) {
+        e.preventDefault();
+        window.location.href="/profile";
+  });
 
 //  on page load do this
 $(function() {
