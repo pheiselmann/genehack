@@ -28,7 +28,8 @@ function submitAccountInfo(userInfo) {
       type: 'POST',
       success: function(data) {
         if (data) {
-        window.location.href="/login"
+          localStorage.clear();
+          window.location.href="/login"
         }
       },
       error: handleError
@@ -116,6 +117,8 @@ function watchSubmit() {
       "password": pword,
       "snpVariant": snpV
       };
+    persistForm();
+    // localStorage.clear();
     submitAccountInfo(userInfo);
   });
 }
@@ -135,6 +138,7 @@ $("form[name='js-create-account-submit-form-username-missing']").submit(function
       "password": pword,
       "snpVariant": snpV
       };
+    persistForm();
     submitAccountInfo(userInfo);
   });
 
@@ -153,6 +157,7 @@ $("form[name='js-create-account-submit-form-password-missing']").submit(function
       "password": pword,
       "snpVariant": snpV
       };
+    persistForm();
     submitAccountInfo(userInfo);
   });
 
@@ -171,8 +176,8 @@ $("form[name='js-create-account-submit-form-password-too-long']").submit(functio
       "password": pword,
       "snpVariant": snpV
       };
-    submitAccountInfo(userInfo);
-  });
+    persistForm();
+    submitAccountInfo(userInfo);  });
 
 $("form[name='js-create-account-submit-form-password-whitespace']").submit(function(event) {
     event.preventDefault();
@@ -189,6 +194,7 @@ $("form[name='js-create-account-submit-form-password-whitespace']").submit(funct
       "password": pword,
       "snpVariant": snpV
       };
+    persistForm();
     submitAccountInfo(userInfo);
   });
 
@@ -207,6 +213,7 @@ $("form[name='js-create-account-submit-form-username-whitespace']").submit(funct
       "password": pword,
       "snpVariant": snpV
       };
+    persistForm();
     submitAccountInfo(userInfo);
   });
 
@@ -225,6 +232,7 @@ $("form[name='js-create-account-submit-form-username-taken']").submit(function(e
       "password": pword,
       "snpVariant": snpV
       };
+    persistForm();
     submitAccountInfo(userInfo);
   });
 
@@ -243,9 +251,32 @@ $("form[name='js-create-account-submit-form-snpVariant-incorrect']").submit(func
       "password": pword,
       "snpVariant": snpV
       };
+    persistForm();
     submitAccountInfo(userInfo);
   });
 
+$("input[type=text]").change(function(){
+  $this = $(this);
+  localStorage[$this.attr("name")] = $this.val();
+  console.log("localStorage: " + JSON.stringify(localStorage));
+});
+
+function persistForm() {
+  if (localStorage) {
+    if (localStorage.fName) {
+      $('.js-fName').val(localStorage.fName);
+    }
+    if (localStorage.lName) {
+      $('.js-lName').val(localStorage.lName);
+    }
+    if (localStorage.uname) {
+      $('.js-uname').val(localStorage.uname);
+    }
+    if (localStorage.snpV) {
+      $('.js-snpV').val(localStorage.snpV);
+    }
+  }
+}
 
 const PAGE_ELEMENTS = {
   'create-account': $('.create-account'),
@@ -260,6 +291,8 @@ const PAGE_ELEMENTS = {
 
 
 $(function(){
+  localStorage.clear();
   renderApp(state, PAGE_ELEMENTS);
   watchSubmit();
+  // persistForm();
 });

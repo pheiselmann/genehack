@@ -7,5 +7,6 @@ $(function() {
 }); 
 
 function clearJWT() {
-    localStorage.removeItem('token');
+    // localStorage.removeItem('token');
+    localStorage.clear();
 }
