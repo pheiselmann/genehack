@@ -128,7 +128,7 @@ app.put('/api/protected',
     }
 );
 
-app.use(express.static('public/js'));
+app.use(express.static('public'));
 
 app.get('/', (req, res) => {
   res.render('index');
