@@ -9,29 +9,57 @@ body {
   font-family: "Roboto", helvetica, sans-serif;
   padding: 40px 0 0;
   margin: 0;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 input {
   margin-top: 10px;
   margin-bottom: 10px;
   width: 100%;
+  height: 22px;
+  font-size: 14px;
+  border-radius: 5px;
 }
 
-.error-msg-before {
+input::placeholder {
+  line-height: 25px;
+  font-size: 14px;
+}
+
+input.error-msg-before {
   margin-bottom: 0;
 }
 
-.error-msg-after {
+input.error-msg-after {
   margin-top: 0;
 }
 
-.submit-account-info {
+input.edit-snp-input {
+  width: 30%;
+  display: block;
+}
+
+.long-button {
   width: 100%;
+  margin-bottom: 10px;
+}
+
+.medium-button {
+  width: 50%;
+  margin-bottom: 10px;
+  display: block;
 }
 
 .error-msg {
-  color: red;
+  color: white;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 13px;
+}
+
+.sure-msg {
+  color: white;
+  text-align: center;
 }
 
 a {
@@ -47,8 +75,9 @@ button {
   color: black;
   background: lightgrey;
   border: 0;
+  border-radius: 5px;
   cursor: pointer;
-  margin-top: a0px;
+  margin: auto;
   /*margin-bottom: 0;*/
 }
 
@@ -60,21 +89,44 @@ button:hover {
   transition: background 0.1s;
 }
 
-.intro, .create {
+.intro, .create, .login, .profile-view, .profile-actions, .delete-sure, .edit-snp {
   width: 410px;
   padding: 10px;
-  border-radius: 3px;
-  background: lightblue;
+  border-radius: 5px;
+  background: #298eea;
   margin: 0 auto;
 }
+
+.profile-information {
+  width: 300px;
+  padding: 10px;
+  border-radius: 5px;
+  background: white;
+  margin: 0 auto;
+  text-align: left;
+  font-size: 18px;
+/*  color: white;
+*/}
+
+/*.profile-name, .profile-username, .profile-snp {
+  width: 300px;
+  padding: 10px;
+  border-radius: 5px;
+  background: white;
+  margin: 0 auto;
+  font-size: 18px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  text-align: left;
+}*/
 
 h2 {
   text-align: center;
 }
 
-.create-account-button {
+.create-account-button, .login-button, .edit-snp-button {
   display: block;
-  margin: auto;
+  margin-top: 10px;
 }
 
 .footer {

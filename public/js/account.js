@@ -47,19 +47,21 @@ function getReport() {
     success: function(data) {
       if (data.snpVariant && data.snpVariant != '') {
         window.location.href="/review";
+      } else {
+        reportNoSNP();
       }
     },
-    error: reportNoSNP
+    error: reportError
   };
   $.ajax(settings);
 }
 
 function displayProfile(data) {
   renderApp(state, PAGE_ELEMENTS);
-  $('.profile').append(
-     '<p>' + 'Name: ' + data.name + '</p>' +
-     '<p>' + 'username: ' + data.username + '</p>' +
-     '<p>' + 'snpVariant: ' + data.snpVariant + '</p>'
+  $('.profile-information').append(
+     '<p class="profile-name">' + 'Name: ' + data.name + '</p>' +
+     '<p class="profile-username">' + 'username: ' + data.username + '</p>' +
+     '<p class="profile-snp">' + 'snpVariant: ' + data.snpVariant + '</p>'
      );
 }
 
@@ -69,8 +71,9 @@ function getAndDisplayUserAccountInfo() {
 }
 
 function reportNoSNP() {
-  setRoute(state, 'profile-error-no-report');
+  setRoute(state, 'error-no-report');
   renderApp(state, PAGE_ELEMENTS);
+  $('.js-profile-actions').hide();
 }
 
 function reportError(error) {

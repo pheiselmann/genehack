@@ -4,39 +4,39 @@
 	<title></title>
 </head>
 <body>
-	<p>Hello world!</p>
 
-    <div class="edit-account">
-     <form role="form" accept-charset="UTF-8" name="js-edit-account-submit-form">
-    	<fieldset>
-    		<legend>Edit SNP</legend>
-            <label for="js-snpV">SNP Variant</label>
-            <input type="text" class="js-snpV" name="js-snpV" placeholder="GT" >
-    		<button type="submit">Edit SNP</button>
-    	</fieldset>
-      </form>
+  <div class="edit-account">
+    <form class="edit-snp" role="form" accept-charset="UTF-8" name="js-edit-account-submit-form">
+      <fieldset>
+    	  <legend>Edit SNP</legend>
+        <p>SNP Variant</p>
+        <input type="text" class="js-snpV edit-snp-input" name="js-snpV" placeholder="TT, GT, or GG" >
+    		<button class="edit-snp-button" type="submit">Submit</button>
+      </fieldset>
       <form role="form" accept-charset="UTF-8" class="js-back-to-profile">
-        <button type="submit">Return to Profile Page Without Editing</button>
+        <button class="long-button" type="submit">Return to Profile Page Without Editing</button>
       </form>
-    </div>
+    </form>
+  </div>
 
-    <div class="edit-account-snpVariant-incorrect" style="display: none;">
-      <p class="error-msg">Please enter TT, GT, or GG in the SNP Variant field (or leave it empty for now).</p>
-      <form role="form" accept-charset="UTF-8" name="js-edit-account-submit-form-snpVariant-incorrect">
-        <fieldset>
-            <legend>Edit SNP</legend>
-            <label for="js-snpV">SNP Variant</label>
-            <input type="text" class="js-snpV" name="js-snpV" placeholder="GT"/>
-            <button type="submit">Submit SNP</button>
-        </fieldset>
-      </form>
+  <div class="edit-account-snpVariant-incorrect" style="display: none;">
+    <form class="edit-snp" role="form" accept-charset="UTF-8" name="js-edit-account-submit-form-snpVariant-incorrect">
+      <fieldset>
+        <legend>Edit SNP</legend>
+        <label for="js-snpV">SNP Variant</label>
+        <input type="text" class="js-snpV edit-snp-input" name="js-snpV" placeholder="TT, GT, or GG"/>
+        <p class="error-msg">** enter TT, GT, or GG</p>
+        <button class="edit-snp-button" type="submit">Submit</button>
+      </fieldset>
       <form role="form" accept-charset="UTF-8" class="js-back-to-profile">
-        <button type="submit">Return to Profile Page Without Editing</button>
+       <button class="long-button" type="submit">Return to Profile Page Without Editing</button>
       </form>
-    </div>
+    </form>
+  </div>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/edit-account.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
     
 </body>
 </html>

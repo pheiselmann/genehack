@@ -4,58 +4,56 @@
 	<title></title>
 </head>
 <body>
-	<p>Hello world!</p>
 
-    <form role="form" accept-charset="UTF-8" class="js-logout">
-    	<button type="submit">Log Out</button>
-    </form>
+  <div class="profile profile-view" style="display: none;">
+    <h2>Account Information<h2>
+    <div class="profile-information">
+      
+    </div>
+  </div>
 
-    <form role="form" accept-charset="UTF-8" class="js-delete-account">
-        <button type="submit">Delete Account</button>
+  <div class="profile-actions js-profile-actions">
+     
+    <form role="form" accept-charset="UTF-8" class="js-view-report">
+      <button class="medium-button" type="submit">View Report</button>
     </form>
 
     <form role="form" accept-charset="UTF-8" class="js-edit-account">
-        <button type="submit">Edit SNP Variant</button>
+      <button class="medium-button" type="submit">Edit SNP Variant</button>
     </form>
 
-    <form role="form" accept-charset="UTF-8" class="js-view-report">
-        <button type="submit">View Report</button>
+    <form role="form" accept-charset="UTF-8" class="js-logout">
+      <button class="medium-button" type="submit">Log Out</button>
     </form>
 
-    <div class="profile" style="display: none;">
-    </div>
+    <form role="form" accept-charset="UTF-8" class="js-delete-account">
+      <button class="medium-button" type="submit">Delete Account</button>
+    </form>
 
-    <div class="profile-edit" style="display: none;">
-    </div>
+  </div>
+    
+  <div class="js-profile-delete-sure delete-sure" style="display: none;">
+    <p class="sure-msg">Are you sure you want to delete your account?</p>
+    <form role="form" accept-charset="UTF-8" class="js-delete-account-sure">
+      <button class="long-button" type="submit">Yes, Delete My Account!</button>
+    </form>
+    <form role="form" accept-charset="UTF-8" class="js-back-to-profile">
+      <button class="long-button" type="submit">No, Take Me Back To My Profile Page!</button>
+    </form>
+  </div>
 
-    <div class="profile-edit-error" style="display: none;">
-    </div>
+  <div class="profile-error-no-report" style="display: none;">
+    <p>You must have an SNP Variant in your profile before a report can be generated!  Please add one by clicking below.</p>
+    <form role="form" accept-charset="UTF-8" class="js-edit-account">
+      <button type="submit">Edit Account</button>
+    </form>
+  </div>
 
-    <div class="profile-delete" style="display: none;">
-    </div>
-
-    <div class="js-profile-delete-sure" style="display: none;">
-      <p>Are you sure you want to delete your account?</p>
-      <form role="form" accept-charset="UTF-8" class="js-delete-account-sure">
-        <button type="submit">Yes, Delete My Account!</button>
-      </form>
-      <form role="form" accept-charset="UTF-8" class="js-back-to-profile">
-        <button type="submit">No, Take Me Back To My Profile Page!</button>
-      </form>
-    </div>
-
-    <div class="profile-error-no-report" style="display: none;">
-      <p>You must have an SNP Variant in your profile before a report can be generated!  Please add one by clicking below.</p>
-      <form role="form" accept-charset="UTF-8" class="js-edit-account">
-        <button type="submit">Edit Account</button>
-      </form>
-    </div>
-	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/account.js"></script>
 	<script type="text/javascript" src="/js/logout.js"></script>
-    <script type="text/javascript" src="/js/delete-account.js"></script>
-<!--     <script type="text/javascript" src="/edit-account.js"></script>
- -->	
+  <script type="text/javascript" src="/js/delete-account.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
+
 </body>
 </html>
