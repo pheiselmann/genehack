@@ -59,9 +59,9 @@ function getReport() {
 function displayProfile(data) {
   renderApp(state, PAGE_ELEMENTS);
   $('.profile-information').append(
-     '<p class="profile-name">' + 'Name: ' + data.name + '</p>' +
-     '<p class="profile-username">' + 'username: ' + data.username + '</p>' +
-     '<p class="profile-snp">' + 'snpVariant: ' + data.snpVariant + '</p>'
+     '<p class="profile-info">' + 'Name: ' + data.name + '</p>' +
+     '<p class="profile-info">' + 'username: ' + data.username + '</p>' +
+     '<p class="profile-info">' + 'snpVariant: ' + data.snpVariant + '</p>'
      );
 }
 
@@ -93,13 +93,13 @@ $(function() {
    getAndDisplayUserAccountInfo();
    console.log("getAndDisplayUserAccountInfo fired")
    
-  $('.js-edit-account').submit(function(e) {
+  $('.js-edit-account').click(function(e) {
     e.preventDefault();
     console.log("edit account button firing");
     retrieveEditAccountPage();
   });
 
-  $('.js-view-report').submit(function(e) {
+  $('.js-view-report').click(function(e) {
     e.preventDefault();
     console.log("view report button firing");
     getReport();

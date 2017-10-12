@@ -1,8 +1,9 @@
 
 $(function() {
-    $('.js-delete-account').submit(function(e) {
+    $('.js-delete-account').click(function(e) {
         e.preventDefault();
         $('.profile').hide();
+        $('.profile-actions').hide();
         $('.js-logout').hide();
         $('.js-delete-account').hide();
         $('.js-edit-account').hide();

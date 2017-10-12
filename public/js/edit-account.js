@@ -38,10 +38,10 @@ function editAccount(userInfo){
   $.ajax(settings);
 }
 
-function handleError(data, response, status, error) {
+function handleError(response, status, error) {
     reportError(response, status, error);
     console.log("handleError firing");
-    if (data.snpVariant === '' || JSON.stringify(response.responseJSON.message) === "\"Incorrect snpVariant\"")
+    if (JSON.stringify(response.responseJSON.message) === "\"Incorrect snpVariant\"")
     {
         console.log("Incorrect snp criteria met.");
         setRoute(state, 'snpVariant-incorrect');
@@ -65,7 +65,7 @@ function watchSubmit() {
     let userInfo = {"snpVariant": snpV};
     editAccount(userInfo);
   });
-  $('.js-back-to-profile').submit(function(e) {
+  $('.js-back-to-profile').click(function(e) {
         e.preventDefault();
         window.location.href="/profile";
   });

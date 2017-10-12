@@ -1,5 +1,5 @@
 $(function() {
-    $('.js-logout').submit(function(e) {
+    $('.js-logout').click(function(e) {
         e.preventDefault();
         clearJWT();
         window.location.href="/"

@@ -4,20 +4,52 @@
   line-height: 1.4em;
 }
 
+html {
+  background: url("/images/dna.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 body {
-  background: grey;
-  font-family: "Roboto", helvetica, sans-serif;
+  /*background: grey;*/
+ /* font-family: "Roboto", helvetica, sans-serif;
   padding: 40px 0 0;
   margin: 0;
+  font-size: 20px;*/
+}
+
+p {
+  font-size: 22px;
+  font-weight: 500;
+ /* line-height: 0.5em;*/
+}
+
+div.intro {
+  width: 310px;
+  padding: 0px;
   font-size: 20px;
+  text-align: justify;
+  margin-bottom: 20px;
+}
+
+p.profile-info {
+  line-height: 1.2em;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+fieldset {
+  border: 0px;
 }
 
 input {
   margin-top: 10px;
   margin-bottom: 10px;
   width: 100%;
-  height: 22px;
-  font-size: 14px;
+  height: 30px;
+  font-size: 18px;
   border-radius: 5px;
 }
 
@@ -35,8 +67,14 @@ input.error-msg-after {
 }
 
 input.edit-snp-input {
-  width: 30%;
+  width: 80%;
   display: block;
+  margin: auto;
+}
+
+input.login-field {
+  margin-top: 0px;
+  border: 0px;
 }
 
 .long-button {
@@ -45,7 +83,7 @@ input.edit-snp-input {
 }
 
 .medium-button {
-  width: 50%;
+  width: 300px;
   margin-bottom: 10px;
   display: block;
 }
@@ -57,9 +95,9 @@ input.edit-snp-input {
   font-size: 13px;
 }
 
-.sure-msg {
+.sure-msg, .no-report-msg {
   color: white;
-  text-align: center;
+  text-align: left;
 }
 
 a {
@@ -73,12 +111,13 @@ button {
   font-weight: 500;
   text-align: center;
   color: black;
-  background: lightgrey;
+  background: white;
   border: 0;
   border-radius: 5px;
   cursor: pointer;
   margin: auto;
-  /*margin-bottom: 0;*/
+  margin-bottom: 10px;
+  box-shadow: 0 3px 0 darkblue;
 }
 
 button:hover {
@@ -89,8 +128,28 @@ button:hover {
   transition: background 0.1s;
 }
 
-.intro, .create, .login, .profile-view, .profile-actions, .delete-sure, .edit-snp {
+.intro, .create, .login, .profile-view, .profile-actions {
   width: 410px;
+  padding: 10px;
+  border-radius: 5px;
+  background: #298eea;
+  margin: 0 auto;
+}
+
+.edit-snp, .delete-sure, .no-report {
+  width: 200px;
+  padding: 10px;
+  border-radius: 5px;
+  background: #298eea;
+  margin: 0 auto;
+}
+
+/*.edit-snp {
+  margin-bottom: 0px;
+}*/
+
+.edit-account-button-div {
+  width: 200px;
   padding: 10px;
   border-radius: 5px;
   background: #298eea;
@@ -122,11 +181,27 @@ button:hover {
 
 h2 {
   text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-.create-account-button, .login-button, .edit-snp-button {
+.create-account-button, .edit-snp-button, .back-button {
+  width: 80%;
   display: block;
-  margin-top: 10px;
+  margin-top: 20px;
+}
+
+.login-button {
+  margin-top: 20px;
+}
+
+.back-button {
+  width: 65%;
+  margin-top: 0px;
+}
+
+.edit-snp-button {
+  margin-bottom: 0px;
 }
 
 .footer {
