@@ -61,7 +61,7 @@ function displayProfile(data) {
   $('.profile-information').append(
      '<p class="profile-info">' + 'Name: ' + data.name + '</p>' +
      '<p class="profile-info">' + 'username: ' + data.username + '</p>' +
-     '<p class="profile-info">' + 'snpVariant: ' + data.snpVariant + '</p>'
+     '<p class="profile-info">' + 'Variant: ' + data.snpVariant + '</p>'
      );
 }
 

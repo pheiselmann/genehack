@@ -60,7 +60,7 @@ const PAGE_ELEMENTS = {
   'GG': $('.review-GG')
 };
 
-$('.js-back-to-profile').submit(function(e) {
+$('.js-back-to-profile').click(function(e) {
         e.preventDefault();
         window.location.href="/profile";
   });
