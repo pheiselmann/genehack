@@ -5,6 +5,9 @@
 </head>
 <body>
 
+<main class="row create-account-page">
+<div class="col-12">
+
     <div class="create-account">
      <form class="create" role="form" accept-charset="UTF-8" name="js-create-account-submit-form">
     	<fieldset>
@@ -35,7 +38,6 @@
     </div>
 
     <div class="create-account-pword-missing" style="display: none;">
-    <!-- <p class="error-msg">Please enter a password of at least 10 characters.</p> -->
      <form class="create" role="form" accept-charset="UTF-8" name="js-create-account-submit-form-password-missing">
        <fieldset>
         <h2>Create Account</h2>
@@ -51,7 +53,6 @@
     </div>
 
      <div class="create-account-pword-too-long" style="display: none;">
-    <!-- <p class="error-msg">Please enter a password of no more than 72 characters.</p> -->
      <form class="create" role="form" accept-charset="UTF-8" name="js-create-account-submit-form-password-too-long">
         <fieldset>
         <h2>Create Account</h2>
@@ -67,8 +68,6 @@
     </div>
 
     <div class="create-account-username-missing" style="display: none;">
-<!--     <p class="error-msg">Please enter a username of at least one character.</p>
- -->    <!--  <form role="form" accept-charset="UTF-8" class="js-create-account-submit-form"> -->
      <form class="create" role="form" accept-charset="UTF-8" name="js-create-account-submit-form-username-missing">
         <fieldset>
         <h2>Create Account</h2>
@@ -84,8 +83,7 @@
     </div>
 
     <div class="create-account-username-whitespace" style="display: none;">
-<!--     <p class="error-msg">Username may not begin or end with whitespace.</p>
- -->    <form class="create" role="form" accept-charset="UTF-8" name="js-create-account-submit-form-username-whitespace">
+    <form class="create" role="form" accept-charset="UTF-8" name="js-create-account-submit-form-username-whitespace">
         <fieldset>
         <h2>Create Account</h2>
             <input type="text" class="js-fName" name="fName" placeholder="First Name"/>
@@ -100,8 +98,7 @@
     </div>
 
      <div class="create-account-password-whitespace" style="display: none;">
-<!--     <p class="error-msg">Password may not begin or end with whitespace.</p>
- -->    <form class="create" role="form" accept-charset="UTF-8" name="js-create-account-submit-form-password-whitespace">
+    <form class="create" role="form" accept-charset="UTF-8" name="js-create-account-submit-form-password-whitespace">
         <h2>Create Account</h2>
             <input type="text" class="js-fName" name="fName" placeholder="First Name"/>
             <input type="text" class="js-lName" name="lName" placeholder="Last Name"/>
@@ -115,8 +112,7 @@
     </div>
 
     <div class="create-account-snpVariant-incorrect" style="display: none;">
-<!--     <p class="error-msg">Please enter TT, GT, or GG in the SNP Variant field (or leave it empty for now).</p>
- -->     <form class="create" role="form" accept-charset="UTF-8" name="js-create-account-submit-form-snpVariant-incorrect">
+    <form class="create" role="form" accept-charset="UTF-8" name="js-create-account-submit-form-snpVariant-incorrect">
         <fieldset>
         <h2>Create Account</h2>
             <input type="text" class="js-fName" name="fName" placeholder="First Name"/>
@@ -129,6 +125,8 @@
         </fieldset>
     </form>
     </div>
+</div>
+</main>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/create-account.js"></script>

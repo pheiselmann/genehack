@@ -5,8 +5,11 @@
 </head>
 <body>
 
+<main class="row profile-page">
+<div class="col-12">
+
   <div class="profile profile-view" style="display: none;">
-    <h2>Account Information<h2>
+    <h2>Account Information</h2>
     <div class="profile-information">
     </div>
   </div>
@@ -20,20 +23,17 @@
     
   <div class="js-profile-delete-sure delete-sure" style="display: none;">
     <p class="sure-msg">Are you sure you want to delete your account?</p>
-    <form role="form" accept-charset="UTF-8" class="js-delete-account-sure">
-      <button class="long-button" type="submit">Delete</button>
-    </form>
-    <form role="form" accept-charset="UTF-8" class="js-back-to-profile">
-      <button class="long-button" type="submit">Back</button>
-    </form>
+    <button class="js-delete-account-sure long-button" type="click">Delete</button>
+    <button class="js-back-to-profile long-button bottom-button" type="click">Back</button>
   </div>
 
   <div class="profile-error-no-report no-report" style="display: none;">
     <p class="no-report-msg">You must have a MTHFR 1298 variant in your profile before a report can be generated!  Please add one by clicking below.</p>
-    <form role="form" accept-charset="UTF-8" class="js-edit-account">
-      <button class="long-button" type="submit">Edit Account</button>
-    </form>
+    <button class="js-edit-account long-button bottom-button" type="click">Edit Account</button>
   </div>
+
+</div>
+</main>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/account.js"></script>

@@ -11,12 +11,12 @@ $(function() {
         $('.js-profile-delete-sure').show();
         
     });
-    $('.js-delete-account-sure').submit(function(e) {
+    $('.js-delete-account-sure').click(function(e) {
         e.preventDefault();
         console.log("delete button firing");
         deleteAccount();
     });
-    $('.js-back-to-profile').submit(function(e) {
+    $('.js-back-to-profile').click(function(e) {
         e.preventDefault();
         window.location.href="/profile";
     });

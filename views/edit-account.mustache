@@ -5,6 +5,9 @@
 </head>
 <body>
 
+<main class="row edit-page">
+<div class="col-12">
+
   <div class="edit-account">
     <div>
       <form class="edit-snp" role="form" accept-charset="UTF-8" name="js-edit-account-submit-form">
@@ -16,7 +19,7 @@
      </form>
      </div>
     <div class="edit-account-button-div">
-      <button class="js-back-to-profile back-button" type="click">Back</button>
+      <button class="js-back-to-profile back-button bottom-button" type="click">Back</button>
     </div>
   </div>
 
@@ -26,27 +29,18 @@
         <fieldset>
           <h2>Edit Variant</h2>
           <input type="text" class="js-snpV edit-snp-input edit-error-msg-before" name="js-snpV" placeholder="TT, GT, or GG" >
-          <p class="error-msg">** enter TT, GT, or GG</p>
+          <p class="error-msg edit-error-msg">** TT, GT, or GG</p>
           <button class="edit-snp-button error-msg-after" type="submit">Submit</button>
         </fieldset>
      </form>
      </div>
     <div class="edit-account-button-div">
-      <button class="js-back-to-profile back-button" type="click">Back</button>
+      <button class="js-back-to-profile back-button bottom-button" type="click">Back</button>
     </div>
   </div>
 
- <!--  <div class="edit-account-snpVariant-incorrect" style="display: none;">
-    <form class="edit-snp" role="form" accept-charset="UTF-8" name="js-edit-account-submit-form-snpVariant-incorrect">
-      <fieldset>
-        <h2>Edit SNP</h2>
-        <input type="text" class="js-snpV edit-snp-input" name="js-snpV" placeholder="TT, GT, or GG"/>
-        <p class="error-msg">** enter TT, GT, or GG</p>
-        <button class="edit-snp-button" type="submit">Submit</button>
-      </fieldset>
-      <button class="long-button js-back-to-profile" type="submit">Back</button>
-    </form>
-  </div> -->
+</div>
+</main>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/edit-account.js"></script>
