@@ -1,4 +1,4 @@
-sl[![Build Status](https://travis-ci.org/pheiselmann/genehack.svg?branch=master)](https://travis-ci.org/pheiselmann/genehack)
+[![Build Status](https://travis-ci.org/pheiselmann/genehack.svg?branch=master)](https://travis-ci.org/pheiselmann/genehack)
 
 [![Heroku](https://heroku-badge.herokuapp.com/?app=heroku-badge)](https://rocky-basin-59938.herokuapp.com/)
 
@@ -36,7 +36,7 @@ If the user choose the "Edit Variant" option, a page will load prompting the use
 
 ![Login](public/images/genehack-login.gif)
 
-![See-Report-Edit-Account](public/images/genehack-report-edit-account.gif)
+![See-Report-Edit-Account](public/images/genehack-report-and-edit-account.gif)
 
 ## Technology
 
