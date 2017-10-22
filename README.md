@@ -32,7 +32,11 @@ If the user choose the "Edit Variant" option, a page will load prompting the use
 
 ## Demo
 
-![Walkthrough](public/images/genehack-create-account.gif)
+![Create-Account](public/images/genehack-create-account.gif)
+
+![Login](public/images/genehack-login.gif)
+
+![See-Report-Edit-Account](public/images/genehack-report-edit-account.gif)
 
 ## Technology
 
