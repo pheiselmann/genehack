@@ -89,7 +89,6 @@ function handleError(response, status, error) {
         setRoute(state, 'snpVariant-incorrect');
         renderApp(state, PAGE_ELEMENTS);
     }
-
 }
 
 function reportError(response, status, error) {
@@ -103,13 +102,11 @@ function reportError(response, status, error) {
 function watchSubmit() {
   $("form[name='js-create-account-submit-form']").submit(function(event) {
     event.preventDefault();
-    // submitAccountInfoToAjaxFn(event);
     let fName = $(this).find('.js-fName').val();
     let lName = $(this).find('.js-lName').val();
     let uname = $(this).find('.js-uname').val();
     let pword = $(this).find('.js-pword').val();
     let snpV = $(this).find('.js-snpV').val();
-    console.log("submitAccountInfo firing with username: " + uname);
     let userInfo = 
       {"firstName": fName,
       "lastName": lName, 
@@ -118,7 +115,6 @@ function watchSubmit() {
       "snpVariant": snpV
       };
     persistForm();
-    // localStorage.clear();
     submitAccountInfo(userInfo);
   });
 }
@@ -130,7 +126,6 @@ $("form[name='js-create-account-submit-form-username-missing']").submit(function
     let uname = $(this).find('.js-uname').val();
     let pword = $(this).find('.js-pword').val();
     let snpV = $(this).find('.js-snpV').val();
-    console.log("submitAccountInfo firing with username: " + uname);
     let userInfo = 
       {"firstName": fName,
       "lastName": lName, 
@@ -149,7 +144,6 @@ $("form[name='js-create-account-submit-form-password-missing']").submit(function
     let uname = $(this).find('.js-uname').val();
     let pword = $(this).find('.js-pword').val();
     let snpV = $(this).find('.js-snpV').val();
-    console.log("submitAccountInfo firing with username: " + uname);
     let userInfo = 
       {"firstName": fName,
       "lastName": lName, 
@@ -168,7 +162,6 @@ $("form[name='js-create-account-submit-form-password-too-long']").submit(functio
     let uname = $(this).find('.js-uname').val();
     let pword = $(this).find('.js-pword').val();
     let snpV = $(this).find('.js-snpV').val();
-    console.log("submitAccountInfo firing with username: " + uname);
     let userInfo = 
       {"firstName": fName,
       "lastName": lName, 
@@ -186,7 +179,6 @@ $("form[name='js-create-account-submit-form-password-whitespace']").submit(funct
     let uname = $(this).find('.js-uname').val();
     let pword = $(this).find('.js-pword').val();
     let snpV = $(this).find('.js-snpV').val();
-    console.log("submitAccountInfo firing with username: " + uname);
     let userInfo = 
       {"firstName": fName,
       "lastName": lName, 
@@ -205,7 +197,6 @@ $("form[name='js-create-account-submit-form-username-whitespace']").submit(funct
     let uname = $(this).find('.js-uname').val();
     let pword = $(this).find('.js-pword').val();
     let snpV = $(this).find('.js-snpV').val();
-    console.log("submitAccountInfo firing with username: " + uname);
     let userInfo = 
       {"firstName": fName,
       "lastName": lName, 
@@ -224,7 +215,6 @@ $("form[name='js-create-account-submit-form-username-taken']").submit(function(e
     let uname = $(this).find('.js-uname').val();
     let pword = $(this).find('.js-pword').val();
     let snpV = $(this).find('.js-snpV').val();
-    console.log("submitAccountInfo firing with username: " + uname);
     let userInfo = 
       {"firstName": fName,
       "lastName": lName, 
@@ -243,7 +233,6 @@ $("form[name='js-create-account-submit-form-snpVariant-incorrect']").submit(func
     let uname = $(this).find('.js-uname').val();
     let pword = $(this).find('.js-pword').val();
     let snpV = $(this).find('.js-snpV').val();
-    console.log("submitAccountInfo firing with username: " + uname);
     let userInfo = 
       {"firstName": fName,
       "lastName": lName, 

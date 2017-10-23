@@ -92,7 +92,6 @@ app.put('/api/protected',
 
       const incorrectVariant =
         ('snpVariant' in req.body) && 
-        // !(req.body['snpVariant'] === '' || 
         !(req.body['snpVariant'] === 'TT' || 
         req.body['snpVariant'] === 'GT' || 
         req.body['snpVariant'] === 'GG');
@@ -108,9 +107,7 @@ app.put('/api/protected',
       }
 
       const toUpdate = {};
-      // toUpdate.name = {};
-      // toUpdate.name.firstName = req.body.firstName;
-      // toUpdate.name.lastName = req.body.lastName;
+
       toUpdate.snpVariant = req.body.snpVariant;
 
       User
@@ -182,8 +179,7 @@ function runServer(databaseUrl=DATABASE_URL, port=PORT) {
   });
 }
 
-// this function closes the server, and returns a promise. we'll
-// use it in our integration tests later.
+// this function closes the server, and returns a promise.
 function closeServer() {
   return mongoose.disconnect().then(() => {
      return new Promise((resolve, reject) => {
@@ -206,4 +202,3 @@ if (require.main === module) {
 
 module.exports = {runServer, app, closeServer};
 
-//

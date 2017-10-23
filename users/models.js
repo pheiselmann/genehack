@@ -18,21 +18,17 @@ const UserSchema = mongoose.Schema({
     required: true
   },
   snpVariant: {type: String}
-  //report: {type: String}
 });
 
 UserSchema.virtual('fullName').get(function() {
-  // return `${this.name.firstName} ${this.name.lastName}`.trim();
   return `${this.name.firstName} ${this.name.lastName}`.trim();
 });
 
 UserSchema.methods.apiRepr = function() {
   return {
-    //id: this._id,
     name: this.fullName,
     username: this.username,
     snpVariant: this.snpVariant
-    //report: this.report
   };
 }
 

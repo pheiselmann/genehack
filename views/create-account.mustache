@@ -1,136 +1,138 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Create Account</title>
 </head>
 <body>
 
 <main class="row create-account-page">
-<div class="col-12">
+  <div class="col-12">
 
     <div class="create-account">
-     <form class="create" role="form" accept-charset="UTF-8" name="js-create-account-submit-form">
-    	<fieldset>
-    	<h2>Create Account</h2>
-            <input type="text" class="js-fName" name="fName" placeholder="First Name" required/>
-            <input type="text" class="js-lName" name="lName" placeholder="Last Name" required/>
-    		<input type="text" class="js-uname" name="uname" placeholder="username"/>
-    		<input type="password" class="js-pword" name="js-pword" placeholder="password"/>
-            <input type="text" class="js-snpV" name="snpV" placeholder="Variant" >
-    		<button class="create-account-button" type="submit">Submit</button>
-    	</fieldset>
-    </form>
+      <form class="create" role="form" accept-charset="UTF-8" name="js-create-account-submit-form">
+        <fieldset>
+        <h2>Create Account</h2>
+        <input type="text" class="js-fName" name="fName" placeholder="First Name" required/>
+        <input type="text" class="js-lName" name="lName" placeholder="Last Name" required/>
+    	<input type="text" class="js-uname" name="uname" placeholder="username"/>
+    	<input type="password" class="js-pword" name="js-pword" placeholder="password"/>
+        <input type="text" class="js-snpV" name="snpV" placeholder="Variant" >
+    	<button class="create-account-button" type="submit">Submit</button>
+        </fieldset>
+      </form>
     </div>
 
     <div class="create-account-username-taken" style="display: none;">
-    <form class="create" role="form" accept-charset="UTF-8" name="js-create-account-submit-form-username-taken">
+      <form class="create" role="form" accept-charset="UTF-8" name="js-create-account-submit-form-username-taken">
         <fieldset>
         <h2>Create Account</h2>
-            <input type="text" class="js-fName" name="fName" placeholder="First Name"/>
-            <input type="text" class="js-lName" name="lName" placeholder="Last Name"/>
-            <input type="text" class="js-uname error-msg-before" name="uname" placeholder="username"/>
-            <p class="error-msg">** username already taken</p>
-            <input type="password" class="js-pword error-msg-after" name="js-pword" placeholder="password"/>
-            <input type="text" class="js-snpV" name="snpV" placeholder="Variant" >
-            <button class="create-account-button" type="submit">Submit</button>
+        <input type="text" class="js-fName" name="fName" placeholder="First Name"/>
+        <input type="text" class="js-lName" name="lName" placeholder="Last Name"/>
+        <input type="text" class="js-uname error-msg-before" name="uname" placeholder="username"/>
+        <p class="error-msg">** username already taken</p>
+        <input type="password" class="js-pword error-msg-after" name="js-pword" placeholder="password"/>
+        <input type="text" class="js-snpV" name="snpV" placeholder="Variant" >
+        <button class="create-account-button" type="submit">Submit</button>
         </fieldset>
-    </form>
+      </form>
     </div>
 
     <div class="create-account-pword-missing" style="display: none;">
      <form class="create" role="form" accept-charset="UTF-8" name="js-create-account-submit-form-password-missing">
        <fieldset>
         <h2>Create Account</h2>
-            <input type="text" class="js-fName" name="fName" placeholder="First Name"/>
-            <input type="text" class="js-lName" name="lName" placeholder="Last Name"/>
-            <input type="text" class="js-uname" name="uname" placeholder="username"/>
-            <input type="password" class="js-pword error-msg-before" name="js-pword" placeholder="password"/>
-            <p class="error-msg">** password must be at least 10 characters long</p>
-            <input type="text" class="js-snpV error-msg-after" name="snpV" placeholder="Variant" >
-            <button class="create-account-button" type="submit">Submit</button>
+        <input type="text" class="js-fName" name="fName" placeholder="First Name"/>
+        <input type="text" class="js-lName" name="lName" placeholder="Last Name"/>
+        <input type="text" class="js-uname" name="uname" placeholder="username"/>
+        <input type="password" class="js-pword error-msg-before" name="js-pword" placeholder="password"/>
+        <p class="error-msg">** password must be at least 10 characters long</p>
+        <input type="text" class="js-snpV error-msg-after" name="snpV" placeholder="Variant" >
+        <button class="create-account-button" type="submit">Submit</button>
         </fieldset>
-    </form>
+      </form>
     </div>
 
-     <div class="create-account-pword-too-long" style="display: none;">
-     <form class="create" role="form" accept-charset="UTF-8" name="js-create-account-submit-form-password-too-long">
+    <div class="create-account-pword-too-long" style="display: none;">
+      <form class="create" role="form" accept-charset="UTF-8" name="js-create-account-submit-form-password-too-long">
         <fieldset>
         <h2>Create Account</h2>
-            <input type="text" class="js-fName" name="fName" placeholder="First Name"/>
-            <input type="text" class="js-lName" name="lName" placeholder="Last Name"/>
-            <input type="text" class="js-uname" name="uname" placeholder="username"/>
-            <input type="password" class="js-pword error-msg-before" name="js-pword" placeholder="password"/>
-            <p class="error-msg">** password must be no more than 72 characters long</p>
-            <input type="text" class="js-snpV error-msg-after" name="snpV" placeholder="Variant" >
-            <button class="create-account-button" type="submit">Submit</button>
+        <input type="text" class="js-fName" name="fName" placeholder="First Name"/>
+        <input type="text" class="js-lName" name="lName" placeholder="Last Name"/>
+        <input type="text" class="js-uname" name="uname" placeholder="username"/>
+        <input type="password" class="js-pword error-msg-before" name="js-pword" placeholder="password"/>
+        <p class="error-msg">** password must be no more than 72 characters long</p>
+        <input type="text" class="js-snpV error-msg-after" name="snpV" placeholder="Variant" >
+        <button class="create-account-button" type="submit">Submit</button>
         </fieldset>
-    </form>
+      </form>
     </div>
 
     <div class="create-account-username-missing" style="display: none;">
-     <form class="create" role="form" accept-charset="UTF-8" name="js-create-account-submit-form-username-missing">
+      <form class="create" role="form" accept-charset="UTF-8" name="js-create-account-submit-form-username-missing">
         <fieldset>
         <h2>Create Account</h2>
-            <input type="text" class="js-fName" name="fName" placeholder="First Name"/>
-            <input type="text" class="js-lName" name="lName" placeholder="Last Name"/>
-            <input type="text" class="js-uname error-msg-before" name="uname" placeholder="username"/>
-            <p class="error-msg">** username missing</p>
-            <input type="password" class="js-pword error-msg-after" name="js-pword" placeholder="password"/>
-            <input type="text" class="js-snpV" name="snpV" placeholder="Variant" >
-            <button class="create-account-button" type="submit">Submit</button>
+        <input type="text" class="js-fName" name="fName" placeholder="First Name"/>
+         <input type="text" class="js-lName" name="lName" placeholder="Last Name"/>
+        <input type="text" class="js-uname error-msg-before" name="uname" placeholder="username"/>
+        <p class="error-msg">** username missing</p>
+        <input type="password" class="js-pword error-msg-after" name="js-pword" placeholder="password"/>
+        <input type="text" class="js-snpV" name="snpV" placeholder="Variant" >
+        <button class="create-account-button" type="submit">Submit</button>
         </fieldset>
-    </form>
+      </form>
     </div>
 
     <div class="create-account-username-whitespace" style="display: none;">
-    <form class="create" role="form" accept-charset="UTF-8" name="js-create-account-submit-form-username-whitespace">
+      <form class="create" role="form" accept-charset="UTF-8" name="js-create-account-submit-form-username-whitespace">
         <fieldset>
         <h2>Create Account</h2>
-            <input type="text" class="js-fName" name="fName" placeholder="First Name"/>
-            <input type="text" class="js-lName" name="lName" placeholder="Last Name"/>
-            <input type="text" class="js-uname error-msg-before" name="uname" placeholder="username"/>
-            <p class="error-msg">** username may not begin or end with whitespace</p>
-            <input type="password" class="js-pword error-msg-after" name="js-pword" placeholder="password"/>
-            <input type="text" class="js-snpV" name="snpV" placeholder="Variant" >
-            <button class="create-account-button" type="submit">Submit</button>
+        <input type="text" class="js-fName" name="fName" placeholder="First Name"/>
+        <input type="text" class="js-lName" name="lName" placeholder="Last Name"/>
+        <input type="text" class="js-uname error-msg-before" name="uname" placeholder="username"/>
+        <p class="error-msg">** username may not begin or end with whitespace</p>
+        <input type="password" class="js-pword error-msg-after" name="js-pword" placeholder="password"/>
+        <input type="text" class="js-snpV" name="snpV" placeholder="Variant" >
+        <button class="create-account-button" type="submit">Submit</button>
         </fieldset>
-    </form>
+      </form>
     </div>
 
-     <div class="create-account-password-whitespace" style="display: none;">
-    <form class="create" role="form" accept-charset="UTF-8" name="js-create-account-submit-form-password-whitespace">
+    <div class="create-account-password-whitespace" style="display: none;">
+      <form class="create" role="form" accept-charset="UTF-8" name="js-create-account-submit-form-password-whitespace">
+        <fieldset>
         <h2>Create Account</h2>
-            <input type="text" class="js-fName" name="fName" placeholder="First Name"/>
-            <input type="text" class="js-lName" name="lName" placeholder="Last Name"/>
-            <input type="text" class="js-uname" name="uname" placeholder="username"/>
-            <input type="password" class="js-pword error-msg-before" name="js-pword" placeholder="password"/>
-            <p class="error-msg">** password may not begin or end with whitespace</p>
-            <input type="text" class="js-snpV error-msg-after" name="snpV" placeholder="Variant" >
-            <button class="create-account-button" type="submit">Submit</button>
+        <input type="text" class="js-fName" name="fName" placeholder="First Name"/>
+        <input type="text" class="js-lName" name="lName" placeholder="Last Name"/>
+        <input type="text" class="js-uname" name="uname" placeholder="username"/>
+        <input type="password" class="js-pword error-msg-before" name="js-pword" placeholder="password"/>
+        <p class="error-msg">** password may not begin or end with whitespace</p>
+        <input type="text" class="js-snpV error-msg-after" name="snpV" placeholder="Variant" >
+        <button class="create-account-button" type="submit">Submit</button>
         </fieldset>
-    </form>
+      </form>
     </div>
 
     <div class="create-account-snpVariant-incorrect" style="display: none;">
-    <form class="create" role="form" accept-charset="UTF-8" name="js-create-account-submit-form-snpVariant-incorrect">
+      <form class="create" role="form" accept-charset="UTF-8" name="js-create-account-submit-form-snpVariant-incorrect">
         <fieldset>
         <h2>Create Account</h2>
-            <input type="text" class="js-fName" name="fName" placeholder="First Name"/>
-            <input type="text" class="js-lName" name="lName" placeholder="Last Name"/>
-            <input type="text" class="js-uname" name="uname" placeholder="username"/>
-            <input type="password" class="js-pword" name="js-pword" placeholder="password"/>
-            <input type="text" class="js-snpV error-msg-before" name="snpV" placeholder="Variant" >
-            <p class="error-msg">** enter TT, GT, or GG</p>
-            <button class="create-account-button" type="submit">Submit</button>
+        <input type="text" class="js-fName" name="fName" placeholder="First Name"/>
+        <input type="text" class="js-lName" name="lName" placeholder="Last Name"/>
+        <input type="text" class="js-uname" name="uname" placeholder="username"/>
+        <input type="password" class="js-pword" name="js-pword" placeholder="password"/>
+        <input type="text" class="js-snpV error-msg-before" name="snpV" placeholder="Variant" >
+        <p class="error-msg">** enter TT, GT, or GG</p>
+        <button class="create-account-button" type="submit">Submit</button>
         </fieldset>
-    </form>
+      </form>
     </div>
-</div>
+
+  </div>
 </main>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-	<script type="text/javascript" src="/js/create-account.js"></script>
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/create-account.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
 
 </body>
 </html>
