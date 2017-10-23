@@ -1,3 +1,5 @@
+//variables
+
 require('dotenv').config();
 const bodyParser = require('body-parser');
 const express = require('express');
@@ -23,6 +25,7 @@ const createAuthToken = user => {
   });
 };
 
+//middleware
 app.use(morgan('common'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }) );
@@ -39,11 +42,15 @@ app.use(function (req, res, next) {
 });
 
 // Adding mustache as a view engine
-var expmustache = require('mustache-express');
-app.engine('mustache', expmustache());
-app.set('view engine','mustache');
+// var expmustache = require('mustache-express');
+// app.engine('mustache', expmustache());
+// app.set('view engine','mustache');
 
-app.set('views', __dirname + '/views');
+app.engine('html',
+require('ejs').renderFile);
+app.set('view engine','html');
+
+// app.set('views', __dirname + '/views');
 
 app.use(passport.initialize());
 
