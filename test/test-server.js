@@ -30,7 +30,7 @@ describe('HTML resources', function() {
         .then(function(res) {
           res.should.have.status(200);
           res.should.be.html;
-      });
+        });
     });
 
     it('login page exists', function() {
@@ -39,7 +39,7 @@ describe('HTML resources', function() {
         .then(function(res) {
           res.should.have.status(200);
           res.should.be.html;
-      });
+        });
     });
 
     it('create-account page exists', function() {
@@ -48,7 +48,7 @@ describe('HTML resources', function() {
         .then(function(res) {
           res.should.have.status(200);
           res.should.be.html;
-      });
+        });
     });
 
     it('profile page exists', function() {
@@ -57,7 +57,7 @@ describe('HTML resources', function() {
         .then(function(res) {
           res.should.have.status(200);
           res.should.be.html;
-      });
+        });
     });
 
     it('edit account page exists', function() {
@@ -66,7 +66,7 @@ describe('HTML resources', function() {
         .then(function(res) {
           res.should.have.status(200);
           res.should.be.html;
-      });
+        });
     });
 
     it('review page exists', function() {
@@ -75,7 +75,7 @@ describe('HTML resources', function() {
         .then(function(res) {
           res.should.have.status(200);
           res.should.be.html;
-      });
+        });
     });
   });
 });

@@ -10,11 +10,9 @@ const {JWT_SECRET} = require('../config');
 
 const expect = chai.expect;
 
-
 // This let's us make HTTP requests
 // in our tests.
 chai.use(chaiHttp);
-
 
 describe('Protected endpoint', function() {
   const username = 'exampleUser';
