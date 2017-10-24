@@ -99,150 +99,41 @@ function reportError(response, status, error) {
   console.log("Response Message:", JSON.stringify(response.responseJSON.message));
 };
 
-function watchSubmit() {
-  $("form[name='js-create-account-submit-form']").submit(function(event) {
-    event.preventDefault();
-    let fName = $(this).find('.js-fName').val();
-    let lName = $(this).find('.js-lName').val();
-    let uname = $(this).find('.js-uname').val();
-    let pword = $(this).find('.js-pword').val();
-    let snpV = $(this).find('.js-snpV').val();
-    let userInfo = 
-      {"firstName": fName,
-      "lastName": lName, 
-      "username": uname, 
-      "password": pword,
-      "snpVariant": snpV
-      };
-    persistForm();
-    submitAccountInfo(userInfo);
-  });
+function handleAccountInfo(event) {
+  event.preventDefault();
+  let fName = $(this).find('.js-fName').val();
+  let lName = $(this).find('.js-lName').val();
+  let uname = $(this).find('.js-uname').val();
+  let pword = $(this).find('.js-pword').val();
+  let snpV = $(this).find('.js-snpV').val();
+  let userInfo = 
+    {"firstName": fName,
+    "lastName": lName, 
+    "username": uname, 
+    "password": pword,
+    "snpVariant": snpV
+    };
+  persistForm();
+  submitAccountInfo(userInfo);
 }
 
-$("form[name='js-create-account-submit-form-username-missing']").submit(function(event) {
-    event.preventDefault();
-    let fName = $(this).find('.js-fName').val();
-    let lName = $(this).find('.js-lName').val();
-    let uname = $(this).find('.js-uname').val();
-    let pword = $(this).find('.js-pword').val();
-    let snpV = $(this).find('.js-snpV').val();
-    let userInfo = 
-      {"firstName": fName,
-      "lastName": lName, 
-      "username": uname, 
-      "password": pword,
-      "snpVariant": snpV
-      };
-    persistForm();
-    submitAccountInfo(userInfo);
-  });
+function watchSubmit() {
+  $("form[name='js-create-account-submit-form']").submit(handleAccountInfo) 
+}
 
-$("form[name='js-create-account-submit-form-password-missing']").submit(function(event) {
-    event.preventDefault();
-    let fName = $(this).find('.js-fName').val();
-    let lName = $(this).find('.js-lName').val();
-    let uname = $(this).find('.js-uname').val();
-    let pword = $(this).find('.js-pword').val();
-    let snpV = $(this).find('.js-snpV').val();
-    let userInfo = 
-      {"firstName": fName,
-      "lastName": lName, 
-      "username": uname, 
-      "password": pword,
-      "snpVariant": snpV
-      };
-    persistForm();
-    submitAccountInfo(userInfo);
-  });
+$("form[name='js-create-account-submit-form-username-missing']").submit(handleAccountInfo)
 
-$("form[name='js-create-account-submit-form-password-too-long']").submit(function(event) {
-    event.preventDefault();
-    let fName = $(this).find('.js-fName').val();
-    let lName = $(this).find('.js-lName').val();
-    let uname = $(this).find('.js-uname').val();
-    let pword = $(this).find('.js-pword').val();
-    let snpV = $(this).find('.js-snpV').val();
-    let userInfo = 
-      {"firstName": fName,
-      "lastName": lName, 
-      "username": uname, 
-      "password": pword,
-      "snpVariant": snpV
-      };
-    persistForm();
-    submitAccountInfo(userInfo);  });
+$("form[name='js-create-account-submit-form-password-missing']").submit(handleAccountInfo)
 
-$("form[name='js-create-account-submit-form-password-whitespace']").submit(function(event) {
-    event.preventDefault();
-    let fName = $(this).find('.js-fName').val();
-    let lName = $(this).find('.js-lName').val();
-    let uname = $(this).find('.js-uname').val();
-    let pword = $(this).find('.js-pword').val();
-    let snpV = $(this).find('.js-snpV').val();
-    let userInfo = 
-      {"firstName": fName,
-      "lastName": lName, 
-      "username": uname, 
-      "password": pword,
-      "snpVariant": snpV
-      };
-    persistForm();
-    submitAccountInfo(userInfo);
-  });
+$("form[name='js-create-account-submit-form-password-too-long']").submit(handleAccountInfo)
 
-$("form[name='js-create-account-submit-form-username-whitespace']").submit(function(event) {
-    event.preventDefault();
-    let fName = $(this).find('.js-fName').val();
-    let lName = $(this).find('.js-lName').val();
-    let uname = $(this).find('.js-uname').val();
-    let pword = $(this).find('.js-pword').val();
-    let snpV = $(this).find('.js-snpV').val();
-    let userInfo = 
-      {"firstName": fName,
-      "lastName": lName, 
-      "username": uname, 
-      "password": pword,
-      "snpVariant": snpV
-      };
-    persistForm();
-    submitAccountInfo(userInfo);
-  });
+$("form[name='js-create-account-submit-form-password-whitespace']").submit(handleAccountInfo)
 
-$("form[name='js-create-account-submit-form-username-taken']").submit(function(event) {
-    event.preventDefault();
-    let fName = $(this).find('.js-fName').val();
-    let lName = $(this).find('.js-lName').val();
-    let uname = $(this).find('.js-uname').val();
-    let pword = $(this).find('.js-pword').val();
-    let snpV = $(this).find('.js-snpV').val();
-    let userInfo = 
-      {"firstName": fName,
-      "lastName": lName, 
-      "username": uname, 
-      "password": pword,
-      "snpVariant": snpV
-      };
-    persistForm();
-    submitAccountInfo(userInfo);
-  });
+$("form[name='js-create-account-submit-form-username-whitespace']").submit(handleAccountInfo)
 
-$("form[name='js-create-account-submit-form-snpVariant-incorrect']").submit(function(event) {
-    event.preventDefault();
-    let fName = $(this).find('.js-fName').val();
-    let lName = $(this).find('.js-lName').val();
-    let uname = $(this).find('.js-uname').val();
-    let pword = $(this).find('.js-pword').val();
-    let snpV = $(this).find('.js-snpV').val();
-    let userInfo = 
-      {"firstName": fName,
-      "lastName": lName, 
-      "username": uname, 
-      "password": pword,
-      "snpVariant": snpV
-      };
-    persistForm();
-    submitAccountInfo(userInfo);
-  });
+$("form[name='js-create-account-submit-form-username-taken']").submit(handleAccountInfo)
+
+$("form[name='js-create-account-submit-form-snpVariant-incorrect']").submit(handleAccountInfo)
 
 $("input[type=text]").change(function(){
   $this = $(this);
