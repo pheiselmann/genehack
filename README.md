@@ -38,5 +38,5 @@ If the user choose the "Edit Variant" option, a page will load prompting the use
 
 ## Technology
 
-CSS, HTML, JavaScript, JQuery, Ajax, Node.js, Express, MongoDB, Mongoose, Morgan, Body-parser, Passport.js, Bcrypt.js, Chai, Chai-http, JSON Web Token, Travis CI, Heroku
+CSS, HTML, JavaScript, JQuery, Ajax, [Node.js](https://nodejs.org/en/ "Node.js"), Express, MongoDB, Mongoose, Morgan, Body-parser, Passport.js, Bcrypt.js, Chai, Chai-http, JSON Web Token, Travis CI, Heroku
 
