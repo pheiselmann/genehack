@@ -174,5 +174,4 @@ $(function(){
   localStorage.clear();
   renderApp(state, PAGE_ELEMENTS);
   watchSubmit();
-  // persistForm();
 });
