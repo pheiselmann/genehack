@@ -1,5 +1,9 @@
+//Strategies for username/password and Jwt endpoint authentication
+
 const passport = require('passport');
 
+//Strategy allows user to supply username/password to authenticate
+//an endpoint
 const LocalStrategy = require('passport-local').Strategy;
 const {
     // Assigns the Strategy export to the name JwtStrategy using object
@@ -51,6 +55,7 @@ const localStrategy = new LocalStrategy({
     });
 });
 
+//Strategy allows user to supply Jwt to authenticate an endpoint
 const jwtStrategy = new JwtStrategy({
     secretOrKey: JWT_SECRET,
     // Look for the JWT as a Bearer auth header

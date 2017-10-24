@@ -1,27 +1,36 @@
-const serverBase = '/';
-const POST_URL = serverBase + 'api/users';
+//Create account page routing
 
+//Initial load sets route to create acount page
 let state = {
     route: 'create-account'
 }
 
+//Set route
 function setRoute(state, route) {
   state.route = route;
 }
 
+//Iterate through amd hide page elements 
+//except for element for current route
 function renderApp(state, elements) {
   Object.keys(elements).forEach(function(route) {
     elements[route].hide();
   });
   console.log("Current state route:" + state.route);
   elements[state.route].show();
+  //Focus cursor on first name field
   $('.js-fName').focus();
 }
 
+//Ajax call to users endpoint where account profile
+//is created from input fields - either leads to success
+//function which clears any items in local storage from 
+//previous users and directs to login page, or leads to
+//error handling function
 function submitAccountInfo(userInfo) {
   console.log(userInfo);
   let settings = {
-      url: POST_URL,
+      url: '/api/users',
       dataType: 'json',
       data: JSON.stringify(userInfo),
       contentType: "application/json",
@@ -37,6 +46,9 @@ function submitAccountInfo(userInfo) {
   $.ajax(settings);
 }
 
+//Call function that reports stack error and set route/render 
+//appropriate error page according to error response location 
+//and message 
 function handleError(response, status, error) {
     reportError(response, status, error);
     console.log("handleError firing");
@@ -91,6 +103,7 @@ function handleError(response, status, error) {
     }
 }
 
+//Report stack error
 function reportError(response, status, error) {
   console.log("Response: ", response);
   console.log("Status: ", status);
@@ -99,6 +112,9 @@ function reportError(response, status, error) {
   console.log("Response Message:", JSON.stringify(response.responseJSON.message));
 };
 
+//Event handler function creates user info variables and
+//sends userInfo object to Ajax function that calls account
+//creation endpoint; also persists data in form fields
 function handleAccountInfo(event) {
   event.preventDefault();
   let fName = $(this).find('.js-fName').val();
@@ -117,30 +133,50 @@ function handleAccountInfo(event) {
   submitAccountInfo(userInfo);
 }
 
+//Called by ready function upon page load
+//JQuery function calls event handler for initial account info
+//submission
 function watchSubmit() {
   $("form[name='js-create-account-submit-form']").submit(handleAccountInfo) 
 }
 
+//JQuery function calls event handler for account info
+//submission from username missing error page
 $("form[name='js-create-account-submit-form-username-missing']").submit(handleAccountInfo)
 
+//JQuery function calls event handler for account info
+//submission from password missing error page
 $("form[name='js-create-account-submit-form-password-missing']").submit(handleAccountInfo)
 
+//JQuery function calls event handler for account info
+//submission from password too long error page
 $("form[name='js-create-account-submit-form-password-too-long']").submit(handleAccountInfo)
 
+//JQuery function calls event handler for account info
+//submission from password whitespaces error page
 $("form[name='js-create-account-submit-form-password-whitespace']").submit(handleAccountInfo)
 
+//JQuery function calls event handler for account info
+//submission from username whitespaces error page
 $("form[name='js-create-account-submit-form-username-whitespace']").submit(handleAccountInfo)
 
+//JQuery function calls event handler for account info
+//submission from username taken error page
 $("form[name='js-create-account-submit-form-username-taken']").submit(handleAccountInfo)
 
+//JQuery function calls event handler for account info
+//submission from unuseable variant error page
 $("form[name='js-create-account-submit-form-snpVariant-incorrect']").submit(handleAccountInfo)
 
+//Stores each text-type input field variable locally
 $("input[type=text]").change(function(){
   $this = $(this);
   localStorage[$this.attr("name")] = $this.val();
   console.log("localStorage: " + JSON.stringify(localStorage));
 });
 
+//If text-type input filed variable is stored locally,
+//populates field in each load of create account form
 function persistForm() {
   if (localStorage) {
     if (localStorage.fName) {
@@ -158,6 +194,7 @@ function persistForm() {
   }
 }
 
+//State route variables
 const PAGE_ELEMENTS = {
   'create-account': $('.create-account'),
   'username-taken': $('.create-account-username-taken'),
@@ -169,7 +206,9 @@ const PAGE_ELEMENTS = {
   'snpVariant-incorrect': $('.create-account-snpVariant-incorrect')
 };
 
-
+//Ready function fires upon page load, clears any locally stored 
+//items from previous session, loads initial page view, and 
+//calls initial event handler function
 $(function(){
   localStorage.clear();
   renderApp(state, PAGE_ELEMENTS);
