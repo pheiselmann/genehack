@@ -1,11 +1,16 @@
+//Express router 
+
+//Import express router, as well as 
+//body-parser and passport middleware
 const express = require('express');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 
+//Import mongoose user model
 const {User} = require('./models');
 
+//Create router and body-parser variables
 const router = express.Router();
-
 const jsonParser = bodyParser.json();
 
 
@@ -127,5 +132,5 @@ router.post('/', jsonParser, (req, res) => {
     });
 });
 
-
+//Export express router
 module.exports = {router};

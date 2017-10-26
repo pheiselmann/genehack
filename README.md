@@ -40,3 +40,5 @@ If the user choose the "Edit Variant" option, a page will load prompting the use
 
 [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS "CSS"), [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML "HTML"), [JavaScript](https://www.javascript.com/ "Javascript"), [JQuery](https://jquery.com/ "JQuery"), [Ajax](http://api.jquery.com/jquery.ajax/ "Ajax"), [Node.js](https://nodejs.org/en/ "Node.js"), [Express](http://expressjs.com/ "Express"), [MongoDB](https://www.mongodb.com/ "MongoDB"), [Mongoose](http://mongoosejs.com/ "Mongoose"), [Morgan](https://www.npmjs.com/package/morgan "Morgan"), [Body-parser](https://www.npmjs.com/package/body-parser "Body-parser"), [Passport.js](http://www.passportjs.org/ "Passport"), [Bcrypt.js](https://www.npmjs.com/package/bcryptjs "Bcrypt.js"), [Chai](http://chaijs.com/ "Chai"), [Chai-http](http://chaijs.com/plugins/chai-http/ "Chai-http"), [JSON Web Token](https://jwt.io/ "JSON Web Token"), [Travis CI](https://travis-ci.org/ "Travis CI"), [Heroku](https://www.heroku.com/ "Heroku")
 
+
+

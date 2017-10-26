@@ -1,3 +1,6 @@
+//Control constants for entire app
+
+//Export database urls, port, as well as Jwt secret and expiration
 exports.DATABASE_URL = process.env.DATABASE_URL ||
                        global.DATABASE_URL ||
                       'mongodb://localhost/genehackDb';

@@ -1,5 +1,8 @@
-//variables
+//Server
 
+//Import Jwt secret, express configuration file, 
+//as well as body-parser, mongoose, morgan, password, 
+//and Jwt
 require('dotenv').config();
 const bodyParser = require('body-parser');
 const express = require('express');
@@ -10,13 +13,18 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const config = require('./config');
 
+//Import users router and mongoose user model
 const {router: usersRouter, User} = require('./users');
+//Import authRouter and authentication strategies
 const {router: authRouter, localStrategy, jwtStrategy} = require('./auth');
 
+//Import database url and port
 const {DATABASE_URL, PORT} = require('./config');
 
+//Create express app variable
 const app = express();
 
+//Assign variable to function that creates Jwt authentication token
 const createAuthToken = user => {
   return jwt.sign({user}, config.JWT_SECRET, {
     subject: user.username,
@@ -25,12 +33,15 @@ const createAuthToken = user => {
   });
 };
 
-//middleware
+//Instruct express app to use imported middleware
 app.use(morgan('common'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }) );
+
+//Make mongoose use built in es6 promises
 mongoose.Promise = global.Promise;
 
+//Allow cross-origin resource sharing
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
@@ -41,25 +52,22 @@ app.use(function (req, res, next) {
   next();
 });
 
-// Adding mustache as a view engine
-// var expmustache = require('mustache-express');
-// app.engine('mustache', expmustache());
-// app.set('view engine','mustache');
-
+//Specify default view engine
 app.engine('html',
 require('ejs').renderFile);
 app.set('view engine','html');
 
-// app.set('views', __dirname + '/views');
-
+//Initialize passport and register strategies
 app.use(passport.initialize());
 
 passport.use(localStrategy);
 passport.use(jwtStrategy);
 
+//Route requests to right routers
 app.use('/api/users/', usersRouter);
 app.use('/api/auth/', authRouter);
 
+//Create get request
 app.get('/api/protected',
     passport.authenticate('jwt', {session: false}),
     (req, res) => {
@@ -75,6 +83,7 @@ app.get('/api/protected',
   }
 );
 
+//Create delete request
 app.delete('/api/protected',
     passport.authenticate('jwt', {session: false}),
     (req, res) => {
@@ -132,8 +141,10 @@ app.put('/api/protected',
     }
 );
 
+//Activate static asset sharing
 app.use(express.static('public'));
 
+//Render views and send rendered HTML strings to client
 app.get('/', (req, res) => {
   res.render('index');
 });
@@ -158,6 +169,7 @@ app.get('/edit-account', (req, res) => {
   res.render('edit-account');
 });
 
+//Report error if requested asset does not exist
 app.use('*', function(req, res) {
   res.status(404).json({message: 'Not Found'});
 });
@@ -202,10 +214,12 @@ function closeServer() {
 }
 
 // if server.js is called directly (aka, with `node server.js`), this block
-// runs. but we also export the runServer command so other code (for instance, test code) can start the server as needed.
+// runs. but we also export the runServer command so other code 
+//(for instance, test code) can start the server as needed.
 if (require.main === module) {
   runServer().catch(err => console.error(err));
 };
 
+//Export express app and server functions
 module.exports = {runServer, app, closeServer};
 

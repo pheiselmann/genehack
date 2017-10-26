@@ -1,29 +1,42 @@
+//Tests for POST requests to create user profiles
+
+//Import middleware for http request and mongoose modeling
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const mongoose = require('mongoose');
 
+//Import express app and server functions
 const {app, runServer, closeServer} = require('../server.js');
-
+//Import mongoose user model
 const {User} = require('../users')
+//Import test database url
 const {TEST_DATABASE_URL} = require('../config');
 
+//Create should variable for appending message 
+//to failed assertions
 const should = chai.should();
 
+// This let's us make http requests
+// in our tests.
 chai.use(chaiHttp);
 
+//Describe behavior expected for POST requests
 describe('Users API resource', function() {
-
+  
+  //Run server before each describe block below
   before(function() {
     return runServer(TEST_DATABASE_URL);
   });
-
+  
+   //Close server after each describe bloc below
   after(function() {
     return closeServer();
   })
 
-  // note the use of nested `describe` blocks.
-  // this allows us to make clearer, more discrete tests that focus
-  // on proving something small
+  //Describe expected behavior of POST requests made with valid create account fields,
+  //as well as request where username already taken, username too short or too long, 
+  //username or password begins or ends with whitespace, password too short, snp variant
+  //unuseable
   describe('POST endpoint', function() {
 
     it('should return a user profile with right fields', function() {
