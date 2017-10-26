@@ -1,7 +1,7 @@
 // Tests for Ajax calls to protected endpoints
 
 // Set global database url to local mongodb database
-global.DATABASE_URL = 'mongodb:// localhost/test-genehackDb';
+global.DATABASE_URL = 'mongodb://localhost/test-genehackDb';
 
 // Import middleware for http request and Jwt testing
 const chai = require('chai');

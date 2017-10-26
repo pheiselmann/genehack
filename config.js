@@ -3,10 +3,10 @@
 // Export database urls, port, as well as Jwt secret and expiration
 exports.DATABASE_URL = process.env.DATABASE_URL ||
                        global.DATABASE_URL ||
-                      'mongodb:// localhost/genehackDb';
+                      'mongodb://localhost/genehackDb';
 exports.TEST_DATABASE_URL = (
 	process.env.TEST_DATABASE_URL ||
-	'mongodb:// localhost/test-genehackDb');
+	'mongodb://localhost/test-genehackDb');
 exports.PORT = process.env.PORT || 8080;
 
 exports.JWT_SECRET = process.env.JWT_SECRET;
