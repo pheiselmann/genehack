@@ -1,8 +1,8 @@
-//Server
+// Server
 
-//Import Jwt secret, express configuration file, 
-//as well as body-parser, mongoose, morgan, password, 
-//and Jwt
+// Import Jwt secret, express configuration file, 
+// as well as body-parser, mongoose, morgan, password, 
+// and Jwt
 require('dotenv').config();
 const bodyParser = require('body-parser');
 const express = require('express');
@@ -13,18 +13,18 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const config = require('./config');
 
-//Import users router and mongoose user model
+// Import users router and mongoose user model
 const {router: usersRouter, User} = require('./users');
-//Import authRouter and authentication strategies
+// Import authRouter and authentication strategies
 const {router: authRouter, localStrategy, jwtStrategy} = require('./auth');
 
-//Import database url and port
+// Import database url and port
 const {DATABASE_URL, PORT} = require('./config');
 
-//Create express app variable
+// Create express app variable
 const app = express();
 
-//Assign variable to function that creates Jwt authentication token
+// Assign variable to function that creates Jwt authentication token
 const createAuthToken = user => {
   return jwt.sign({user}, config.JWT_SECRET, {
     subject: user.username,
@@ -33,15 +33,15 @@ const createAuthToken = user => {
   });
 };
 
-//Instruct express app to use imported middleware
+// Instruct express app to use imported middleware
 app.use(morgan('common'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }) );
 
-//Make mongoose use built in es6 promises
+// Make mongoose use built in es6 promises
 mongoose.Promise = global.Promise;
 
-//Allow cross-origin resource sharing
+// Allow cross-origin resource sharing
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
@@ -52,22 +52,22 @@ app.use(function (req, res, next) {
   next();
 });
 
-//Specify default view engine
+// Specify default view engine
 app.engine('html',
 require('ejs').renderFile);
 app.set('view engine','html');
 
-//Initialize passport and register strategies
+// Initialize passport and register strategies
 app.use(passport.initialize());
 
 passport.use(localStrategy);
 passport.use(jwtStrategy);
 
-//Route requests to right routers
+// Route requests to right routers
 app.use('/api/users/', usersRouter);
 app.use('/api/auth/', authRouter);
 
-//Create get request
+// Create get request
 app.get('/api/protected',
     passport.authenticate('jwt', {session: false}),
     (req, res) => {
@@ -83,7 +83,7 @@ app.get('/api/protected',
   }
 );
 
-//Create delete request
+// Create delete request
 app.delete('/api/protected',
     passport.authenticate('jwt', {session: false}),
     (req, res) => {
@@ -99,7 +99,7 @@ app.delete('/api/protected',
   }
 );
 
-//create put request
+// create put request
 app.put('/api/protected',
     passport.authenticate('jwt', {session: false}),
     (req, res) => {
@@ -141,10 +141,10 @@ app.put('/api/protected',
     }
 );
 
-//Activate static asset sharing
+// Activate static asset sharing
 app.use(express.static('public'));
 
-//Render views and send rendered HTML strings to client
+// Render views and send rendered HTML strings to client
 app.get('/', (req, res) => {
   res.render('index');
 });
@@ -169,17 +169,17 @@ app.get('/edit-account', (req, res) => {
   res.render('edit-account');
 });
 
-//Report error if requested asset does not exist
+// Report error if requested asset does not exist
 app.use('*', function(req, res) {
   res.status(404).json({message: 'Not Found'});
 });
 
-// closeServer needs access to a server object, but that only
-// gets created when `runServer` runs, so we declare `server` here
-// and then assign a value to it in run
+//  closeServer needs access to a server object, but that only
+//  gets created when `runServer` runs, so we declare `server` here
+//  and then assign a value to it in run
 let server;
 
-// this function connects to our database, then starts the server
+//  this function connects to our database, then starts the server
 function runServer(databaseUrl=DATABASE_URL, port=PORT) {
   return new Promise((resolve, reject) => {
     mongoose.connect(databaseUrl, err => {
@@ -198,7 +198,7 @@ function runServer(databaseUrl=DATABASE_URL, port=PORT) {
   });
 }
 
-// this function closes the server, and returns a promise.
+//  this function closes the server, and returns a promise.
 function closeServer() {
   return mongoose.disconnect().then(() => {
      return new Promise((resolve, reject) => {
@@ -213,13 +213,13 @@ function closeServer() {
   });
 }
 
-// if server.js is called directly (aka, with `node server.js`), this block
-// runs. but we also export the runServer command so other code 
-//(for instance, test code) can start the server as needed.
+//  if server.js is called directly (aka, with `node server.js`), this block
+//  runs. but we also export the runServer command so other code 
+// (for instance, test code) can start the server as needed.
 if (require.main === module) {
   runServer().catch(err => console.error(err));
 };
 
-//Export express app and server functions
+// Export express app and server functions
 module.exports = {runServer, app, closeServer};
 

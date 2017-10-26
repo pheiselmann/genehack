@@ -1,4 +1,4 @@
-//import and then export router and strategies
+// import and then export router and strategies
 const {router} = require('./router');
 const {localStrategy, jwtStrategy} = require('./strategies');
 

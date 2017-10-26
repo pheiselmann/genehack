@@ -1,51 +1,51 @@
-//Tests for Ajax calls to protected endpoints
+// Tests for Ajax calls to protected endpoints
 
-//Set global database url to local mongodb database
-global.DATABASE_URL = 'mongodb://localhost/test-genehackDb';
+// Set global database url to local mongodb database
+global.DATABASE_URL = 'mongodb:// localhost/test-genehackDb';
 
-//Import middleware for http request and Jwt testing
+// Import middleware for http request and Jwt testing
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const jwt = require('jsonwebtoken');
 
 
-//Import express app and server functions
+// Import express app and server functions
 const {app, runServer, closeServer} = require('../server');
-//Import mongoose user model
+// Import mongoose user model
 const {User} = require('../users');
-//Import Jwt secret 
+// Import Jwt secret 
 const {JWT_SECRET} = require('../config');
 
-//Create expect variable for appending messages
-//to failed assertions
+// Create expect variable for appending messages
+// to failed assertions
 const expect = chai.expect;
 
-// This let's us make HTTP requests
-// in our tests.
+//  This let's us make HTTP requests
+//  in our tests.
 chai.use(chaiHttp);
 
-//Describe behavior expected from calls to protected
-//endpoints
+// Describe behavior expected from calls to protected
+// endpoints
 describe('Protected endpoint', function() {
-  //Mock user account info
+  // Mock user account info
   const username = 'exampleUser';
   const password = 'examplePass';
   const firstName = 'Example';
   const lastName = 'User';
   const snpVariant = 'GG';
 
-  //Run server before each describe block below
+  // Run server before each describe block below
   before(function() {
     return runServer();
   });
 
-  //Close server after each describe block below
+  // Close server after each describe block below
   after(function() {
     return closeServer();
   });
 
-  //Create hashed password and mock user account from
-  //database before each describe block below
+  // Create hashed password and mock user account from
+  // database before each describe block below
   beforeEach(function() {
     return User.hashPassword(password).then(password =>
       User.create({
@@ -58,15 +58,15 @@ describe('Protected endpoint', function() {
     );
   });
 
-  //Delete mock user account from database after each
-  //describe block below
+  // Delete mock user account from database after each
+  // describe block below
   afterEach(function() {
     return User.remove({});
   });
 
-  //Describe the expected behavior of Ajax calls to protected endpoints
-  //with no credentials, an invalid or expired token, and GET, PUT and 
-  //DELETE requests
+  // Describe the expected behavior of Ajax calls to protected endpoints
+  // with no credentials, an invalid or expired token, and GET, PUT and 
+  // DELETE requests
   describe('/api/protected', function() {
     it('Should reject requests with no credentials', function() {
       return chai.request(app)
@@ -115,7 +115,7 @@ describe('Protected endpoint', function() {
           lastName},
           snpVariant
         },
-        exp: Math.floor(Date.now() / 1000) - 10 // Expired ten seconds ago
+        exp: Math.floor(Date.now() / 1000) - 10 //  Expired ten seconds ago
       }, JWT_SECRET, {
         algorithm: 'HS256',
         subject: username
