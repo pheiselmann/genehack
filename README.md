@@ -8,12 +8,12 @@
   - [How It Works](#how-it-works)
   - [Demo](#demo)
   - [Responsive Design](#responsive-design)
-  	- [Galaxy S5 (360 x 640)](#Galaxy-S5)
-  	- [Nexus 5X (412 x 732)](#Nexus-5X)
-  	- [Nexus 6P (412 x 732)](#Nexus-6P)
-  	- [iPhone 5 (320 x 568)](#iPhone-5)
-  	- [iPhone 6 (375 x 667)](#iPhone-6)
-  	- [iPhone 6 Plus (414 x 736)](#iPhone-6-Plus)
+   - [Galaxy S5 (360 x 640)](#Galaxy-S5)
+   - [Nexus 5X (412 x 732)](#Nexus-5X)
+   - [Nexus 6P (412 x 732)](#Nexus-6P)
+   - [iPhone 5 (320 x 568)](#iPhone-5)
+   - [iPhone 6 (375 x 667)](#iPhone-6)
+   - [iPhone 6 Plus (414 x 736)](#iPhone-6-Plus)
   - [Technology](#technology)
 
 
