@@ -11,7 +11,7 @@
   	- [Log In](#log-in)
   	- [See Report and Edit Account](#see-report-and-edit-account)
   - [Responsive Design](#responsive-design)
-  	- [Galaxy S5 360 X 640](#galaxy-s5-(360-x-640))
+  	- [Galaxy S5 (360 X 640)](#galaxy-s5-(360-x-640))
   	- [Nexus 5X (412 x 732)](#Nexus-5X)
   	- [Nexus 6P (412 x 732)](#Nexus-6P)
   	- [iPhone 5 (320 x 568)](#iPhone-5)
@@ -55,9 +55,9 @@ If the user choose the "Edit Variant" option, a page will load prompting the use
 
 ## Responsive Design
 
-### Galaxy S5 360 X 640
+### Galaxy S5 (360 X 640)
 
-![Galaxy S5 360 X 640](public/images/GalaxyS5.png)
+![Galaxy S5 (360 X 640)](public/images/GalaxyS5.png)
 
 ### Nexus 5X
 
