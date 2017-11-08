@@ -43,21 +43,21 @@ If the user choose the "Edit Variant" option, a page will load prompting the use
 
 ### Create Account
 
-![Create-Account](public/images/genehack-create-account.gif)
+![Create Account](public/images/genehack-create-account.gif)
 
 ### Log In
 
-![Login](public/images/genehack-login.gif)
+![Log In](public/images/genehack-login.gif)
 
 ### See Report/Edit Account
 
-![See-Report-Edit-Account](public/images/genehack-report-and-edit-account.gif)
+![See Report/Edit Account](public/images/genehack-report-and-edit-account.gif)
 
 ## Responsive Design
 
 ### Galaxy S5
 
-![Galaxy-S5](public/images/GalaxyS5.png)
+![Galaxy S5 (360 x 640)](public/images/GalaxyS5.png)
 
 ### Nexus 5X
 
