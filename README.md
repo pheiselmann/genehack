@@ -49,7 +49,7 @@ If the user choose the "Edit Variant" option, a page will load prompting the use
 
 ![Log In](public/images/genehack-login.gif)
 
-### See Report/Edit Account
+### See Report and Edit Account
 
 ![See Report and Edit Account](public/images/genehack-report-and-edit-account.gif)
 
