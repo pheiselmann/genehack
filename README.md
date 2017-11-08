@@ -11,7 +11,7 @@
   	- [Log In](#log-in)
   	- [See Report and Edit Account](#see-report-and-edit-account)
   - [Responsive Design](#responsive-design)
-  	- [Galaxy S5](#galaxy-S5)
+  	- [Galaxy S5](#galaxy-s5)
   	- [Nexus 5X (412 x 732)](#Nexus-5X)
   	- [Nexus 6P (412 x 732)](#Nexus-6P)
   	- [iPhone 5 (320 x 568)](#iPhone-5)
