@@ -9,7 +9,7 @@
   - [Demo](#demo)
   	- [Create Account](#create-account)
   	- [Log In](#log-in)
-  	- [See Report/Edit Account](#see-report-edit-account)
+  	- [See Report and Edit Account](#see-report-and-edit-account)
   - [Responsive Design](#responsive-design)
   	- [Galaxy S5 (360 x 640)](#Galaxy-S5)
   	- [Nexus 5X (412 x 732)](#Nexus-5X)
@@ -51,7 +51,7 @@ If the user choose the "Edit Variant" option, a page will load prompting the use
 
 ### See Report/Edit Account
 
-![See Report/Edit Account](public/images/genehack-report-and-edit-account.gif)
+![See Report and Edit Account](public/images/genehack-report-and-edit-account.gif)
 
 ## Responsive Design
 
