@@ -44,7 +44,7 @@ If the user choose the "Edit Variant" option, a page will load prompting the use
 
 ![See-Report-Edit-Account](public/images/genehack-report-and-edit-account.gif)
 
-##Responsive Design
+##Responsive-Design
 
 ###Galaxy S5
 
