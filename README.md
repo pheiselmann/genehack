@@ -55,7 +55,7 @@ If the user choose the "Edit Variant" option, a page will load prompting the use
 
 ## Responsive Design
 
-### Galaxy S5
+### Galaxy S5 (360 x 640)
 
 ![Galaxy S5 (360 x 640)](public/images/GalaxyS5.png)
 
