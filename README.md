@@ -11,12 +11,12 @@
   	- [Log In](#log-in)
   	- [See Report and Edit Account](#see-report-and-edit-account)
   - [Responsive Design](#responsive-design)
-  	- [Galaxy S5 (360 X 640)](#galaxy-s5-\(360-x-640\))
-  	- [Nexus 5X (412 x 732)](#Nexus-5X)
-  	- [Nexus 6P (412 x 732)](#Nexus-6P)
-  	- [iPhone 5 (320 x 568)](#iPhone-5)
-  	- [iPhone 6 (375 x 667)](#iPhone-6)
-  	- [iPhone 6 Plus (414 x 736)](#iPhone-6-Plus)
+  	- [Galaxy S5 360 X 640](#galaxy-s5-360-x-640)
+  	- [Nexus 5X 412 x 732](#nexus-5x-412-x-732)
+  	- [Nexus 6P 412 x 732](#nexus-6p-412-x-732)
+  	- [iPhone 5 320 x 568](#iphone-5-320-x-568)
+  	- [iPhone 6 375 x 667](#iphone-6-375-x-667)
+  	- [iPhone 6 Plus 414 x 736](#iphone-6-plus-414-x-736)
   - [Technology](#technology)
 
 
@@ -55,29 +55,29 @@ If the user choose the "Edit Variant" option, a page will load prompting the use
 
 ## Responsive Design
 
-### Galaxy S5 (360 X 640)
+### Galaxy S5 360 X 640
 
-![Galaxy S5 (360 X 640)](public/images/GalaxyS5.png)
+![Galaxy S5 360 X 640](public/images/GalaxyS5.png)
 
-### Nexus 5X
+### Nexus 5X 412 x 732
 
-![Nexus-5X](public/images/Nexus5X.png)
+![Nexus 5X 412 x 732](public/images/Nexus5X.png)
 
-### Nexus 6P
+### Nexus 6P 412 x 732
 
-![Nexus-6P](public/images/Nexus6P.png)
+![Nexus 6P 412 x 732](public/images/Nexus6P.png)
 
-### iPhone 5
+### iPhone 5 320 x 568
 
-![iPhone-5](public/images/iPhone5.png)
+![iPhone 5 320 x 568](public/images/iPhone5.png)
 
-### iPhone 6
+### iPhone 6 375 x 667
 
-![iPhone-6](public/images/iPhone6.png)
+![iPhone 6 375 x 667](public/images/iPhone6.png)
 
-### iPhone 6 Plus
+### iPhone 6 Plus 414 x 736
 
-![iPhone-6-Plus](public/images/iPhone6Plus.png)
+![iPhone 6 Plus 414 x 736](public/images/iPhone6Plus.png)
 
 ## Technology
 
